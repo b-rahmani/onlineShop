@@ -1,0 +1,53 @@
+@import "/styles/mixins";
+.sidebar {
+  position: fixed;
+  width: 60vw;
+  height: 100vh;
+  padding: 0 16px;
+  background-color: #fff;
+  right: 0;
+  top: 0;
+  display: none;
+  z-index: 21;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: translateX(105%);
+  transition: all 0.5s ease;
+  @include phone-only {
+    display: block;
+  }
+
+  .imageLogo {
+    width: 100px;
+    height: 40px;
+
+    position: relative;
+    display: block;
+    margin: 10px auto;
+  }
+  nav {
+    ul {
+      list-style: none;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      li {
+        a {
+          text-decoration: none;
+          display: block;
+          text-align: center;
+          padding: 10px;
+
+          color: gray;
+
+         
+        }
+      }
+    }
+  }
+
+  &.isopen {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,88 @@
+import React, { useState, useContext } from "react";
+import Image from "next/image";
+import SearchBar from "../searchbar/SearchBar";
+import AccountIcon from "../icons/AccountIcon";
+import CartIcon from "../icons/basket";
+import classes from "./Layout.module.scss";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Hamburger from "../icons/hamburger";
+import Sidebar from "../sidebar/Sidebar";
+import SidebarContext from "../../store/sideBarContext";
+import ActiveLink from "../activeLink/ActiveLink";
+
+interface layoutProps {
+  children?: JSX.Element;
+
+  search?: boolean;
+}
+
+const Layout = ({ children, search }: layoutProps) => {
+  const Router = useRouter();
+  const sideBarContext = useContext(SidebarContext);
+  let user = "d";
+  const accountClickHandler = () => {
+    user ? Router.push("/profile") : Router.push("/login");
+  };
+  return (
+    <div
+      className="container"
+      style={{ overflow: sideBarContext.isOpen ? "hidden" : "none" }}
+    >
+      <header className={classes.header}>
+        <div className={classes.actionHead}>
+          <Link href="/">
+            <a className={classes.imageLogo}>
+              <Image src="/logo.png" alt="logo" layout="fill" />
+            </a>
+          </Link>
+          <div className={classes.actionBar}>
+            {search && <SearchBar />}
+            <AccountIcon
+              className={classes.acountIcon}
+              click={accountClickHandler}
+            />
+            <Link href="/cart">
+              <a>
+                <CartIcon />
+              </a>
+            </Link>
+          </div>
+        </div>
+        <div className="divider"></div>
+        <div className={classes.linksHead}>
+          <div className={`${classes.mobileHead} showmobile`}>
+            <Hamburger click={sideBarContext.sidebarTogglehandler} />
+            <div className={classes.imageLogo}>
+              <Image src="/logo.png" alt="logo" layout="fill" />
+            </div>
+          </div>
+          <Sidebar
+          // isOpen={sideBarContext.isOpen}
+          // click={sideBarContext.sidebarCloseHandler}
+          />
+          <nav className={classes.nav}>
+            <ul>
+              <li>
+                <ActiveLink href="/">صفحه اصلی</ActiveLink>
+              </li>
+
+              <li>
+                <ActiveLink href="/#main">محصولات</ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="/cart">سبد خرید</ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="/other">دیگر</ActiveLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main>{children}</main>
+      <footer>foooter</footer>
+    </div>
+  );
+};
+export default Layout;

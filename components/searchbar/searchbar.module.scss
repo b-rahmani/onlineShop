@@ -1,0 +1,44 @@
+@import "/styles/mixins";
+.searchBar {
+  display: flex;
+  margin-inline-end: auto;
+  margin-inline-start: 20px;
+  width: 200px;
+  align-items: center;
+  background-color: rgb(228, 228, 228);
+
+  @include phone-only {
+    margin-inline-start: 0;
+    width: 150px;
+  }
+
+  label {
+    color: gray;
+    display: flex;
+    margin-left: 5px;
+
+    & > svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  input {
+    padding: 5px 10px;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    direction: ltr;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &::placeholder {
+      font-size: 15px;
+      line-height: normal;
+    }
+  }
+}

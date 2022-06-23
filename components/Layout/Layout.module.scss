@@ -1,0 +1,133 @@
+@import "/styles/mixins";
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+
+  @include phone-only {
+    flex-direction: column-reverse;
+  }
+
+  .actionHead {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+
+    .imageLogo {
+      width: 100px;
+      height: 40px;
+      position: relative;
+
+      @include phone-only {
+        display: none;
+      }
+    }
+
+    & > span {
+      margin-left: 10px !important;
+    }
+    .actionBar {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+
+      a {
+        display: flex;
+        align-items: center;
+      }
+
+      & > svg,
+      & > a > svg {
+        width: 25px;
+        height: 25px;
+        margin: 0 15px;
+        cursor: pointer;
+      }
+
+      .acountIcon + div {
+        display: none;
+      }
+    }
+  }
+
+  .linksHead {
+    display: flex;
+    align-items: center;
+    @include phone-only {
+      padding: 15px 0;
+    }
+
+    svg {
+      width: 25px;
+      height: 25px;
+      // margin: 0 15px;
+      cursor: pointer;
+    }
+
+    .mobileHead {
+      display: none;
+      width: 100%;
+      align-items: center;
+      @include phone-only {
+        display: flex;
+      }
+      .imageLogo {
+        margin-inline: auto;
+        width: 100px;
+        height: 40px;
+        position: relative;
+      }
+    }
+    .nav {
+      @include phone-only {
+        display: none;
+      }
+      ul {
+        display: flex;
+        list-style: none;
+
+        li {
+          &:first-of-type > a {
+            padding: 10px;
+          }
+          a {
+            text-decoration: none;
+            padding: 10px 25px;
+            color: #424750;
+            font-size: 20px;
+            display: inline-block;
+            position: relative;
+
+            &::before {
+              display: block;
+              background-color: red;
+              content: "";
+              position: absolute;
+              bottom: 0;
+              height: 2px;
+              width: 100%;
+              transform: scale(0);
+              transition: transform 0.3s linear;
+              transform-origin: left;
+              right: 0;
+            }
+            &:hover::before {
+              transform: scale(1);
+
+              transform-origin: right;
+            }
+          }
+        }
+      }
+
+      @include phone-only {
+        background-color: cyan;
+
+        ul {
+        }
+      }
+    }
+  }
+}
