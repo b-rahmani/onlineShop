@@ -11,9 +11,20 @@
 
     cursor: pointer;
     display: block;
+    // & > span > img {
+    //   object-fit: cover;
+    //   max-height: 320px;
+    // }
 
     @include phone-only {
-      height: 170px;
+      height: 200px;
+
+      &>span>img{
+
+        // object-fit: cover;
+      }
+
+      // height: 250px;
     }
   }
 }

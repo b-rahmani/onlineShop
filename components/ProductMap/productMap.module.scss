@@ -1,0 +1,25 @@
+.productMapLayout {
+  width: 100%;
+  min-height: 700px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: minmax(400px, 1fr);
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  border-radius: 20px;
+  overflow: hidden;
+
+  div {
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    // border-left: none;
+    // border-top: none;
+
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+  }
+}

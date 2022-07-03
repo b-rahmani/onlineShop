@@ -1,0 +1,9 @@
+@import "../../styles/mixins";
+.allproduct {
+  // background-color: red;
+  margin-inline-start: 20px;
+
+  @include phone-only {
+    grid-column: 1/-1;
+  }
+}

@@ -1,19 +1,30 @@
-const AllProduct: React.FC = () => {
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import SortProducts from "../sortProducts/SortProducts";
+
+import classes from "./allProduct.module.scss";
+import ProductMap from "../ProductMap/ProductMap";
+
+const AllProduct = () => {
+  const Router = useRouter();
+
+  useEffect(() => {
+    axios.get("/test", {
+      params: {
+        ...Router.query,
+      },
+    });
+  }, [Router.query]);
+
   return (
-    <section>
-      <div>
-        {/* sorting */}
-        {/* count resault */}
-      </div>
-      {/* all product map */}
+    <section className={classes.allproduct}>
+      <SortProducts />
+      <ProductMap />
     </section>
   );
 };
 export default AllProduct;
-
-
-
-
 
 // {"id":1,
 // "title":"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",

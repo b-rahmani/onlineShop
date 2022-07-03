@@ -5,6 +5,7 @@ interface Props {
   href: string;
   className?: string;
   children: JSX.Element | string;
+  click: () => void;
 }
 
 const ActiveLink = (props: Props) => {
@@ -14,7 +15,9 @@ const ActiveLink = (props: Props) => {
   props.className && classes.push(props.className);
   return (
     <Link href={props.href}>
-      <a className={classes.join(" ")}>{props.children}</a>
+      <a className={classes.join(" ")} onClick={props.click}>
+        {props.children}
+      </a>
     </Link>
   );
 };

@@ -46,11 +46,11 @@ const SwipBanner = () => {
           <Link href="/xx">
             <a className={classes.imageContainer}>
               <Image
-                src="/s1.jpg"
+                src="/images/sliders/s1.jpg"
                 alt="slider"
                 layout="fill"
-                width={300}
-                height={200}
+                // width={300}
+                // height={100}
               />
             </a>
           </Link>
@@ -60,11 +60,11 @@ const SwipBanner = () => {
           <Link href="/xx">
             <a className={classes.imageContainer}>
               <Image
-                src="/s2.jpg"
+                src="/images/sliders/s2.jpg"
                 alt="slider"
                 layout="fill"
-                width={300}
-                height={200}
+                // width={300}
+                // height={100}
               />
             </a>
           </Link>
@@ -73,11 +73,11 @@ const SwipBanner = () => {
           <Link href="/xx">
             <a className={classes.imageContainer}>
               <Image
-                src="/s3.jpg"
+                src="/images/sliders/s3.jpg"
                 alt="slider"
                 layout="fill"
-                width={300}
-                height={200}
+                // width={300}
+                // height={100}
               />
             </a>
           </Link>
@@ -86,11 +86,11 @@ const SwipBanner = () => {
           <Link href="/xx">
             <a className={classes.imageContainer}>
               <Image
-                src="/s4.jpg"
+                src="/images/sliders/s4.jpg"
                 alt="slider"
                 layout="fill"
-                width={300}
-                height={200}
+                // width={300}
+                // height={100}
               />
             </a>
           </Link>

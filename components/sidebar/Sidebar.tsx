@@ -8,6 +8,10 @@ import SidebarContext from "../../store/sideBarContext";
 
 const Sidebar = () => {
   const sideBarActions = useContext(SidebarContext);
+
+  const linkClickHandler = () => {
+    sideBarActions.sidebarCloseHandler();
+  };
   return (
     <>
       <div
@@ -25,16 +29,24 @@ const Sidebar = () => {
         <nav>
           <ul>
             <li>
-              <ActiveLink href="/">صفحه اصلی</ActiveLink>
+              <ActiveLink href="/" click={linkClickHandler}>
+                صفحه اصلی
+              </ActiveLink>
             </li>
             <li>
-              <ActiveLink href="/cart">سبد خرید</ActiveLink>
+              <ActiveLink href="/cart" click={linkClickHandler}>
+                سبد خرید
+              </ActiveLink>
             </li>
             <li>
-              <ActiveLink href="/blog">بلاگ</ActiveLink>
+              <ActiveLink href="/blog" click={linkClickHandler}>
+                بلاگ
+              </ActiveLink>
             </li>
             <li>
-              <ActiveLink href="/other">دیگر</ActiveLink>
+              <ActiveLink href="/other" click={linkClickHandler}>
+                دیگر
+              </ActiveLink>
             </li>
           </ul>
         </nav>

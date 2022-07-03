@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout";
 import SwipBanner from "../components/swipBanner/SwipBanner";
 import { useRouter } from "next/router";
 import MainProducts from "../components/mainProduct/MainProduct";
-import { useState } from "react";
+
 const Home: NextPage = (props: any) => {
   const router = useRouter();
 

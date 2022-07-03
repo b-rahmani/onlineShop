@@ -12,7 +12,7 @@ import SidebarContext from "../../store/sideBarContext";
 import ActiveLink from "../activeLink/ActiveLink";
 
 interface layoutProps {
-  children?: JSX.Element;
+  children?: React.ReactNode;
 
   search?: boolean;
 }

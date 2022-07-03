@@ -1,0 +1,35 @@
+@import "../../styles/mixins";
+
+.sortSec {
+  display: flex;
+  align-items: center;
+
+  @include phone-only {
+    display: none;
+  }
+  // border-bottom: 1px solid gray;
+  .sortIcon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .sorting {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    .sortItem {
+      padding: 5px 0;
+      margin: 15px;
+      cursor: pointer;
+
+      &.active {
+        color: #ef394e;
+      }
+    }
+  }
+}
