@@ -1,11 +1,33 @@
 @import "../../styles/mixins";
 
-.sortSec {
-  display: flex;
-  align-items: center;
 
-  @include phone-only {
+.filterSortPhone {
+  display: flex;
+
+  @include tablet-landscape-up {
     display: none;
+  }
+
+  .filter,
+  .sort {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px;
+
+    & svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+.sortSec {
+  display: none;
+  align-items: center;
+  margin-bottom: 15px;
+
+  @include tablet-landscape-up {
+    display: flex;
   }
   // border-bottom: 1px solid gray;
   .sortIcon {
@@ -16,16 +38,23 @@
       width: 25px;
       height: 25px;
     }
+    span {
+      font-size: 13px;
+      font-weight: bold;
+    }
   }
   .sorting {
     display: flex;
     align-items: center;
     list-style: none;
+    font-weight: 400;
+    font-size: 12px;
 
     .sortItem {
       padding: 5px 0;
-      margin: 15px;
+      margin-inline: 10px;
       cursor: pointer;
+      color: #81858b;
 
       &.active {
         color: #ef394e;

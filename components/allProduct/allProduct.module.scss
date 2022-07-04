@@ -2,8 +2,9 @@
 .allproduct {
   // background-color: red;
   margin-inline-start: 20px;
+  grid-column: 1/-1;
 
-  @include phone-only {
-    grid-column: 1/-1;
+  @include tablet-landscape-up {
+    grid-column: 2 / -1;
   }
 }
