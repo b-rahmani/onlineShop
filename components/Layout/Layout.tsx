@@ -8,9 +8,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Hamburger from "../icons/hamburger";
 import Sidebar from "../sidebar/Sidebar";
-import SidebarContext from "../../store/sideBarContext";
-import ActiveLink from "../activeLink/ActiveLink";
 
+import ActiveLink from "../activeLink/ActiveLink";
+import { useDispatch,useSelector } from "react-redux";
+import { toggleSidebar } from "../../store/sidebarSlice";
+import {RootState} from "../../store/store"
 interface layoutProps {
   children?: React.ReactNode;
 
@@ -19,7 +21,8 @@ interface layoutProps {
 
 const Layout = ({ children, search }: layoutProps) => {
   const Router = useRouter();
-  const sideBarContext = useContext(SidebarContext);
+  const isOpen=useSelector((state:RootState)=>state.sidebar.isOpensidebar)
+  const dispatch = useDispatch();
   let user = "d";
   const accountClickHandler = () => {
     user ? Router.push("/profile") : Router.push("/login");
@@ -27,7 +30,7 @@ const Layout = ({ children, search }: layoutProps) => {
   return (
     <div
       className="container"
-      style={{ overflow: sideBarContext.isOpen ? "hidden" : "none" }}
+      style={{ overflow: isOpen ? "hidden" : "none" }}
     >
       <header className={classes.header}>
         <div className={classes.actionHead}>
@@ -52,14 +55,13 @@ const Layout = ({ children, search }: layoutProps) => {
         <div className="divider"></div>
         <div className={classes.linksHead}>
           <div className={`${classes.mobileHead} showmobile`}>
-            <Hamburger click={sideBarContext.sidebarTogglehandler} />
+            <Hamburger click={() => dispatch(toggleSidebar())} />
             <div className={classes.imageLogo}>
               <Image src="/logo.png" alt="logo" layout="fill" />
             </div>
           </div>
           <Sidebar
-          // isOpen={sideBarContext.isOpen}
-          // click={sideBarContext.sidebarCloseHandler}
+
           />
           <nav className={classes.nav}>
             <ul>

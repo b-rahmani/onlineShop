@@ -10,11 +10,12 @@
 .container {
   max-width: 1600px;
   margin: 0 auto;
+  position: relative;
 }
 
 html {
   direction: rtl;
-  font-family: iranYekanMedium ,sans-serif;
+  font-family: iranYekanMedium, sans-serif;
   scroll-behavior: smooth;
 }
 

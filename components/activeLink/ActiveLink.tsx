@@ -5,7 +5,7 @@ interface Props {
   href: string;
   className?: string;
   children: JSX.Element | string;
-  click: () => void;
+  click?: () => void;
 }
 
 const ActiveLink = (props: Props) => {
