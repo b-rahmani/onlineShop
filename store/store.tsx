@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import SideBarReducer from "./sidebarSlice";
+import FilterSortReducer from "./mobileSortFilter";
+import SortData from "./dataSortSlice";
 export const store = configureStore({
   reducer: {
     sidebar: SideBarReducer,
+    filterSort: FilterSortReducer,
+    sortData: SortData,
   },
 });
 

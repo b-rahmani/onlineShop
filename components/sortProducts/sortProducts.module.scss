@@ -1,8 +1,8 @@
 @import "../../styles/mixins";
 
-
 .filterSortPhone {
   display: flex;
+  align-items: center;
 
   @include tablet-landscape-up {
     display: none;
@@ -58,6 +58,55 @@
 
       &.active {
         color: #ef394e;
+      }
+    }
+  }
+}
+
+.mobileSort {
+  padding: 16px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .sortheader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+  .sortContainer {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0 5px;
+    li {
+      padding-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:not(:last-of-type) {
+        padding: 12px 0;
+        border-bottom: 1px solid gray;
+      }
+
+      // &.active {
+      //   span {
+      //     color: aqua;
+      //   }
+      // }
+
+      svg {
+        width: 20px;
+        height: 20px;
       }
     }
   }

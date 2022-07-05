@@ -3,26 +3,22 @@ import Layout from "../components/Layout/Layout";
 import SwipBanner from "../components/swipBanner/SwipBanner";
 import { useRouter } from "next/router";
 import MainProducts from "../components/mainProduct/MainProduct";
-import Modal from "../components/modal/Modal";
-import { useState } from "react";
+import SortMobile from "../components/sortProducts/SortMobile";
+import FilterMobile from "../components/FilterProducts/FilterMobile";
+import Backdrop from "../components/backdrop/Backdrop";
 
 const Home: NextPage = (props: any) => {
   const router = useRouter();
 
-  const [test, setTest] = useState(false);
-
   return (
-    // <Layout search>
     <>
+      {/* when search is focusing */}
+      <Backdrop click={() => ""} type="area" />
       <SwipBanner />
       <MainProducts />
-      <Modal type="fixBottom" backdrop show={test}>
-        children
-      </Modal>
-
-     
+      <SortMobile />
+      <FilterMobile />
     </>
-    // </Layout>
   );
 };
 

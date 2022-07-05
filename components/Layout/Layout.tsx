@@ -10,9 +10,9 @@ import Hamburger from "../icons/hamburger";
 import Sidebar from "../sidebar/Sidebar";
 
 import ActiveLink from "../activeLink/ActiveLink";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../store/sidebarSlice";
-import {RootState} from "../../store/store"
+import { RootState } from "../../store/store";
 interface layoutProps {
   children?: React.ReactNode;
 
@@ -21,17 +21,14 @@ interface layoutProps {
 
 const Layout = ({ children, search }: layoutProps) => {
   const Router = useRouter();
-  const isOpen=useSelector((state:RootState)=>state.sidebar.isOpensidebar)
+  const isOpen = useSelector((state: RootState) => state.sidebar.isOpensidebar);
   const dispatch = useDispatch();
   let user = "d";
   const accountClickHandler = () => {
     user ? Router.push("/profile") : Router.push("/login");
   };
   return (
-    <div
-      className="container"
-      style={{ overflow: isOpen ? "hidden" : "none" }}
-    >
+    <div className="container" style={{ overflow: isOpen ? "hidden" : "none" }}>
       <header className={classes.header}>
         <div className={classes.actionHead}>
           <Link href="/">
@@ -60,9 +57,7 @@ const Layout = ({ children, search }: layoutProps) => {
               <Image src="/logo.png" alt="logo" layout="fill" />
             </div>
           </div>
-          <Sidebar
-
-          />
+          <Sidebar />
           <nav className={classes.nav}>
             <ul>
               <li>
@@ -82,7 +77,7 @@ const Layout = ({ children, search }: layoutProps) => {
           </nav>
         </div>
       </header>
-      <main>{children}</main>
+      <main className="relative">{children}</main>
       <footer>foooter</footer>
     </div>
   );
