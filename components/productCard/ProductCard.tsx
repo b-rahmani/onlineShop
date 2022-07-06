@@ -32,6 +32,7 @@ const ProductCard = (props: ProductCard) => {
       <div className={classes.productImage}>
         <Image alt={data.category} src={data.image} layout="fill" />
       </div>
+      <div className={classes.detailSec}>
       <div className={`${classes.cardTitle} ellips-2`}>{data.title}</div>
       <div className={classes.existRating}>
         <div className={classes.exist}>
@@ -79,6 +80,7 @@ const ProductCard = (props: ProductCard) => {
         <div className={classes.oldPrice}>
           <span>{data.discount > 0 && data.price.toLocaleString()}</span>
         </div>
+      </div>
       </div>
     </motion.div>
   );

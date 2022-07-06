@@ -1,7 +1,13 @@
-
+@import "../../styles/mixins";
 .mainProductsDivider {
   display: grid;
   grid-template-columns: minmax(10%, 300px) 1fr;
   padding: 20px;
   gap: 10px;
+
+  @include phone-only {
+    padding: 20px 10px;
+  }
+
+   
 }

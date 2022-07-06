@@ -11,7 +11,7 @@ export const singleProduct = {
   image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   rating: { rate: 3.9, count: 120 },
   customHead: "فروش ویژه",
-  stock: 0,
+  stock: 2,
 };
 export const singleProduct2 = {
   id: 1,

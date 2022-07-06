@@ -3,6 +3,7 @@
 .filterSortPhone {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 
   @include tablet-landscape-up {
     display: none;
@@ -13,7 +14,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 15px;
+    // margin: 15px;
 
     & svg {
       width: 25px;
@@ -34,6 +35,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 5px;
     svg {
       width: 25px;
       height: 25px;
@@ -46,13 +48,21 @@
   .sorting {
     display: flex;
     align-items: center;
+    flex: 1;
+    justify-content: flex-start;
     list-style: none;
     font-weight: 400;
     font-size: 12px;
+    gap: 20px;
+
+    @media screen and (max-width: 950px) {
+      justify-content: space-between;
+      gap: 5px;
+    }
 
     .sortItem {
       padding: 5px 0;
-      margin-inline: 10px;
+
       cursor: pointer;
       color: #81858b;
 
