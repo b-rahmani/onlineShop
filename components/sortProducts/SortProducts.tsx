@@ -11,7 +11,11 @@ import {
   closeSort,
   toggleSort,
 } from "../../store/mobileSortFilter";
-import { changeSelectedSort, initSorts,singleSortItemType } from "../../store/dataSortSlice";
+import {
+  changeSelectedSort,
+  initSorts,
+  singleSortItemType,
+} from "../../store/dataSortSlice";
 import { RootState } from "../../store/store";
 const SortProducts = () => {
   // interface dataSort {
@@ -28,7 +32,9 @@ const SortProducts = () => {
   const Router = useRouter();
   const dispatch = useDispatch();
   const filterSort = useSelector((state: RootState) => state.filterSort);
-  const SelectedSort = useSelector((state: RootState) => state.sortData.selectedSort);
+  const SelectedSort = useSelector(
+    (state: RootState) => state.sortData.selectedSort
+  );
   const AllSort = useSelector((state: RootState) => state.sortData.allSort);
   const Query = Router.query;
   useEffect(() => {
@@ -41,25 +47,28 @@ const SortProducts = () => {
           dispatch(
             changeSelectedSort(
               res.data.find(
-                (item: singleSortItemType) =>
-                  item.value === Query.sort
+                (item: singleSortItemType) => item.value === Query.sort
               )
             )
           );
         } else {
-          // return setSort({
-          //   dataSort: res.data,
-          //   selectedSort: res.data[0].value,
-          // });
           dispatch(changeSelectedSort(res.data[0]));
         }
       })
       .catch((er) => console.log(er));
   }, [Query.sort]);
 
+  useEffect(() => {
+    if (filterSort.isOpenfilter || filterSort.isOpensort) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [filterSort.isOpenfilter, filterSort.isOpensort]);
+
   const selectedSortHandler = (item: singleSortItemType) => {
     // setSort((prev) => ({ ...prev, selectedSort: value }));
-    dispatch(changeSelectedSort(item))
+    dispatch(changeSelectedSort(item));
     const hash = Router.asPath.split("#")[1];
     const url = "/";
 
@@ -83,25 +92,15 @@ const SortProducts = () => {
 
   const toggleFilterHandler = () => {
     dispatch(toggleFilter());
-    if (filterSort.isOpenfilter) {
-      document.body.style.overflow = "unset";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
   };
 
   const toggleSortHandler = () => {
     dispatch(toggleSort());
-    if (filterSort.isOpensort) {
-      document.body.style.overflow = "unset";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
   };
 
   return (
     <>
-    {/* filter + sort mobile */}
+      {/* filter + sort mobile */}
       <div className={classes.filterSortPhone}>
         <div
           className={classes.filter}
@@ -122,11 +121,11 @@ const SortProducts = () => {
           <span> مرتب سازی :</span>
         </p>
         <ul className={classes.sorting}>
-          {AllSort?.map((item:singleSortItemType) => (
+          {AllSort?.map((item: singleSortItemType) => (
             <li
               key={item.name}
               className={`${classes.sortItem} ${
-               SelectedSort.value === item.value ? classes.active : ""
+                SelectedSort.value === item.value ? classes.active : ""
               }`}
               onClick={() => selectedSortHandler(item)}
             >

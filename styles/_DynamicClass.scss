@@ -1,0 +1,9 @@
+$list: 1, 2, 3, 4;
+@each $var in $list {
+  .ellips-#{$var} {
+    display: -webkit-box;
+    -webkit-line-clamp: $var;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

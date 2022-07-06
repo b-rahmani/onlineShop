@@ -1,0 +1,156 @@
+@import "../../styles/mixins";
+.productCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 5px 10px;
+  position: relative;
+  overflow: hidden;
+  font-family: iranyekanFa;
+
+  .customHead {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    color: orangered;
+    font-weight: 700;
+  }
+  .share,
+  .expand {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 10px;
+  }
+
+  .productImage {
+    margin: 0 auto;
+    width: 240px;
+    height: 240px;
+    position: relative;
+    //
+    height: 0;
+    overflow: hidden;
+    // padding-top: 591.44px / 1127.34px * 100%;
+    padding-top: 100%;
+    background: white;
+    position: relative;
+
+    image {
+      object-fit: contain;
+
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .cardTitle {
+    width: 100%;
+    margin: 10px 0;
+    text-align: right;
+  }
+  .existRating {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    .rating {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+      // text-align: left;
+      gap: 5px;
+      span {
+        font-size: 12px;
+        // color: gray;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .exist {
+      padding: 10px 0;
+      display: 100%;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        font-size: 12px;
+        color: gray;
+
+        &.danger {
+          color: red;
+        }
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        color: aquamarine;
+      }
+    }
+  }
+  .priceBox {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    .price {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+
+      .discount {
+        justify-content: flex-start;
+        text-align: right;
+        align-self: flex-start;
+        background-color: orangered;
+        border-radius: 50%;
+        padding: 2px 7px;
+        font-size: 12px;
+        color: #fff;
+      }
+      .pricSec {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 5px;
+
+        .priceText {
+          font-size: 12px;
+        }
+
+        .calculatePrice {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          text-align: left;
+          font-family: iranyekanFa;
+        }
+      }
+    }
+    .oldPrice {
+      height: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-self: flex-end;
+      font-size: 12px;
+      text-decoration: line-through;
+      text-decoration-color: rgb(192, 194, 197);
+      color: rgb(192, 194, 197);
+      padding-left: 35px;
+    }
+  }
+}
