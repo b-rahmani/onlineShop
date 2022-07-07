@@ -6,6 +6,7 @@ interface Props {
   backdrop?: boolean;
   children: React.ReactNode;
   show: boolean;
+  style?: {};
   close: () => void;
 }
 
@@ -41,6 +42,7 @@ const Modal = (props: Props) => {
     <>
       {props.backdrop && props.show && <Backdrop click={props.close} />}
       <motion.div
+        style={props.style}
         className={`${classes.modal} ${classes[props.type]}`}
         initial={initial}
         animate={{ ...animate }}

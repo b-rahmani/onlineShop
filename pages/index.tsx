@@ -16,6 +16,7 @@ const Home: NextPage = (props: any) => {
   const isFocusInput = useSelector(
     (state: RootState) => state.searchFocus.isSearchFocus
   );
+
   return (
     <>
       {/* when search is focusing */}
