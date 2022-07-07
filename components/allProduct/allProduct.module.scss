@@ -1,7 +1,7 @@
 @import "../../styles/mixins";
 .allproduct {
   // background-color: red;
-  margin-inline-start: 20px;
+  margin-inline-start: 0px;
   grid-column: 1/-1;
 
   @include tablet-landscape-up {

@@ -17,11 +17,11 @@
     // }
 
     @include phone-only {
-      height: 200px;
+      height: 130px;
+      // height: auto;
 
-      &>span>img{
-
-        // object-fit: cover;
+      & > span > img {
+        object-fit: cover;
       }
 
       // height: 250px;

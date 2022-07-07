@@ -8,6 +8,7 @@ import "swiper/css/free-mode";
 
 import Link from "next/link";
 import Image from "next/image";
+import {Fragment} from "react";
 const SwipBanner = () => {
   return (
     <div className={classes.bannerContainer}>
@@ -42,7 +43,20 @@ const SwipBanner = () => {
         }}
         className="mySwipper"
       >
-        <SwiperSlide>
+        {[1,2,3,4,5,6,7,8,9,10].map(sw=>(<Fragment key={sw}><SwiperSlide >
+          <Link href="/xx">
+            <a className={classes.imageContainer}>
+              <Image
+                src={`/images/sliders/s${sw}.jpg`}
+                alt="slider"
+                layout="fill"
+                // width={300}
+                // height={100}
+              />
+            </a>
+          </Link>
+        </SwiperSlide></Fragment>))}
+        {/* <SwiperSlide>
           <Link href="/xx">
             <a className={classes.imageContainer}>
               <Image
@@ -94,7 +108,7 @@ const SwipBanner = () => {
               />
             </a>
           </Link>
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </div>
   );

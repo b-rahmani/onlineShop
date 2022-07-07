@@ -103,4 +103,19 @@ a {
     right: 40px !important;
     text-align: right;
   }
+  @include phone-only {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+    .swiper-pagination {
+      right: 20px !important;
+      bottom: 0 !important;
+      .swiper-pagination-bullet {
+        margin: 0 1px !important;
+
+        right: 10px;
+      }
+    }
+  }
 }
