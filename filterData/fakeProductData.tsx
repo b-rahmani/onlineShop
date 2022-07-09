@@ -14,7 +14,7 @@ export const singleProduct = {
   stock: 2,
 };
 export const singleProduct2 = {
-  id: 1,
+  id: 2,
   title:
     "  کیف مسافرتی ضد آب بقیه چیزی که نوشتن چزته و مشخصاتی که میدم هم  جایی نمیتونی پیدا گنی",
 

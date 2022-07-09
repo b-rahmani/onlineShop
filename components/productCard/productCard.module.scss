@@ -8,6 +8,7 @@
   position: relative;
   overflow: hidden;
   font-family: iranyekanFa;
+  user-select: none;
 
   .customHead {
     width: 100%;
@@ -173,5 +174,4 @@
       }
     }
   }
- 
 }

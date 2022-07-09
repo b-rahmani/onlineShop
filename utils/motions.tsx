@@ -14,6 +14,14 @@ export const shareMotion = {
       ease: "easeIn",
     },
   },
+  // hoverFix: {
+  //   x: ["0", "-50%", "-50%"],
+  //   transition: {
+  //     duration: [0.4, 0.2, 0.2],
+  //     type: "tween",
+  //     ease: "easeIn",
+  //   },
+  // },
 };
 export const expandMotion = {
   rest: {

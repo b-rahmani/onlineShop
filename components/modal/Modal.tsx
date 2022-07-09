@@ -26,7 +26,7 @@ const Modal = (props: Props) => {
       initial = {
         y: "100%",
       };
-      animate = { y: props.show ? "-50%" : "100%", top: "50%" };
+      animate = { y: props.show ? "-50%" : "100%" };
       break;
     case "fixBottomFull":
       initial = {

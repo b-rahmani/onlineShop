@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface HoverActionType {
   share: { isShare: boolean; link: string };
-  extend: { isExtend: boolean; image: string };
+  extend: { isExtend: boolean; image: string; id: string };
 }
 
 const initialState = {
   share: { isShare: false, link: "" },
-  extend: { isExtend: false, image: "" },
+  extend: { isExtend: false, image: "", id: "" },
 };
 
 export const HoverActionSlice = createSlice({
@@ -18,13 +18,15 @@ export const HoverActionSlice = createSlice({
       state.share.isShare = true;
       state.share.link = action.payload;
     },
+
     closeIsShare: (state) => {
       state.share.isShare = false;
       state.share.link = "";
     },
     openIsExtend: (state, action) => {
       state.extend.isExtend = true;
-      image: action.payload;
+      state.extend.image = action.payload.image;
+      state.extend.id = action.payload.id;
     },
     closeIsExtend: (state) => {
       state.extend.isExtend = false;

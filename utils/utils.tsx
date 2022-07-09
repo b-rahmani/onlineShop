@@ -19,3 +19,17 @@ export const ellispedText = (text: string, max: number = 30) => {
 export const priceDiscounted = (price: number, discount: number) => {
   return price - (price * discount) / 100;
 };
+
+export const joinClassModules = (...modules: string[]) => {
+  return modules.join(" ");
+};
+
+// export const copyToClipBoard = (text: string) => {
+//   text.select();
+//   text.setSelectionRange(0, 99999);
+//   navigator.clipboard.writeText(text);
+
+//   navigator.clipboard.readText().then((res) => {
+//     alert(res);
+//   });
+// };

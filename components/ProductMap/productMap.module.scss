@@ -37,4 +37,105 @@
   @media screen and (min-width: 899px) and (max-width: 911px) {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
+
+  .shareBox {
+    padding: 16px;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+
+      span {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0c0c0c;
+        line-height: 2.15;
+      }
+
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    .shareText {
+      font-weight: 600;
+      color: gray;
+      line-height: 2.15;
+      font-size: 14px;
+    }
+
+    .copyLinkBox {
+      border: 1px solid #0c0c0c;
+      border-radius: 10px;
+      padding: 8px;
+      display: flex;
+      width: 100%;
+      margin: 16px 0;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 16px;
+      cursor: pointer;
+
+      span {
+        font-size: 12px;
+      }
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    .Icons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      .Icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 12px 0;
+        gap: 10px;
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+        span {
+          font-weight: 600;
+          font-size: 14px;
+          color: #fff;
+        }
+
+        &.telegram {
+          background-color: #29b6f6;
+        }
+        &.whatsapp {
+          background-color: #40c351;
+        }
+        &.twetter {
+          background-color: #1da1f2;
+        }
+      }
+    }
+  }
+}
+.extendSection {
+  width: 60vw;
+  top: calc(20vh);
+  right: 0%;
+  // top: 0;
+  // transform: translate(-30%, 25%);
+  height: 70vh;
+  position: absolute;
+  z-index: 19;
+  background-color: rgb(197, 168, 168);
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -o-object-fit: cover;
+    object-fit: contain;
+  }
 }
