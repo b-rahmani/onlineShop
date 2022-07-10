@@ -1,8 +1,7 @@
-import type { NextPage } from "next"
+import type { NextPage } from "next";
+import SingleProduct from "../../../components/SingleProduct/SingleProduct";
 
-const SingleProduct:NextPage = () => {
-  return (
-    <div>SingleProduct</div>
-  )
-}
-export default SingleProduct
+const SingleProductPage: NextPage = () => {
+  return <SingleProduct />;
+};
+export default SingleProductPage;

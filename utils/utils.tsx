@@ -24,6 +24,10 @@ export const joinClassModules = (...modules: string[]) => {
   return modules.join(" ");
 };
 
+export const RoundPrice = (number: number, digitRoundLength: number) => {
+  return number - (number % digitRoundLength);
+};
+
 // export const copyToClipBoard = (text: string) => {
 //   text.select();
 //   text.setSelectionRange(0, 99999);

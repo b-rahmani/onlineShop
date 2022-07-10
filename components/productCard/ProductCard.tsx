@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { memo } from "react";
 import Image from "next/image";
 import ExpandIcon from "../icons/ExpandIcon";
 import ShareIcon from "../icons/ShareIcon";
@@ -16,6 +17,7 @@ import { useRouter } from "next/router";
 interface ProductCard {
   key: string | number;
   data: any;
+  layoutId?: string;
 }
 
 const ProductCard = (props: ProductCard) => {
@@ -39,27 +41,26 @@ const ProductCard = (props: ProductCard) => {
       key={props.key}
       className={classes.productCard}
     >
-     
-      <Link href={`/product/${props.data.id.toString()}`}>
-        <a>
-          <motion.div
-            variants={shareMotion}
-            className={classes.share}
-            onClick={() => dispatch(openShare(`${origin}/${props.key}`))}
-            // id dont work  use pathname
-          >
-            <ShareIcon />
-          </motion.div>
-          <motion.div
-            variants={expandMotion}
-            className={classes.expand}
+      <motion.div
+        variants={shareMotion}
+        className={classes.share}
+        onClick={() => dispatch(openShare(`${origin}/${data.id}`))}
+        // id dont work  use pathname
+      >
+        <ShareIcon />
+      </motion.div>
+      <motion.div
+        variants={expandMotion}
+        className={classes.expand}
+        onClick={() =>
+          dispatch(openIsExtend({ image: data.image, id: data.id }))
+        }
+      >
+        <ExpandIcon />
+      </motion.div>
 
-            // onClick={() =>
-            //   dispatch(openIsExtend({ image: data.image, id: props.data.id }))
-            // }
-          >
-            <ExpandIcon />
-          </motion.div>
+      <Link href={`/product/${props.data.id.toString()}`}>
+        <a className={classes.link}>
           <p className={classes.customHead}>{data.customHead}</p>
           <div className={classes.productImage}>
             <Image alt={data.category} src={data.image} layout="fill" />
@@ -87,35 +88,43 @@ const ProductCard = (props: ProductCard) => {
               </div>
             </div>
             <div className={classes.priceBox}>
-              <div className={classes.price}>
-                {data.discount > 0 && (
-                  <span className={classes.discount}>
-                    {data.discount + "%"}
-                  </span>
-                )}
+              {data.stock ? (
+                <>
+                  <div className={classes.price}>
+                    {data.discount > 0 && (
+                      <span className={classes.discount}>
+                        {data.discount + "%"}
+                      </span>
+                    )}
 
-                {data.discount > 0 ? (
-                  <div className={classes.pricSec}>
-                    <span className={classes.calculatePrice}>
-                      {priceDiscounted(
-                        data.price,
-                        data.discount
-                      ).toLocaleString()}
-                    </span>
-                    <span className={classes.priceText}>تومان</span>
+                    {data.discount > 0 ? (
+                      <div className={classes.pricSec}>
+                        <span className={classes.calculatePrice}>
+                          {priceDiscounted(
+                            data.price,
+                            data.discount
+                          ).toLocaleString()}
+                        </span>
+                        <span className={classes.priceText}>تومان</span>
+                      </div>
+                    ) : (
+                      <div className={classes.pricSec}>
+                        <span className={classes.calculatePrice}>
+                          {data.price.toLocaleString()}
+                        </span>
+                        <span className={classes.priceText}>تومان</span>
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <div className={classes.pricSec}>
-                    <span className={classes.calculatePrice}>
-                      {data.price.toLocaleString()}
+                  <div className={classes.oldPrice}>
+                    <span>
+                      {data.discount > 0 && data.price.toLocaleString()}
                     </span>
-                    <span className={classes.priceText}>تومان</span>
                   </div>
-                )}
-              </div>
-              <div className={classes.oldPrice}>
-                <span>{data.discount > 0 && data.price.toLocaleString()}</span>
-              </div>
+                </>
+              ) : (
+                <p>اتمام موجودی</p>
+              )}
             </div>
           </div>
         </a>
@@ -123,4 +132,4 @@ const ProductCard = (props: ProductCard) => {
     </motion.div>
   );
 };
-export default ProductCard;
+export default memo(ProductCard);

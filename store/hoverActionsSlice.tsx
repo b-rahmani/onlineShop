@@ -30,6 +30,8 @@ export const HoverActionSlice = createSlice({
     },
     closeIsExtend: (state) => {
       state.extend.isExtend = false;
+      state.extend.image = "";
+      state.extend.id = "";
     },
   },
 });

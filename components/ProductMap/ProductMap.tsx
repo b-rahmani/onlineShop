@@ -1,5 +1,5 @@
 import classes from "./productMap.module.scss";
-import { singleProduct } from "../../filterData/fakeProductData";
+import { allProductsMock } from "../../filterData/fakeProductData";
 import ProductCard from "../productCard/ProductCard";
 import Modal from "../modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,12 +39,12 @@ const ProductMap = () => {
   return (
     <LayoutGroup>
       <div className={classes.productMapLayout}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => (
+        {allProductsMock.map((item) => (
           <Mothened
             layout
-            key={item.toString() + Math.random() * 10000}
-            data={singleProduct}
-            layoutId={item.toString() + Math.random() * 10000}
+            key={item.id}
+            data={item}
+            layoutId={item.id.toString()}
           />
         ))}
         <Modal
@@ -105,7 +105,7 @@ const ProductMap = () => {
           </div>
         </Modal>
       </div>
-      <AnimatePresence presenceAffectsLayout>
+      {/* <AnimatePresence presenceAffectsLayout>
         {extendData.isExtend && (
           <motion.div
             layoutId={extendData.id}
@@ -115,7 +115,7 @@ const ProductMap = () => {
             <img src={extendData.image} alt="csd" />
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </LayoutGroup>
   );
 };
