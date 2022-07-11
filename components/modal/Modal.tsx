@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Backdrop from "../backdrop/Backdrop";
 import classes from "./modal.module.scss";
 interface Props {
@@ -19,20 +19,23 @@ const Modal = (props: Props) => {
       initial = {
         y: "100%",
       };
-      animate = { y: props.show ? "0" : "100%" };
+      animate = { opacity: props.show ? 1 : 0, y: props.show ? "0" : "100%" };
       break;
 
     case "center":
       initial = {
         y: "100%",
       };
-      animate = { y: props.show ? "-50%" : "100%" };
+      animate = {
+        opacity: props.show ? 1 : 0,
+        y: props.show ? "-50%" : "100%",
+      };
       break;
     case "fixBottomFull":
       initial = {
         y: "100%",
       };
-      animate = { y: props.show ? "0" : "100%" };
+      animate = { opacity: props.show ? 1 : 0, y: props.show ? "0" : "100%" };
       break;
 
     default:
@@ -41,12 +44,18 @@ const Modal = (props: Props) => {
   return (
     <>
       {props.backdrop && props.show && <Backdrop click={props.close} />}
+
       <motion.div
+        key={123}
         style={props.style}
         className={`${classes.modal} ${classes[props.type]}`}
-        initial={initial}
+        initial={{ ...initial }}
         animate={{ ...animate }}
-        transition={{ type: "tween", duration: 0.4 }}
+        transition={{
+          type: "tween",
+          duration: 0.4,
+        }}
+        exit={{ opacity: 0 }}
       >
         {props.children}
       </motion.div>
