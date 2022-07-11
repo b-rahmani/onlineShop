@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import Layout from "../components/Layout/Layout";
 import SwipBanner from "../components/swipBanner/SwipBanner";
 import { useRouter } from "next/router";
 import MainProducts from "../components/mainProduct/MainProduct";
@@ -9,6 +8,9 @@ import Backdrop from "../components/backdrop/Backdrop";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { closeFocusInput } from "../store/searchFocusSlice";
+import { AllProductContext } from "../store/ContextAllProduct";
+import axios from "axios";
+import { SliderData } from "../store/ContextSlider";
 
 const Home: NextPage = (props: any) => {
   const router = useRouter();
@@ -23,8 +25,12 @@ const Home: NextPage = (props: any) => {
       {isFocusInput && (
         <Backdrop click={() => dispatch(closeFocusInput())} type="area" />
       )}
-      <SwipBanner />
-      <MainProducts />
+      <SliderData.Provider value={props.SliderData}>
+        <SwipBanner />
+      </SliderData.Provider>
+      <AllProductContext.Provider value={props.products}>
+        <MainProducts />
+      </AllProductContext.Provider>
       <SortMobile />
       <FilterMobile />
     </>
@@ -32,9 +38,26 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getStaticProps = async () => {
+  const { data: allProducts } = await axios.get(
+    "http://localhost:3000/api/allProduct"
+  );
+
+  const { data: FakeProd } = await axios.get(
+    "https://fakestoreapi.com/products"
+  );
+
+  const SliderData = FakeProd.filter((_, index: number) => index <= 9).map(
+    (p: any, ind: number) => ({
+      image: `/images/sliders/s${ind + 1}.jpg`,
+      id: p.id,
+      title: p.title,
+    })
+  );
+
   return {
     props: {
-      data: "hello",
+      products: allProducts,
+      SliderData: SliderData,
     },
   };
 };

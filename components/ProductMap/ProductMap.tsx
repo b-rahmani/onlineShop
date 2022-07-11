@@ -13,10 +13,14 @@ import { joinClassModules } from "../../utils/utils";
 import WhatsappIcon from "../icons/WhatsappIcon";
 import TwetterIcon from "../icons/TwetterIcon";
 import useCopyToClipboard from "../hooks/useCopyToClipBoard";
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { LayoutGroup, motion } from "framer-motion";
+import { useContext } from "react";
+import { AllProductContext } from "../../store/ContextAllProduct";
+import { Dictionary } from "../../store/ContextAllProduct";
 
 const ProductMap = () => {
   const dispatch = useDispatch();
+  const AllProducts = useContext(AllProductContext);
   const [copied, copy] = useCopyToClipboard("", 3000);
   const isShare = useSelector(
     (state: RootState) => state.CartHoverAction.share.isShare
@@ -35,14 +39,15 @@ const ProductMap = () => {
       : "";
 
   let Mothened = motion(ProductCard);
+  // console.log("props.res", props);
 
   return (
     <LayoutGroup>
       <div className={classes.productMapLayout}>
-        {allProductsMock.map((item) => (
+        {AllProducts.map((item: Dictionary) => (
           <Mothened
             layout
-            key={item.id}
+            key={item.id.toString()}
             data={item}
             layoutId={item.id.toString()}
           />
@@ -119,4 +124,5 @@ const ProductMap = () => {
     </LayoutGroup>
   );
 };
+
 export default ProductMap;

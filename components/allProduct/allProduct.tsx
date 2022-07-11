@@ -9,13 +9,13 @@ import ProductMap from "../ProductMap/ProductMap";
 const AllProduct = () => {
   const Router = useRouter();
 
-  useEffect(() => {
-    axios.get("/test", {
-      params: {
-        ...Router.query,
-      },
-    });
-  }, [Router.query]);
+  // useEffect(() => {
+  //   axios.get("/test", {
+  //     params: {
+  //       ...Router.query,
+  //     },
+  //   });
+  // }, [Router.query]);
 
   return (
     <section className={classes.allproduct}>
