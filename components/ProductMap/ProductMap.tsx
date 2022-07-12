@@ -1,5 +1,5 @@
 import classes from "./productMap.module.scss";
-import { allProductsMock } from "../../filterData/fakeProductData";
+
 import ProductCard from "../productCard/ProductCard";
 import Modal from "../modal/Modal";
 import { useDispatch, useSelector } from "react-redux";

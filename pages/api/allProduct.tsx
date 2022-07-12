@@ -15,7 +15,33 @@ export const allProductsMock = [
     rating: { rate: 3.9, count: 100 },
     customHead: "فروش ویژه",
     stock: 2,
-    
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/1",
+        },
+      },
+    ],
   },
   {
     id: 2,
@@ -31,6 +57,33 @@ export const allProductsMock = [
     rating: { rate: 3.5, count: 120 },
     // customHead: "فروش ویژه",
     stock: 10,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/2",
+        },
+      },
+    ],
   },
   {
     id: 3,
@@ -45,6 +98,33 @@ export const allProductsMock = [
     rating: { rate: 2, count: 70 },
     customHead: "فروش ویژه",
     stock: 15,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/3",
+        },
+      },
+    ],
   },
   {
     id: 4,
@@ -60,6 +140,33 @@ export const allProductsMock = [
     rating: { rate: 4, count: 150 },
     // customHead: "فروش ویژه",
     stock: 20,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/4",
+        },
+      },
+    ],
   },
   {
     id: 5,
@@ -74,6 +181,33 @@ export const allProductsMock = [
     rating: { rate: 1, count: 100 },
     customHead: "فروش ویژه",
     stock: 50,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/5",
+        },
+      },
+    ],
   },
   {
     id: 6,
@@ -87,6 +221,33 @@ export const allProductsMock = [
     rating: { rate: 4, count: 120 },
     customHead: "فروش ویژه",
     stock: 5,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/6",
+        },
+      },
+    ],
   },
   {
     id: 7,
@@ -100,6 +261,33 @@ export const allProductsMock = [
     rating: { rate: 3.5, count: 120 },
     customHead: "فروش ویژه",
     stock: 5,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/7",
+        },
+      },
+    ],
   },
   {
     id: 8,
@@ -114,6 +302,33 @@ export const allProductsMock = [
     rating: { rate: 4, count: 120 },
     customHead: "فروش ویژه",
     stock: 2,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/8",
+        },
+      },
+    ],
   },
   {
     id: 9,
@@ -128,6 +343,33 @@ export const allProductsMock = [
     rating: { rate: 3, count: 120 },
     customHead: "فروش ویژه",
     stock: 2,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/9",
+        },
+      },
+    ],
   },
   {
     id: 10,
@@ -141,6 +383,33 @@ export const allProductsMock = [
     rating: { rate: 3.2, count: 120 },
     customHead: "فروش ویژه",
     stock: 200,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/10",
+        },
+      },
+    ],
   },
   {
     id: 11,
@@ -155,6 +424,33 @@ export const allProductsMock = [
     rating: { rate: 3.2, count: 120 },
     customHead: "فروش ویژه",
     stock: 5,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/11",
+        },
+      },
+    ],
   },
   {
     id: 12,
@@ -168,10 +464,37 @@ export const allProductsMock = [
     rating: { rate: 3.2, count: 120 },
     customHead: "فروش فوق ویژه",
     stock: 0,
+    breadCrump: [
+      {
+        title: "خانه",
+        url: {
+          uri: "/",
+        },
+      },
+      {
+        title: "همه محصولات",
+        url: {
+          uri: "/#main",
+        },
+      },
+
+      {
+        title: "کالای دیجیتال",
+        url: {
+          uri: "/search/category-digital/",
+        },
+      },
+      {
+        title: "نام کالا",
+        url: {
+          uri: "/product/12",
+        },
+      },
+    ],
   },
 ];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    // let data = JSON.stringify(allProductsMock);
+  // let data = JSON.stringify(allProductsMock);
   res.status(200).json(allProductsMock);
 }

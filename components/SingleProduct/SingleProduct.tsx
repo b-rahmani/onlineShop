@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import ProductCard from "../productCard/ProductCard";
+import { joinClassModules } from "../../utils/utils";
+import BreadCrumb from "../BreadCrumb/BreadCrumb";
+import classes from "./singleProduct.module.scss";
 
 export interface productType {
   id: number | string;
@@ -19,24 +19,23 @@ export interface ParamsType {
 
 export interface PropsSingleProductType {
   product?: productType;
-  status?:number;
+  status?: number;
 }
 
-
-
-const SingleProduct = (props:PropsSingleProductType) => {
-
-
-
-
-  if(!props.product && props.status!==404){
-    return <p>loading...</p>
+const SingleProduct = (props: PropsSingleProductType) => {
+  if (!props.product && props.status !== 404) {
+    return <p>loading...</p>;
   }
-  if (props.status===404) {
+  if (props.status === 404) {
     return <p>not found product</p>;
   }
-    return (<div> single product and id is :{props.product?.id}
-    </div>);
+  return (
+    <div className={joinClassModules(classes.singleProductPage)}>
+      
+      <BreadCrumb />
+      single product and id is :{props.product?.id}
+    </div>
+  );
 };
 
 export default SingleProduct;

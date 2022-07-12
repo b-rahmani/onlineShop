@@ -1,0 +1,26 @@
+.breadcrumbContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .breadChild {
+    font-size: 12px;
+    color: gray;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: rgb(28, 28, 28);
+      transform: scale(1.1);
+    }
+
+    &:not(:last-of-type)::after {
+      content: ">";
+
+      color: gray;
+      padding-inline: 15px;
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}
