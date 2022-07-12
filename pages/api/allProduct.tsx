@@ -172,6 +172,6 @@ export const allProductsMock = [
 ];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  //   let data = JSON.stringify(allProductsMock);
+    // let data = JSON.stringify(allProductsMock);
   res.status(200).json(allProductsMock);
 }
