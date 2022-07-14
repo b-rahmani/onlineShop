@@ -120,3 +120,17 @@ a {
     }
   }
 }
+
+.thumbnailSwipper {
+  height: 100%;
+
+  .swiper-slide {
+    border: 1px solid gray !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+
+    &.active {
+      border: 1px solid green !important;
+    }
+  }
+}

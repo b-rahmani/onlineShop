@@ -12,6 +12,13 @@ export const allProductsMock = [
     description:
       " این محصول آزمایشی می باشد و صرفا برای ساخت شکل کامپوننت به کار می رود ",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    images: [
+      "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+      "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+    ],
     rating: { rate: 3.9, count: 100 },
     customHead: "فروش ویژه",
     stock: 2,
