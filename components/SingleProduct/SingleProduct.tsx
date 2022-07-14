@@ -5,6 +5,7 @@ import HeartIcon from "../icons/HeartIcon";
 import classes from "./singleProduct.module.scss";
 import "rc-rate/assets/index.css";
 import ImageSide from "../ImageSide/ImageSide";
+import { motion } from "framer-motion";
 
 export interface productType {
   id: number | string;
@@ -110,16 +111,21 @@ const SingleProduct = (props: PropsSingleProductType) => {
                     className={classes.radio}
                   />
                   <label htmlFor={color} style={{ backgroundColor: color }}>
-                    <span style={{ border: `2px solid ${color}` }}></span>
+                    <span style={{ border: `2px solid ${color}` }}>
+                      
+                    </span>
                   </label>
                 </div>
               ))}
             </div>
           </div>
 
-          <button className={classes.addToBasket}>
+          <motion.button
+            className={classes.addToBasket}
+            whileTap={{ scale: 0.95 }}
+          >
             <span>افزودن به سبد</span>
-          </button>
+          </motion.button>
         </div>
         <ImageSide product={props.product} />
       </section>

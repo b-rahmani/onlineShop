@@ -6,8 +6,10 @@
 
   .tumbnails {
     height: 100%;
+    padding: 5px;
     overflow: hidden;
     margin-right: 16px;
+    user-select: none;
 
     .imageContainer {
       position: relative;

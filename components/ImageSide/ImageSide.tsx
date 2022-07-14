@@ -8,9 +8,9 @@ import { useState } from "react";
 import { PropsSingleProductType } from "../SingleProduct/SingleProduct";
 
 const ImageSide = (props: PropsSingleProductType) => {
-  //   const [imagesNavSlider, setImagesNavSlider] = useState(
-  //     props?.product?.images[0]
-  //   );
+  const [imagesNavSlider, setImagesNavSlider] = useState(
+    props?.product?.images !== undefined && props?.product?.images[0]
+  );
 
   return (
     <div className={classes.imageSide}>
@@ -36,7 +36,13 @@ const ImageSide = (props: PropsSingleProductType) => {
           // style={{ height: "100%" }}
         >
           {props.product?.images?.map((image, ind) => (
-            <SwiperSlide key={image}>
+            <SwiperSlide
+              key={image}
+              onClick={() => {
+                setImagesNavSlider(image);
+              }}
+              className={image === imagesNavSlider ? "active" : ""}
+            >
               <div className={classes.imageContainer}>
                 <Image
                   src={image}
@@ -79,7 +85,7 @@ const ImageSide = (props: PropsSingleProductType) => {
           })}
         </Swiper> */}
         <Image
-          src={props.product?.image!}
+          src={imagesNavSlider ? imagesNavSlider : props.product?.image!}
           alt={props.product?.title}
           className={classes.image}
           layout="responsive"
