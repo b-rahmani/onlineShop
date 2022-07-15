@@ -11,6 +11,7 @@ import { closeFocusInput } from "../store/searchFocusSlice";
 import { AllProductContext } from "../store/ContextAllProduct";
 import axios from "axios";
 import { SliderData } from "../store/ContextSlider";
+import { productType } from "../components/SingleProduct/SingleProduct";
 
 const Home: NextPage = (props: any) => {
   const router = useRouter();
@@ -46,13 +47,13 @@ export const getStaticProps = async () => {
     "https://fakestoreapi.com/products"
   );
 
-  const SliderData = FakeProd.filter((_, index: number) => index <= 9).map(
-    (p: any, ind: number) => ({
-      image: `/images/sliders/s${ind + 1}.jpg`,
-      id: p.id,
-      title: p.title,
-    })
-  );
+  const SliderData = FakeProd.filter(
+    (_: productType, index: number) => index <= 9
+  ).map((p: productType, ind: number) => ({
+    image: `/images/sliders/s${ind + 1}.jpg`,
+    id: p.id,
+    title: p.title,
+  }));
 
   return {
     props: {
