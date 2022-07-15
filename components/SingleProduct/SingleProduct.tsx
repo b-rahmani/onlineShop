@@ -5,8 +5,8 @@ import HeartIcon from "../icons/HeartIcon";
 import classes from "./singleProduct.module.scss";
 import "rc-rate/assets/index.css";
 import ImageSide from "../ImageSide/ImageSide";
-import { motion } from "framer-motion";
 import { useState } from "react";
+import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
 
 export interface productType {
   id: number | string;
@@ -127,13 +127,8 @@ const SingleProduct = (props: PropsSingleProductType) => {
               ))}
             </div>
           </div>
-
-          <motion.button
-            className={classes.addToBasket}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span>افزودن به سبد</span>
-          </motion.button>
+          <BuyBtnActions product={ props?.product!} />
+          
         </div>
         <ImageSide product={props.product} />
       </section>

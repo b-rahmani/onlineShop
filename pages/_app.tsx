@@ -5,6 +5,7 @@ import Layout from "../components/Layout/Layout";
 import Head from "next/head";
 import { store } from "../store/store";
 import { Provider } from "react-redux";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -31,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
           <link rel="manifest" href="/favicon/site.webmanifest" />
         </Head>
+
         <Component {...pageProps} />
       </Layout>
       {/* </SidebarProvider> */}

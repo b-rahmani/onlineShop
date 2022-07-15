@@ -3,6 +3,7 @@ import SideBarReducer from "./sidebarSlice";
 import FilterSortReducer from "./mobileSortFilter";
 import SearchFocusReducer from "./searchFocusSlice";
 import hoverActionsSlice from "./hoverActionsSlice";
+import BasketSlice from "./basketProductsSlice";
 
 import SortData from "./dataSortSlice";
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     sortData: SortData,
     searchFocus: SearchFocusReducer,
     CartHoverAction: hoverActionsSlice,
+    basket: BasketSlice,
   },
 });
 
