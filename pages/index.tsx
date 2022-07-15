@@ -39,26 +39,24 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getStaticProps = async () => {
-  const { data: allProducts } = await axios.get(
-    "http://localhost:3000/api/allProduct"
-  );
+  const { data: allProducts } = await axios.get("/api/allProduct");
 
-  const { data: FakeProd } = await axios.get(
-    "https://fakestoreapi.com/products"
-  );
+  // const { data: FakeProd } = await axios.get(
+  //   "https://fakestoreapi.com/products"
+  // );
 
-  const SliderData = FakeProd.filter((_: any, index: number) => index <= 9).map(
-    (p: any, ind: number) => ({
-      image: `/images/sliders/s${ind + 1}.jpg`,
-      id: p.id,
-      title: p.title,
-    })
-  );
+  // const SliderData = FakeProd.filter((_: any, index: number) => index <= 9).map(
+  //   (p: any, ind: number) => ({
+  //     image: `/images/sliders/s${ind + 1}.jpg`,
+  //     id: p.id,
+  //     title: p.title,
+  //   })
+  // );
 
   return {
     props: {
       products: allProducts,
-      SliderData: SliderData,
+      // SliderData: SliderData,
     },
   };
 };
