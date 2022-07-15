@@ -6,6 +6,7 @@ import classes from "./singleProduct.module.scss";
 import "rc-rate/assets/index.css";
 import ImageSide from "../ImageSide/ImageSide";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export interface productType {
   id: number | string;
@@ -29,6 +30,12 @@ export interface PropsSingleProductType {
 }
 
 const SingleProduct = (props: PropsSingleProductType) => {
+  const [isLikeProduct, setIsLikeProduct] = useState(false);
+
+  const favoritClickHandler = () => {
+    setIsLikeProduct((prev) => !prev);
+  };
+
   if (!props.product && props.status !== 404) {
     return <p>loading...</p>;
   }
@@ -44,8 +51,11 @@ const SingleProduct = (props: PropsSingleProductType) => {
             <h2 className={classes.productName}>
               {props.product?.title.substring(0, 20)}
             </h2>
-            <button className={classes.productLike}>
-              <HeartIcon heartType={true ? "fill" : "outline"} />
+            <button
+              className={classes.productLike}
+              onClick={favoritClickHandler}
+            >
+              <HeartIcon heartType={isLikeProduct ? "fill" : "outline"} />
             </button>
           </div>
           <h4 className={joinClassModules(classes.description, "ellips-3")}>
@@ -111,9 +121,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
                     className={classes.radio}
                   />
                   <label htmlFor={color} style={{ backgroundColor: color }}>
-                    <span style={{ border: `2px solid ${color}` }}>
-                      
-                    </span>
+                    <span style={{ border: `2px solid ${color}` }}></span>
                   </label>
                 </div>
               ))}
