@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import SwipBanner from "../components/swipBanner/SwipBanner";
-import { useRouter } from "next/router";
 import MainProducts from "../components/mainProduct/MainProduct";
 import SortMobile from "../components/sortProducts/SortMobile";
 import FilterMobile from "../components/FilterProducts/FilterMobile";
@@ -11,10 +10,11 @@ import { closeFocusInput } from "../store/searchFocusSlice";
 import { AllProductContext } from "../store/ContextAllProduct";
 import axios from "axios";
 import { SliderData } from "../store/ContextSlider";
-import { productType } from "../components/SingleProduct/SingleProduct";
+;
+import { allProductsMock } from "./api/allProduct";
 
 const Home: NextPage = (props: any) => {
-  const router = useRouter();
+
   const dispatch = useDispatch();
   const isFocusInput = useSelector(
     (state: RootState) => state.searchFocus.isSearchFocus
@@ -39,24 +39,33 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getStaticProps = async () => {
-  const { data: allProducts } = await axios.get("/api/allProduct");
+ 
 
-  // const { data: FakeProd } = await axios.get(
-  //   "https://fakestoreapi.com/products"
+  // const { data: allProducts } = await axios.get(
+  //   `${
+  //     process.env.NODE_ENV === "production"
+  //       ? "online-shop-henna.vercel.app/"
+  //       : "http://localhost:3000/"
+  //   }api/allProduct`
   // );
+  const allProducts = allProductsMock;
 
-  // const SliderData = FakeProd.filter((_: any, index: number) => index <= 9).map(
-  //   (p: any, ind: number) => ({
-  //     image: `/images/sliders/s${ind + 1}.jpg`,
-  //     id: p.id,
-  //     title: p.title,
-  //   })
-  // );
+  const { data: FakeProd } = await axios.get(
+    "https://fakestoreapi.com/products"
+  );
+
+  const SliderData = FakeProd.filter((_: any, index: number) => index <= 9).map(
+    (p: any, ind: number) => ({
+      image: `/images/sliders/s${ind + 1}.jpg`,
+      id: p.id,
+      title: p.title,
+    })
+  );
 
   return {
     props: {
       products: allProducts,
-      // SliderData: SliderData,
+      SliderData: SliderData,
     },
   };
 };

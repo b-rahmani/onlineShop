@@ -8,7 +8,7 @@ import "swiper/css/free-mode";
 
 import Link from "next/link";
 import Image from "next/image";
-import { Fragment, useContext } from "react";
+import {  useContext } from "react";
 import { SliderData } from "../../store/ContextSlider";
 const SwipBanner = () => {
   const sliderData = useContext(SliderData);
