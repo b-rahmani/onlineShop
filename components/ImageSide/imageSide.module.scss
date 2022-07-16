@@ -59,8 +59,11 @@
     }
   }
 
-  @include tablet-landscape-up {
+  @include tablet-portrait-up {
     order: unset;
+  }
+
+  @include tablet-landscape-up {
     grid-template-columns: 25% 75%;
     grid-template-rows: 400px;
 
