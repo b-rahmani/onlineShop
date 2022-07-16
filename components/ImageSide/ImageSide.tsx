@@ -21,6 +21,7 @@ const ImageSide = (props: PropsSingleProductType) => {
           spaceBetween={20}
           slidesPerView={4}
           loop
+          direction="vertical"
           // navigation
           breakpoints={{
             100: {
