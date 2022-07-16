@@ -24,10 +24,11 @@ export interface productType {
   colors?: Colors[];
 }
 
-interface Colors  {
-   name: string; 
-  value: string }
-  
+interface Colors {
+  name: string;
+  value: string;
+}
+
 export interface ParamsType {
   [key: string]: any;
 }
@@ -101,38 +102,40 @@ const SingleProduct = (props: PropsSingleProductType) => {
             {props.product?.description}
           </h4>
           {/* if stock !==0 (exist product ) show price section else shoe ناموجود  */}
-          {props.product?.stock && props.product?.stock > 0 ? (
-            <div className={classes.price}>
-              {props.product.discount ? (
-                <>
-                  <div className={classes.discountSec}>
-                    <div className={classes.oldPrice}>
-                      {" "}
-                      {props.product.price.toLocaleString()}
+          <div className={classes.desktopOnly}>
+            {props.product?.stock && props.product?.stock > 0 ? (
+              <div className={classes.price}>
+                {props.product.discount ? (
+                  <>
+                    <div className={classes.discountSec}>
+                      <div className={classes.oldPrice}>
+                        {" "}
+                        {props.product.price.toLocaleString()}
+                      </div>
+                      <div className={classes.discount}>
+                        {props.product.discount + "%"}
+                      </div>
                     </div>
-                    <div className={classes.discount}>
-                      {props.product.discount + "%"}
+                    <div className={classes.calculatedPrice}>
+                      <span>
+                        {priceDiscounted(
+                          props.product.price,
+                          props.product.discount
+                        ).toLocaleString()}
+                      </span>
+                      <span className={classes.priceText}>تومان</span>
                     </div>
-                  </div>
+                  </>
+                ) : (
                   <div className={classes.calculatedPrice}>
-                    <span>
-                      {priceDiscounted(
-                        props.product.price,
-                        props.product.discount
-                      ).toLocaleString()}
-                    </span>
-                    <span className={classes.priceText}>تومان</span>
+                    {props.product.price.toLocaleString()}
                   </div>
-                </>
-              ) : (
-                <div className={classes.calculatedPrice}>
-                  {props.product.price.toLocaleString()}
-                </div>
-              )}
-            </div>
-          ) : (
-            <p className={classes.notExist}>موجود نیست</p>
-          )}
+                )}
+              </div>
+            ) : (
+              <p className={classes.notExist}>موجود نیست</p>
+            )}
+          </div>
           <div className={classes.Rating}>
             <div className={classes.review}>
               <span>{props.product?.rating.count}</span>
@@ -172,6 +175,40 @@ const SingleProduct = (props: PropsSingleProductType) => {
             </div>
           </div>
           <div className={classes.buyBtn}>
+            <div className={classes.phoneOnly}>
+              {props.product?.stock && props.product?.stock > 0 ? (
+                <div className={classes.price}>
+                  {props.product.discount ? (
+                    <>
+                      <div className={classes.discountSec}>
+                        <div className={classes.oldPrice}>
+                          {" "}
+                          {props.product.price.toLocaleString()}
+                        </div>
+                        <div className={classes.discount}>
+                          {props.product.discount + "%"}
+                        </div>
+                      </div>
+                      <div className={classes.calculatedPrice}>
+                        <span>
+                          {priceDiscounted(
+                            props.product.price,
+                            props.product.discount
+                          ).toLocaleString()}
+                        </span>
+                        <span className={classes.priceText}>تومان</span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className={classes.calculatedPrice}>
+                      {props.product.price.toLocaleString()}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p className={classes.notExist}>موجود نیست</p>
+              )}
+            </div>
             <BuyBtnActions
               product={props?.product!}
               attribute={ProductAttribute}

@@ -50,36 +50,39 @@
       .description {
         margin-top: 40px;
       }
-      .price {
-        display: flex;
-        flex-direction: column;
-        // margin: 16px 0;
+      .desktopOnly {
+        display: none;
+        .price {
+          display: flex;
+          flex-direction: column;
+          // margin: 16px 0;
 
-        .discountSec {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 10px;
-          .oldPrice {
-            font-size: 14px;
-            text-decoration: line-through;
-            text-decoration-color: rgb(192, 194, 197);
-            color: rgb(192, 194, 197);
+          .discountSec {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            .oldPrice {
+              font-size: 14px;
+              text-decoration: line-through;
+              text-decoration-color: rgb(192, 194, 197);
+              color: rgb(192, 194, 197);
+            }
+            .discount {
+              background-color: orangered;
+              border-radius: 50%;
+              padding: 2px 7px;
+              font-size: 14px;
+              color: #fff;
+            }
           }
-          .discount {
-            background-color: orangered;
-            border-radius: 50%;
-            padding: 2px 7px;
-            font-size: 14px;
-            color: #fff;
+          .calculatedPrice {
+            font-size: 20px;
+            display: flex;
+            justify-content: flex-end;
+            text-align: left;
+            gap: 5px;
           }
-        }
-        .calculatedPrice {
-          font-size: 20px;
-          display: flex;
-          justify-content: flex-end;
-          text-align: left;
-          gap: 5px;
         }
       }
       .notExist {
@@ -154,11 +157,49 @@
         left: 0;
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         z-index: 5;
         padding: 10px 0;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
           rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+        .phoneOnly {
+          display: block;
+          order: 1;
+
+          .price {
+            display: flex;
+            flex-direction: column;
+            // margin: 16px 0;
+
+            .discountSec {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              gap: 10px;
+              .oldPrice {
+                font-size: 14px;
+                text-decoration: line-through;
+                text-decoration-color: rgb(192, 194, 197);
+                color: rgb(192, 194, 197);
+              }
+              .discount {
+                background-color: orangered;
+                border-radius: 50%;
+                padding: 2px 7px;
+                font-size: 14px;
+                color: #fff;
+              }
+            }
+            .calculatedPrice {
+              font-size: 20px;
+              display: flex;
+              justify-content: flex-end;
+              text-align: left;
+              gap: 5px;
+            }
+          }
+        }
       }
     }
   }
@@ -170,10 +211,20 @@
       .detailSide {
         border-inline-end: 1px solid rgb(180, 180, 180);
 
+        .desktopOnly {
+          display: block;
+        }
         .buyBtn {
           position: static;
+
           background-color: transparent;
           box-shadow: unset;
+          display: flex;
+          justify-content: center;
+
+          .phoneOnly {
+            display: none;
+          }
         }
       }
     }
