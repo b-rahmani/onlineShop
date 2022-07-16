@@ -2,6 +2,9 @@
 
 .imageSide {
   display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 400px;
+  order: -1;
   grid-template-columns: 1fr;
   grid-template-rows: 300px 100px;
   // background-color: red;
@@ -57,7 +60,12 @@
   }
 
   @include tablet-landscape-up {
+    order: unset;
     grid-template-columns: 25% 75%;
     grid-template-rows: 400px;
+
+    .tumbnails {
+      order: unset;
+    }
   }
 }

@@ -1,16 +1,18 @@
+@import "../../styles/mixins";
 .singleProductPage {
   // background-color: #e4e7f2;
   width: 100%;
   height: 500px;
   padding: 20px 16px;
   // border-top: 0.5px solid #000;
-
   font-family: iranyekanFa;
+
   .divider {
     margin-top: 16px;
     background-color: #fff;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
     padding: 10px 0;
 
     .detailSide {
@@ -146,6 +148,12 @@
           }
         }
       }
+    }
+  }
+  @include tablet-portrait-up {
+    .divider {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
     }
   }
 }
