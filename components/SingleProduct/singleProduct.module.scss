@@ -2,7 +2,7 @@
 .singleProductPage {
   // background-color: #e4e7f2;
   width: 100%;
-  height: 500px;
+  // height: 500px;
   padding: 20px 16px;
   // border-top: 0.5px solid #000;
   font-family: iranyekanFa;
@@ -16,7 +16,6 @@
     padding: 10px 0;
 
     .detailSide {
-      border-inline-end: 1px solid rgb(180, 180, 180);
       padding-left: 16px;
 
       display: flex;
@@ -169,6 +168,8 @@
       grid-template-rows: 1fr;
 
       .detailSide {
+        border-inline-end: 1px solid rgb(180, 180, 180);
+
         .buyBtn {
           position: static;
           background-color: transparent;

@@ -5,8 +5,10 @@ import HeartIcon from "../icons/HeartIcon";
 import classes from "./singleProduct.module.scss";
 import "rc-rate/assets/index.css";
 import ImageSide from "../ImageSide/ImageSide";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export interface productType {
   id: number | string;
@@ -19,8 +21,13 @@ export interface productType {
   customHead?: string;
   stock: number;
   images?: string[];
-  colors?: { name: string; value: string }[];
+  colors?: Colors[];
 }
+
+interface Colors  {
+   name: string; 
+  value: string }
+  
 export interface ParamsType {
   [key: string]: any;
 }
@@ -33,6 +40,29 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
 
+  const [ProductAttribute, setProductAttribute] = useState(
+    props.product?.colors && props.product.colors[0]
+  );
+  const basketProduct = useSelector((state: RootState) =>
+    state.basket.basket.find(
+      (item) =>
+        item.id === props.product?.id &&
+        ProductAttribute?.value === item.selectedAttribute.value
+    )
+  );
+  // let pa;
+  // if (basketProduct?.colors) {
+  //   pa = basketProduct.selectedAttribute;
+  // } else if (props?.product?.colors) {
+  //   pa = props.product?.colors[0];
+  // }
+
+  //   useEffect(()=>{
+  // if(basketProduct){
+  //   basketProduct?
+  // }
+  //   },[])
+
   const favoritClickHandler = () => {
     setIsLikeProduct((prev) => !prev);
   };
@@ -43,6 +73,13 @@ const SingleProduct = (props: PropsSingleProductType) => {
   if (props.status === 404) {
     return <p>not found product</p>;
   }
+
+  //   useEffect(()=>{
+  // if(basketProduct){
+  //   setProductAttributeIndex(props.product?.colors?.findIndex((el,ind)=>ind===))
+  // }
+
+  // },[])
 
   return (
     <div className={joinClassModules(classes.singleProductPage)}>
@@ -114,13 +151,15 @@ const SingleProduct = (props: PropsSingleProductType) => {
           <div className={classes.attribute}>
             <span>رنگ</span>
             <div className={classes.attributeValue}>
-              {props?.product?.colors?.map((color) => (
+              {props?.product?.colors?.map((color, ind) => (
                 <div className={classes.attributeSelect} key={color.name}>
                   <input
                     type="radio"
                     name="radio"
                     id={color.value}
                     className={classes.radio}
+                    onChange={() => setProductAttribute(color)}
+                    checked={color.value === ProductAttribute?.value}
                   />
                   <label
                     htmlFor={color.value}
@@ -133,7 +172,10 @@ const SingleProduct = (props: PropsSingleProductType) => {
             </div>
           </div>
           <div className={classes.buyBtn}>
-            <BuyBtnActions product={props?.product!} />
+            <BuyBtnActions
+              product={props?.product!}
+              attribute={ProductAttribute}
+            />
           </div>
         </div>
         <ImageSide product={props.product} />

@@ -16,18 +16,27 @@ import { toast, ToastContainer } from "react-toastify";
 
 interface Props {
   product: productType;
+  attribute?: { name: string; value: string };
 }
 
 const BuyBtnActions = (props: Props) => {
-  const ProductinBasket = useSelector((state: RootState) =>
+  // const ProductinBasket = useSelector((state: RootState) =>
+  //   state.basket.basket.find(
+  //     (item: basketProductType) => item.id === props.product?.id
+  //   )
+  // );
+
+  const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(
-      (item: basketProductType) => item.id === props.product?.id
+      (item) =>
+        item.id === props.product?.id &&
+        item.selectedAttribute.value === props.attribute?.value
     )
   );
   const dispatch = useDispatch();
 
   const increaseCountProduct = () => {
-    dispatch(increase(props.product));
+    dispatch(increase({ product: props.product, attribute: props.attribute }));
     toast.success("تعداد محصول افزوده شد ", {
       position: "top-right",
       autoClose: 5000,
@@ -39,7 +48,7 @@ const BuyBtnActions = (props: Props) => {
     });
   };
   const decreaseCountProduct = () => {
-    dispatch(decrease(props.product));
+    dispatch(decrease({ product: props.product, attribute: props.attribute }));
     toast.success("تعداد محصول کاهش یافت ", {
       position: "top-right",
       autoClose: 5000,
@@ -51,7 +60,9 @@ const BuyBtnActions = (props: Props) => {
     });
   };
   const removeProduct = () => {
-    dispatch(removeFromBasket(props.product));
+    dispatch(
+      removeFromBasket({ product: props.product, attribute: props.attribute })
+    );
     toast.success("محصول از سبد حذف شد ", {
       position: "top-right",
       autoClose: 5000,
@@ -63,27 +74,35 @@ const BuyBtnActions = (props: Props) => {
     });
   };
   const addToBasketHandler = () => {
-    dispatch(addToBasket(props.product));
-    toast.success("محصول به سبد اضافه شد ", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    if (props.product.stock > 0) {
+      dispatch(
+        addToBasket({ product: props.product, attribute: props.attribute })
+      );
+      toast.success("محصول به سبد اضافه شد ", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   let Btn;
-  if (ProductinBasket) {
+  if (
+    basketProduct
+    // &&
+    // basketProduct.selectedAttribute.value === props.attribute?.value
+  ) {
     Btn = (
       <div
         className={joinClassModules(classes.addToBasket, classes.advanceMode)}
       >
         <button onClick={increaseCountProduct}>+</button>
-        {ProductinBasket.quantity}
-        {ProductinBasket.quantity !== 1 ? (
+        {basketProduct.quantity}
+        {basketProduct.quantity !== 1 ? (
           <button onClick={decreaseCountProduct}>-</button>
         ) : (
           <button onClick={removeProduct}>
@@ -114,7 +133,7 @@ const BuyBtnActions = (props: Props) => {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        rtl={false}
+        rtl={true}
         pauseOnFocusLoss
         draggable
         pauseOnHover

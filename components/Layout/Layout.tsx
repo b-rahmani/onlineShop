@@ -28,7 +28,10 @@ const Layout = ({ children, search }: layoutProps) => {
     user ? Router.push("/profile") : Router.push("/login");
   };
   return (
-    <div className="container" style={{ overflow: isOpen ? "hidden" : "none" }}>
+    <div
+      className="container"
+      style={{ overflow: isOpen ? "hidden" : "unset" }}
+    >
       <header className={classes.header}>
         <div className={classes.actionHead}>
           <Link href="/">
