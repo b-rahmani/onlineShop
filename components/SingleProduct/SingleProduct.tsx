@@ -8,6 +8,8 @@ import ImageSide from "../ImageSide/ImageSide";
 import { useState } from "react";
 import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
 
+
+
 export interface productType {
   id: number | string;
   title: string;
@@ -19,6 +21,7 @@ export interface productType {
   customHead?: string;
   stock: number;
   images?: string[];
+  colors?: {name:string,value:string}[];
 }
 export interface ParamsType {
   [key: string]: any;
@@ -42,6 +45,9 @@ const SingleProduct = (props: PropsSingleProductType) => {
   if (props.status === 404) {
     return <p>not found product</p>;
   }
+
+
+
   return (
     <div className={joinClassModules(classes.singleProductPage)}>
       <BreadCrumb />
@@ -112,23 +118,22 @@ const SingleProduct = (props: PropsSingleProductType) => {
           <div className={classes.attribute}>
             <span>رنگ</span>
             <div className={classes.attributeValue}>
-              {["#FAEA48", "#3330E4", "#FBB454", "#F637EC"].map((color) => (
-                <div className={classes.attributeSelect} key={color}>
+              {props?.product?.colors?.map(color => (
+                <div className={classes.attributeSelect} key={color.name}>
                   <input
                     type="radio"
                     name="radio"
-                    id={color}
+                    id={color.value}
                     className={classes.radio}
                   />
-                  <label htmlFor={color} style={{ backgroundColor: color }}>
-                    <span style={{ border: `2px solid ${color}` }}></span>
+                  <label htmlFor={color.value} style={{ backgroundColor: color.value }}>
+                    <span style={{ border: `2px solid ${color.value}` }}></span>
                   </label>
-                </div>
-              ))}
+                </div>)
+              )}
             </div>
           </div>
-          <BuyBtnActions product={ props?.product!} />
-          
+          <BuyBtnActions product={props?.product!} />
         </div>
         <ImageSide product={props.product} />
       </section>

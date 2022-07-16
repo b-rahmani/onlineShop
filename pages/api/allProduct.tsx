@@ -22,6 +22,12 @@ export const allProductsMock = [
     rating: { rate: 3.9, count: 100 },
     customHead: "فروش ویژه",
     stock: 2,
+    colors: [
+      { name: "زرد", value: "#FAEA48" },
+      { name: "آبی", value: "#3330E4" },
+      { name: "شکلاتی", value: "#FBB454" },
+      { name: "بنفش", value: "#F637EC" },
+    ],
     breadCrump: [
       {
         title: "خانه",

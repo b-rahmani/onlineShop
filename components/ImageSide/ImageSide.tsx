@@ -20,18 +20,18 @@ const ImageSide = (props: PropsSingleProductType) => {
           modules={[Navigation, Thumbs]}
           spaceBetween={20}
           slidesPerView={4}
-          direction={"vertical"}
           loop
           // navigation
-          // breakpoints={{
-          //   100: {
-          //     // freeMode: false,
-          //   },
-          //   600: {
-          //     // freeMode: true,
-          //     slidesPerView: 1,
-          //   },
-          // }}
+          breakpoints={{
+            100: {
+              direction: "horizontal",
+            },
+            900: {
+              // freeMode: true,
+              direction: "vertical",
+              // slidesPerView: 1,
+            },
+          }}
           className="thumbnailSwipper"
           // style={{ height: "100%" }}
         >

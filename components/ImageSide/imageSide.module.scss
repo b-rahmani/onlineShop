@@ -1,7 +1,9 @@
+@import "../../styles/mixins";
+
 .imageSide {
   display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: 400px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 300px 100px;
   // background-color: red;
 
   .tumbnails {
@@ -10,6 +12,7 @@
     overflow: hidden;
     margin-right: 16px;
     user-select: none;
+    order: 2;
 
     .imageContainer {
       position: relative;
@@ -51,5 +54,10 @@
       height: 100%;
       object-fit: contain;
     }
+  }
+
+  @include tablet-landscape-up {
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 400px;
   }
 }
