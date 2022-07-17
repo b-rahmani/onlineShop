@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
+    "@types/debounce": "^1.2.1",
     "axios": "^0.27.2",
+    "debounce": "^1.2.1",
     "framer-motion": "^6.3.6",
     "next": "12.1.6",
     "rc-rate": "^2.9.2",

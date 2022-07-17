@@ -8,19 +8,19 @@
   font-family: iranyekanFa;
 
   .divider {
-    margin-top: 16px;
+    margin: 16px 0;
     background-color: #fff;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     grid-template-rows: 1fr 1fr;
     padding: 10px 0;
 
     .detailSide {
       padding-left: 16px;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: space-between;
 
       .header {
         display: flex;
@@ -203,14 +203,13 @@
       }
     }
   }
-  @include tablet-portrait-up {
+  @include tablet-landscape-up {
     .divider {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: 1fr;
 
       .detailSide {
         border-inline-end: 1px solid rgb(180, 180, 180);
-
         .desktopOnly {
           display: block;
         }
@@ -226,7 +225,43 @@
             display: none;
           }
         }
+
+        // .desktopOnly {
+        //   display: block;
+        // }
+        // .buyBtn {
+        //   position: static;
+
+        //   background-color: transparent;
+        //   box-shadow: unset;
+        //   display: flex;
+        //   justify-content: center;
+
+        //   .phoneOnly {
+        //     display: none;
+        //   }
       }
     }
   }
+  // @include tablet-portrait-up {
+  //   // .divider {
+  //   //   .detailSide {
+  //   //     .desktopOnly {
+  //   //       display: block;
+  //   //     }
+  //   //     .buyBtn {
+  //   //       position: static;
+
+  //   //       background-color: transparent;
+  //   //       box-shadow: unset;
+  //   //       display: flex;
+  //   //       justify-content: center;
+
+  //   //       .phoneOnly {
+  //   //         display: none;
+  //   //       }
+  //   //     }
+  //   //   }
+  //   // }
+  // }
 }

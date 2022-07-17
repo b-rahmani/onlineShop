@@ -1,6 +1,6 @@
+import LoginPage from "../../components/LoginPage/LoginPage";
+
 const login = () => {
-  return (
-    <div>login</div>
-  )
-}
-export default login
+  return <LoginPage />;
+};
+export default login;

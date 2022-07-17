@@ -48,7 +48,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
     state.basket.basket.find(
       (item) =>
         item.id === props.product?.id &&
-        ProductAttribute?.value === item.selectedAttribute.value
+        ProductAttribute?.value === item.selectedAttribute?.value
     )
   );
   // let pa;

@@ -5,7 +5,17 @@ import Layout from "../components/Layout/Layout";
 import Head from "next/head";
 import { store } from "../store/store";
 import { Provider } from "react-redux";
+// import { saveState } from "../store/browser-storage/browser-storage";
+// import { debounce } from "debounce";
 import "react-toastify/dist/ReactToastify.min.css";
+
+// store.subscribe(
+//   // we use debounce to save the state once each 800ms
+//   // for better performances in case multiple changes occur in a short time
+//   () => {
+//     saveState({ basket: store.getState().basket });
+//   }
+// );
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

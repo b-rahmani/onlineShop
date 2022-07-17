@@ -2,73 +2,95 @@
 
 .imageSide {
   display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: 400px;
+  // grid-template-columns: 25% 75%;
+  // grid-template-rows: 400px;
+
   order: -1;
-  grid-template-columns: 1fr;
-  grid-template-rows: 300px 100px;
+  // grid-template-columns: 1fr;
+  // grid-template-rows: 300px 100px;
   // background-color: red;
 
+  grid-template-columns: 100%;
+  grid-template-rows: 300px;
+
   .tumbnails {
-    height: 100%;
-    padding: 5px;
-    overflow: hidden;
-    margin-right: 16px;
-    user-select: none;
-    order: 2;
-
-    .imageContainer {
-      position: relative;
-      width: 90%;
-      height: 100%;
-      margin: auto;
-      // border: 1px solid gray !important;
-      // border-radius: 10px;
-      // overflow: hidden;
-
-      // &.cative {
-      //   border: 1px solid greenyellow !important;
-      // }
-      // .mySwipper {
-      //   height: 100% !important;
-
-      img {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 100% !important;
-
-        object-fit: contain;
-      }
-      // }
-    }
+    display: none;
   }
   .image {
+    display: none;
+  }
+  .swipperOnPhone {
+    display: block;
     width: 100%;
-    position: relative;
+    max-width: 250px;
     margin: auto;
-    height: 100%;
 
-    & > * {
-      height: 100% !important;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
+    & img {
+      display: block;
       object-fit: contain;
     }
   }
 
   @include tablet-portrait-up {
-    order: unset;
-  }
-
-  @include tablet-landscape-up {
+    // order: 2;
     grid-template-columns: 25% 75%;
     grid-template-rows: 400px;
 
     .tumbnails {
-      order: unset;
+      height: 100%;
+      padding: 5px;
+      overflow: hidden;
+      margin-right: 16px;
+      user-select: none;
+      // order: 2;
+      display: block;
+
+      .imageContainer {
+        position: relative;
+        width: 90%;
+        height: 100%;
+        margin: auto;
+
+        img {
+          width: 100% !important;
+          height: auto !important;
+          max-height: 100% !important;
+
+          object-fit: contain;
+        }
+        // }
+      }
     }
+    .image {
+      width: 70%;
+
+      position: relative;
+      margin: auto;
+      height: 100%;
+      display: block;
+
+      & > * {
+        height: 100% !important;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .swipperOnPhone {
+      display: none;
+    }
+  }
+
+  @include tablet-landscape-up {
+    order: 2;
+    // grid-template-columns: 25% 75%;
+    // grid-template-rows: 400px;
+
+    // .tumbnails {
+    //   order: unset;
+    // }
   }
 }

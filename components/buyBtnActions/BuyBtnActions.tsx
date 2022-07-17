@@ -30,7 +30,7 @@ const BuyBtnActions = (props: Props) => {
     state.basket.basket.find(
       (item) =>
         item.id === props.product?.id &&
-        item.selectedAttribute.value === props.attribute?.value
+        item.selectedAttribute?.value === props.attribute?.value
     )
   );
   const dispatch = useDispatch();

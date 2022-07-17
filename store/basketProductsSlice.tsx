@@ -18,36 +18,49 @@ export const BasketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
+    // initialBasket: (state) => {
+    //   if (localStorage && localStorage.getItem("userBasket")) {
+    //     // const basketData = JSON.parse(localStorage.getItem("userBasket")!);
+    //     state.basket = basketData;
+    //   }
+    // },
+
     addToBasket: (state, action) => {
-      state.basket = state.basket.concat({
+      const basketData = state.basket.concat({
         ...action.payload.product,
         selectedAttribute: action.payload.attribute,
         quantity: 1,
       });
+      state.basket = basketData;
+      // localStorage.setItem("userBasket", JSON.stringify(basketData));
     },
     removeFromBasket: (state, action) => {
-      state.basket = state.basket?.filter(
+      const basketData = state.basket?.filter(
         (item: basketProductType) =>
-          item.selectedAttribute.value !== action.payload.attribute.value ||
+          item.selectedAttribute?.value !== action.payload.attribute?.value ||
           //  &&
           item.id !== action.payload.product.id
       );
+      state.basket = basketData;
+      // localStorage.setItem("userBasket", JSON.stringify(state.basket));
     },
     increase: (state, action) => {
-      state.basket?.map((item: basketProductType) =>
+      const basketData = state.basket?.map((item: basketProductType) =>
         item.id === action.payload.product.id &&
-        item.selectedAttribute.value === action.payload.attribute.value
+        item.selectedAttribute?.value === action.payload.attribute?.value
           ? (item.quantity += 1)
           : item
       );
+      // localStorage.setItem("userBasket", JSON.stringify(basketData));
     },
     decrease: (state, action) => {
-      state.basket.map((item: basketProductType) =>
+      const basketData = state.basket.map((item: basketProductType) =>
         item.id === action.payload.product.id &&
-        item.selectedAttribute.value === action.payload.attribute.value
+        item.selectedAttribute?.value === action.payload.attribute?.value
           ? (item.quantity -= 1)
           : item
       );
+      // localStorage.setItem("userBasket", JSON.stringify(basketData));
     },
   },
 });

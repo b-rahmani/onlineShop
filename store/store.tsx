@@ -6,6 +6,7 @@ import hoverActionsSlice from "./hoverActionsSlice";
 import BasketSlice from "./basketProductsSlice";
 
 import SortData from "./dataSortSlice";
+// import { loadState } from "./browser-storage/browser-storage";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     CartHoverAction: hoverActionsSlice,
     basket: BasketSlice,
   },
+  // preloadedState: loadState(),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
