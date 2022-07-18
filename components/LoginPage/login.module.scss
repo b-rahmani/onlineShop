@@ -1,8 +1,40 @@
 .loginPage {
   display: flex;
   width: 100%;
-  min-height: 70vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .imageSide {
+    background-color: #f3f5f9;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .circle {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background-color: #633eba;
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 120%;
+        height: 70%;
+        // border-bottom-left-radius: 125px;
+        // border-bottom-right-radius: 125px;
+        // background-color: #fff;
+        backdrop-filter: blur(15px);
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-25px, 0);
+      }
+    }
+  }
 }

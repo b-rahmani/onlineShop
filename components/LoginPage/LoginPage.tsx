@@ -2,10 +2,11 @@ import classes from "./login.module.scss";
 const LoginPage = () => {
   return (
     <div className={classes.loginPage}>
-      {/* avatar side */}
-      this is image side
-      {/* forms side */}
-      this is form side
+      <div className={classes.imageSide}>
+        <div className={classes.circle}></div>
+      </div>
+
+      <div className={classes.formSide}>form side</div>
     </div>
   );
 };
