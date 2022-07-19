@@ -18,12 +18,12 @@ export const BasketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
-    // initialBasket: (state) => {
-    //   if (localStorage && localStorage.getItem("userBasket")) {
-    //     // const basketData = JSON.parse(localStorage.getItem("userBasket")!);
-    //     state.basket = basketData;
-    //   }
-    // },
+    initialBasket: (state) => {
+      if (window !== undefined && localStorage?.getItem("userBasket")) {
+        const basketData = JSON.parse(localStorage.getItem("userBasket")!);
+        state.basket = basketData;
+      }
+    },
 
     addToBasket: (state, action) => {
       const basketData = state.basket.concat({
@@ -32,7 +32,7 @@ export const BasketSlice = createSlice({
         quantity: 1,
       });
       state.basket = basketData;
-      // localStorage.setItem("userBasket", JSON.stringify(basketData));
+      localStorage.setItem("userBasket", JSON.stringify(basketData));
     },
     removeFromBasket: (state, action) => {
       const basketData = state.basket?.filter(
@@ -42,7 +42,7 @@ export const BasketSlice = createSlice({
           item.id !== action.payload.product.id
       );
       state.basket = basketData;
-      // localStorage.setItem("userBasket", JSON.stringify(state.basket));
+      localStorage.setItem("userBasket", JSON.stringify(state.basket));
     },
     increase: (state, action) => {
       const basketData = state.basket?.map((item: basketProductType) =>
@@ -51,7 +51,7 @@ export const BasketSlice = createSlice({
           ? (item.quantity += 1)
           : item
       );
-      // localStorage.setItem("userBasket", JSON.stringify(basketData));
+      localStorage.setItem("userBasket", JSON.stringify(basketData));
     },
     decrease: (state, action) => {
       const basketData = state.basket.map((item: basketProductType) =>
@@ -60,12 +60,17 @@ export const BasketSlice = createSlice({
           ? (item.quantity -= 1)
           : item
       );
-      // localStorage.setItem("userBasket", JSON.stringify(basketData));
+      localStorage.setItem("userBasket", JSON.stringify(basketData));
     },
   },
 });
 
-export const { addToBasket, increase, removeFromBasket, decrease } =
-  BasketSlice.actions;
+export const {
+  addToBasket,
+  increase,
+  removeFromBasket,
+  decrease,
+  initialBasket,
+} = BasketSlice.actions;
 
 export default BasketSlice.reducer;

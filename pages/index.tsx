@@ -13,6 +13,7 @@ import { SliderData } from "../store/ContextSlider";
 ;
 import { allProductsMock } from "./api/allProduct";
 
+
 const Home: NextPage = (props: any) => {
 
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Home: NextPage = (props: any) => {
     (state: RootState) => state.searchFocus.isSearchFocus
   );
 
+ 
   return (
     <>
       {/* when search is focusing */}

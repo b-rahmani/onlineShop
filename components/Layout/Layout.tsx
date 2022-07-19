@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import SearchBar from "../searchbar/SearchBar";
 import AccountIcon from "../icons/AccountIcon";
@@ -13,6 +13,7 @@ import ActiveLink from "../activeLink/ActiveLink";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../store/sidebarSlice";
 import { RootState } from "../../store/store";
+import { initialBasket } from "../../store/basketProductsSlice";
 interface layoutProps {
   children?: React.ReactNode;
 
@@ -27,6 +28,12 @@ const Layout = ({ children, search }: layoutProps) => {
   const accountClickHandler = () => {
     user ? Router.push("/profile") : Router.push("/login");
   };
+
+  useEffect(() => {
+    dispatch(initialBasket());
+   
+  }, []);
+
   return (
     <div
       className="container"
