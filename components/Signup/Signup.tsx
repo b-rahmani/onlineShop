@@ -1,12 +1,26 @@
-
 import Link from "next/link";
 import { joinClassModules } from "../../utils/utils";
 import ArrowLeftIcon from "../icons/arrowLeftIcon";
-import classes from "./login.module.scss";
+import classes from "./signUp.module.scss";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
 
-const LoginPage = () => {
+const Signup = () => {
+  const shema = yup.object().shape({
+    userName: yup.string().trim().required("نام کاربری الزامی است"),
+    password: yup
+      .string()
+      .required("کلمه عبور الزامی است")
+      .max(20, "حداکثر 20 کاراکتر")
+      .min(5, "حداقل 5 کاراکتر"),
+    confirmPassword: yup
+      .string()
+      .required("تکرار کلمه عبور الزامی است")
+      .oneOf([yup.ref("password"), null], "کلمه عبور و تکرار آن مطابقت ندارد"),
+  });
+
   const {
     register,
     handleSubmit,
@@ -14,7 +28,8 @@ const LoginPage = () => {
     formState: { errors },
     setError,
     setValue,
-  } = useForm();
+  } = useForm({ resolver: yupResolver(shema) });
+
   const formSubmitHandler = (data: any) => {
     console.log(data);
     // if(Object.entries(data).some((el:any)=>el[1].trim()==="")){
@@ -28,10 +43,9 @@ const LoginPage = () => {
         return;
       }
     });
-
-    
   };
 
+  
   return (
     <div className={joinClassModules(classes.loginPage, "container")}>
       <div className={classes.imageSide}>
@@ -43,7 +57,7 @@ const LoginPage = () => {
           <motion.div className={classes.backIcon} whileHover={{ x: -10 }}>
             <ArrowLeftIcon />
           </motion.div>
-          <h3>خوش آمدید</h3>
+          <h3>ثبت نام</h3>
           <p>لطفا اطلاعات درخواستی را وارد کنید.</p>
           <div className={classes.form}>
             <form onSubmit={handleSubmit(formSubmitHandler)}>
@@ -53,12 +67,12 @@ const LoginPage = () => {
                   type="text"
                   id="useName"
                   placeholder="نام کاربری خود را وارد کنید"
-                  {...register("userName", { required: true })}
+                  {...register("userName")}
                 />
                 {errors.userName && (
                   <span className={classes.error}>
                     {" "}
-                    لطفا نام کاربری خود را وارد کنید
+                    {errors.userName.message}
                   </span>
                 )}
               </div>
@@ -69,12 +83,28 @@ const LoginPage = () => {
                   id="password"
                   autoComplete="none"
                   placeholder="کلمه عبور خود را وارد کنید"
-                  {...register("password", { required: true })}
+                  {...register("password")}
                 />
                 {errors.password && (
                   <span className={classes.error}>
                     {" "}
-                    لطفا کلمه عبور خود را وارد کنید
+                    {errors.password.message}
+                  </span>
+                )}
+              </div>
+              <div>
+                <label htmlFor="confirmPassword"> تایید کلمه عبور</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  autoComplete="none"
+                  placeholder="کلمه عبور خود را وارد کنید"
+                  {...register("confirmPassword")}
+                />
+                {errors.confirmPassword && (
+                  <span className={classes.error}>
+                    {" "}
+                    {errors.confirmPassword.message}
                   </span>
                 )}
               </div>
@@ -84,25 +114,19 @@ const LoginPage = () => {
 
               <button className={classes.loginButton} type="submit">
                 {" "}
-                ورود
-              </button>
-              <button className={classes.loginWithGoogle} type="button">
-                ورود با گوگل
-                {/* <Image src="/google.svg" width={25} height={25} alt="google" /> */}
-                <img src="/google.png" alt="google" />
+                ثبت نام
               </button>
             </form>
           </div>
           <div className={classes.switchLogin}>
-            کاربری ندارید؟
-            <Link href="/signup">
-              <a className={classes.link}>ثبت نام</a>
+            کاربری دارید؟
+            <Link href="/login">
+              <a className={classes.link}>ورود</a>
             </Link>
-            کنید
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default LoginPage;
+export default Signup;

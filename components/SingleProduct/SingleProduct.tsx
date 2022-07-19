@@ -152,27 +152,33 @@ const SingleProduct = (props: PropsSingleProductType) => {
             </div>
           </div>
           <div className={classes.attribute}>
-            <span>رنگ</span>
-            <div className={classes.attributeValue}>
-              {props?.product?.colors?.map((color, ind) => (
-                <div className={classes.attributeSelect} key={color.name}>
-                  <input
-                    type="radio"
-                    name="radio"
-                    id={color.value}
-                    className={classes.radio}
-                    onChange={() => setProductAttribute(color)}
-                    checked={color.value === ProductAttribute?.value}
-                  />
-                  <label
-                    htmlFor={color.value}
-                    style={{ backgroundColor: color.value }}
-                  >
-                    <span style={{ border: `2px solid ${color.value}` }}></span>
-                  </label>
+            {props.product?.colors && props.product?.colors?.length > 0 && (
+              <>
+                <span>رنگ</span>
+                <div className={classes.attributeValue}>
+                  {props?.product?.colors?.map((color, ind) => (
+                    <div className={classes.attributeSelect} key={color.name}>
+                      <input
+                        type="radio"
+                        name="radio"
+                        id={color.value}
+                        className={classes.radio}
+                        onChange={() => setProductAttribute(color)}
+                        checked={color.value === ProductAttribute?.value}
+                      />
+                      <label
+                        htmlFor={color.value}
+                        style={{ backgroundColor: color.value }}
+                      >
+                        <span
+                          style={{ border: `2px solid ${color.value}` }}
+                        ></span>
+                      </label>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </div>
           <div className={classes.buyBtn}>
             <div className={classes.phoneOnly}>

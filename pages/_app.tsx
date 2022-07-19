@@ -19,7 +19,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 function MyApp({ Component, pageProps, ...appProps }: AppProps) {
   const getContent = () => {
-    const ignoreLayout = ["/login"];
+    const ignoreLayout = ["/login", "/signup"];
     if (ignoreLayout.includes(appProps.router.pathname)) {
       return <Component {...pageProps} />;
     } else {
