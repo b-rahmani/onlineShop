@@ -5,6 +5,7 @@
   overflow: hidden;
   font-family: iranyekanFa;
   user-select: none;
+  width: 100%;
 
   .share,
   .expand {
@@ -30,12 +31,16 @@
 
     .productImage {
       margin: 0 auto;
+      // change style to persent for reusable product card
       width: 240px;
+      max-width: 90%;
       height: 240px;
+
+      // width: 70%;
       // height: 0;
+      // padding-top: 70%;
+
       overflow: hidden;
-      // padding-top: 591.44px / 1127.34px * 100%;
-      // padding-top: 100%;
       background: white;
       position: relative;
 
@@ -54,13 +59,13 @@
         width: 100%;
         margin: 10px 0;
         text-align: right;
+        font-size: 16px;
       }
       .existRating {
         display: flex;
         width: 100%;
         align-items: center;
         justify-content: space-between;
-
         .rating {
           padding: 10px 0;
           display: flex;
@@ -68,6 +73,10 @@
           flex: 1;
           justify-content: flex-end;
           // text-align: left;
+
+          &.hidden {
+            display: none;
+          }
           gap: 5px;
           span {
             font-size: 12px;
@@ -92,6 +101,9 @@
 
             &.danger {
               color: red;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
 
@@ -166,7 +178,7 @@
       flex-wrap: wrap;
       align-items: flex-start;
 
-      .productImage {
+      .productImage.break {
         width: 100px;
         margin: unset;
         // padding-top: calc(100 / 300 * 100%);
@@ -178,6 +190,7 @@
         margin-right: 5px;
         .cardTitle {
           flex: 1;
+          font-size: 14px;
         }
       }
     }

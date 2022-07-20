@@ -1,7 +1,7 @@
 import classes from "./imageSide.module.scss";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Thumbs } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 // import "swiper/css/navigation";
 import "swiper/css/pagination";

@@ -9,6 +9,8 @@ import { useEffect, useRef, useState } from "react";
 import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import RelatedSlider from "../relatedSlider/RelatedSlider";
+
 
 export interface productType {
   id: number | string;
@@ -36,6 +38,7 @@ export interface ParamsType {
 export interface PropsSingleProductType {
   product?: productType;
   status?: number;
+  related?: productType[];
 }
 
 const SingleProduct = (props: PropsSingleProductType) => {
@@ -51,18 +54,6 @@ const SingleProduct = (props: PropsSingleProductType) => {
         ProductAttribute?.value === item.selectedAttribute?.value
     )
   );
-  // let pa;
-  // if (basketProduct?.colors) {
-  //   pa = basketProduct.selectedAttribute;
-  // } else if (props?.product?.colors) {
-  //   pa = props.product?.colors[0];
-  // }
-
-  //   useEffect(()=>{
-  // if(basketProduct){
-  //   basketProduct?
-  // }
-  //   },[])
 
   const favoritClickHandler = () => {
     setIsLikeProduct((prev) => !prev);
@@ -217,7 +208,10 @@ const SingleProduct = (props: PropsSingleProductType) => {
         </div>
         <ImageSide product={props.product} />
       </section>
-      single product and id is :{props.product?.id}
+      <div className={classes.line}></div>
+
+      {/* related */}
+      <RelatedSlider related={props.related}/>
     </div>
   );
 };

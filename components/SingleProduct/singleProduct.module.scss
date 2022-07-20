@@ -6,13 +6,14 @@
   padding: 20px 16px;
   // border-top: 0.5px solid #000;
   font-family: iranyekanFa;
+  margin-bottom: 60px;
 
   .divider {
     margin: 16px 0;
     background-color: #fff;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr max-content;
     padding: 10px 0;
 
     .detailSide {
@@ -55,7 +56,7 @@
         .price {
           display: flex;
           flex-direction: column;
-          // margin: 16px 0;
+          margin: 25px 0;
 
           .discountSec {
             display: flex;
@@ -203,6 +204,15 @@
       }
     }
   }
+  .line {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(199, 199, 199, 0.347);
+    border-radius: 5px;
+    margin: 30px 0;
+  }
+  
+
   @include tablet-landscape-up {
     .divider {
       grid-template-columns: repeat(2, 1fr);

@@ -6,7 +6,7 @@ import ShareIcon from "../icons/ShareIcon";
 import { shareMotion, expandMotion } from "../../utils/motions";
 import classes from "./productCard.module.scss";
 import StarIcon from "../icons/StarIcon";
-import { priceDiscounted } from "../../utils/utils";
+import { joinClassModules, priceDiscounted } from "../../utils/utils";
 import ExistIcon from "../icons/ExistIcon";
 import Link from "next/link";
 import { openIsExtend, openShare } from "../../store/hoverActionsSlice";
@@ -18,6 +18,8 @@ interface ProductCard {
   key: string | number;
   data: any;
   layoutId?: string;
+  break?: boolean;
+  rateOff?: boolean;
 }
 
 const ProductCard = (props: ProductCard) => {
@@ -62,12 +64,27 @@ const ProductCard = (props: ProductCard) => {
       <Link href={`/product/${props.data.id.toString()}`}>
         <a className={classes.link}>
           <p className={classes.customHead}>{data.customHead}</p>
-          <div className={classes.productImage}>
+          <div
+            className={joinClassModules(
+              classes.productImage,
+              props.break ? classes.break : ""
+            )}
+          >
             <Image alt={data.category} src={data.image} layout="fill" />
           </div>
           <div className={classes.detailSec}>
-            <div className={`${classes.cardTitle} ellips-2`}>{data.title}</div>
-            <div className={classes.existRating}>
+            <div className={`${classes.cardTitle} ellips-2`}>
+              {data.title}
+              <br />
+              <br />
+            </div>
+            <div
+              className={classes.existRating}
+              style={{
+                visibility:
+                  +data.stock < 1 && props.rateOff ? "hidden" : "visible",
+              }}
+            >
               <div className={classes.exist}>
                 {+data.stock > 10 ? (
                   <>
@@ -79,10 +96,15 @@ const ProductCard = (props: ProductCard) => {
                     تنها {data.stock} عدد در انبار باقی مانده
                   </span>
                 ) : (
-                  ""
+                  <span>&nbsp;</span>
                 )}
               </div>
-              <div className={classes.rating}>
+              <div
+                className={joinClassModules(
+                  classes.rating,
+                  props.rateOff ? classes.hidden : ""
+                )}
+              >
                 <span>{data.rating.rate}</span>
                 <StarIcon fill="gold" />
               </div>
@@ -132,4 +154,9 @@ const ProductCard = (props: ProductCard) => {
     </motion.div>
   );
 };
+
+ProductCard.defaultProps = {
+  break: true,
+};
+
 export default memo(ProductCard);
