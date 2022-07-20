@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+
 import { productType } from "../SingleProduct/SingleProduct";
 import ProductCard from "../productCard/ProductCard";
 
@@ -17,15 +18,17 @@ const RelatedSlider = (props: RelatedProductType) => {
     <section className={classes.relatedProduct}>
       <p className={classes.title}>کالاهای مشابه</p>
       {/*  */}
-      <div className={classes.slider}>
+      <div className={classes.related}>
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={0}
           slidesPerView={7}
-          //   autoplay={{
-          //     delay: 5000,
-          //     disableOnInteraction: false,
-          //   }}
+          navigation
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+        
           direction="horizontal"
           className="relatedCustomClass"
           breakpoints={{

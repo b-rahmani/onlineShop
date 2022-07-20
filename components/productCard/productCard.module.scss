@@ -34,11 +34,11 @@
       // change style to persent for reusable product card
       width: 240px;
       max-width: 90%;
-      height: 240px;
+      // height: 240px;
+      aspect-ratio: 1/1;
 
       // width: 70%;
       // height: 0;
-      // padding-top: 70%;
 
       overflow: hidden;
       background: white;
