@@ -10,11 +10,9 @@ import { closeFocusInput } from "../store/searchFocusSlice";
 import { AllProductContext } from "../store/ContextAllProduct";
 import axios from "axios";
 import { SliderData } from "../store/ContextSlider";
-;
 import { allProductsMock } from "./api/allProduct";
 
 const Home: NextPage = (props: any) => {
-
   const dispatch = useDispatch();
   const isFocusInput = useSelector(
     (state: RootState) => state.searchFocus.isSearchFocus
@@ -39,8 +37,6 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getStaticProps = async () => {
- 
-
   // const { data: allProducts } = await axios.get(
   //   `${
   //     process.env.NODE_ENV === "production"
