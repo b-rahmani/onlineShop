@@ -4,9 +4,13 @@ import axios from "axios";
 const SignUpPage = () => {
   useEffect(() => {
     console.log("useEffect call");
-    axios.get("online-shop-henna.vercel.app/api/getUser").then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .get(`${process.env.VERCEL_URL}/api/getUser`, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   }, []);
 
   return <Signup />;
