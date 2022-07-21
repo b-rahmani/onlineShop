@@ -1,10 +1,11 @@
-
 import Link from "next/link";
 import { joinClassModules } from "../../utils/utils";
 import ArrowLeftIcon from "../icons/arrowLeftIcon";
 import classes from "./login.module.scss";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+
+import { vercelClient } from "../../utils/axios";
 
 const LoginPage = () => {
   const {
@@ -17,9 +18,6 @@ const LoginPage = () => {
   } = useForm();
   const formSubmitHandler = (data: any) => {
     console.log(data);
-    // if(Object.entries(data).some((el:any)=>el[1].trim()==="")){
-
-    // }
 
     Object.entries(data).map((el: any) => {
       if (el[1].trim() === "") {
@@ -28,8 +26,12 @@ const LoginPage = () => {
         return;
       }
     });
-
-    
+    vercelClient
+      .post("/api/login", { name: data.userName, password: data.password })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((er) => console.log(er));
   };
 
   return (
