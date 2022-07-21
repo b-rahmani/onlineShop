@@ -45,7 +45,6 @@ const Signup = () => {
     });
   };
 
-  
   return (
     <div className={joinClassModules(classes.loginPage, "container")}>
       <div className={classes.imageSide}>
@@ -71,8 +70,7 @@ const Signup = () => {
                 />
                 {errors.userName && (
                   <span className={classes.error}>
-                    {" "}
-                    {errors.userName.message}
+                    {String(errors.userName.message)}
                   </span>
                 )}
               </div>
@@ -87,8 +85,7 @@ const Signup = () => {
                 />
                 {errors.password && (
                   <span className={classes.error}>
-                    {" "}
-                    {errors.password.message}
+                    {String(errors.password.message)}
                   </span>
                 )}
               </div>
@@ -101,10 +98,9 @@ const Signup = () => {
                   placeholder="کلمه عبور خود را وارد کنید"
                   {...register("confirmPassword")}
                 />
-                {errors.confirmPassword && (
+                {errors?.confirmPassword && (
                   <span className={classes.error}>
-                    {" "}
-                    {errors.confirmPassword.message}
+                    {String(errors.confirmPassword.message)}
                   </span>
                 )}
               </div>
