@@ -10,6 +10,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
+  // check for netwirk access from vercel on mongodb atlas
 //db connect
 const url=`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@online-shop.ps6bz.mongodb.net/?retryWrites=true&w=majority`
 const client = new MongoClient(url);
