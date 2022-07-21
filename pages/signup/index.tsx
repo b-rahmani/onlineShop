@@ -4,7 +4,7 @@ import axios from "axios";
 const SignUpPage = () => {
   useEffect(() => {
     console.log("useEffect call");
-    axios.get("http://localhost:3000/api/getUser").then((res) => {
+    axios.get("online-shop-henna.vercel.app/api/getUser").then((res) => {
       console.log(res.data);
     });
   }, []);
