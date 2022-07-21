@@ -28,10 +28,10 @@ const Layout = ({ children, search }: layoutProps) => {
   const accountClickHandler = () => {
     user ? Router.push("/profile") : Router.push("/login");
   };
+  const cartItems = useSelector((state: RootState) => state.basket.basket);
 
   useEffect(() => {
     dispatch(initialBasket());
-   
   }, []);
 
   return (
@@ -53,8 +53,25 @@ const Layout = ({ children, search }: layoutProps) => {
               click={accountClickHandler}
             />
             <Link href="/cart">
-              <a>
+              <a className={classes.cart}>
                 <CartIcon />
+                <div className={classes.cartBox}>
+                  {cartItems &&
+                    cartItems.length > 0 &&
+                    cartItems.map((product) => (
+                      <Link key={product.id} href={`/product/${product.id}]`}>
+                        <a className={classes.cartBoxItem}>
+                          <div className={classes.ImageContainer}></div>
+                          <Image
+                            src={product.image}
+                            alt={product.title}
+                            layout="fill"
+                          />
+                          
+                        </a>
+                      </Link>
+                    ))}
+                </div>
               </a>
             </Link>
           </div>
