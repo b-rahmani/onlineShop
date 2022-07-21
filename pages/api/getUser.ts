@@ -7,13 +7,13 @@ import { MongoClient } from "mongodb";
 
 export default async function handler(
   req: NextApiRequest,
-  res: any
+  res: NextApiResponse
 ) {
 
 //db connect
 const url=`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@online-shop.ps6bz.mongodb.net/?retryWrites=true&w=majority`
 const client = new MongoClient(url);
-const dbName="loginData";
+const dbName=process.env.DB_NAME;
 
 async function main() {
   await client.connect();
