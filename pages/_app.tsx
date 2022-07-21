@@ -17,35 +17,44 @@ import "react-toastify/dist/ReactToastify.min.css";
 //   }
 // );
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, ...appProps }: AppProps) {
+  const getContent = () => {
+    const ignoreLayout = ["/login", "/signup"];
+    if (ignoreLayout.includes(appProps.router.pathname)) {
+      return <Component {...pageProps} />;
+    } else {
+      return (
+        <Layout search>
+          <Component {...pageProps} />
+        </Layout>
+      );
+    }
+  };
+
   return (
     <Provider store={store}>
-      {/* <SidebarProvider> */}
-      <Layout search>
-        <Head>
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/favicon/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon/favicon-16x16.png"
-          />
-          <link rel="manifest" href="/favicon/site.webmanifest" />
-        </Head>
-
-        <Component {...pageProps} />
-      </Layout>
-      {/* </SidebarProvider> */}
+      {" "}
+      <Head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+      </Head>
+      {getContent()}
     </Provider>
   );
 }

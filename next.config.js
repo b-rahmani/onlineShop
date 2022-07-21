@@ -6,6 +6,10 @@ const nextConfig = {
     // imageSizes: [16, 30, 60],
     domains: ["fakestoreapi.com"],
   },
+  // env: {
+  //   MONGODB_URI:
+  //     "mongodb+srv://behnam:900251362@cluster0.ozeez.mongodb.net/behnam",
+  // },
 };
 
 module.exports = nextConfig;
