@@ -1,3 +1,4 @@
+import { MongoClient } from "mongodb";
 import { NextApiResponse, NextApiRequest } from "next";
 
 export const allProductsMock = [
@@ -68,7 +69,6 @@ export const allProductsMock = [
     image:
       "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
     rating: { rate: 3.5, count: 120 },
-    // customHead: "فروش ویژه",
     stock: 10,
     breadCrump: [
       {
@@ -151,7 +151,6 @@ export const allProductsMock = [
       " این محصول آزمایشی می باشد و صرفا برای ساخت شکل کامپوننت به کار می رود ",
     image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
     rating: { rate: 4, count: 150 },
-    // customHead: "فروش ویژه",
     stock: 20,
     breadCrump: [
       {
@@ -508,6 +507,26 @@ export const allProductsMock = [
 ];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  // let data = JSON.stringify(allProductsMock);
-  res.status(200).json(allProductsMock);
+  const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@online-shop.ps6bz.mongodb.net/?retryWrites=true&w=majority`;
+  const client = new MongoClient(url);
+  const dbName = process.env.DB_NAME;
+  async function run() {
+    try {
+      await client.connect();
+      console.log("Connected successfully to server");
+      const db = client.db(dbName);
+      const collection = db.collection("products");
+      const findResult = await collection.find({}).toArray();
+
+      res.status(200).json(findResult);
+    } catch (er) {
+      res.status(500).json({ message: "اشکالی پیش آمده" });
+    } finally {
+      () => client.close();
+    }
+  }
+
+  run();
+
+  // res.status(200).json(allProductsMock);
 }

@@ -10,7 +10,7 @@ import { closeFocusInput } from "../store/searchFocusSlice";
 import { AllProductContext } from "../store/ContextAllProduct";
 import axios from "axios";
 import { SliderData } from "../store/ContextSlider";
-import { allProductsMock } from "./api/allProduct";
+// import { allProductsMock } from "./api/allProduct";
 import { useEffect } from "react";
 import { vercelClient } from "../utils/axios";
 
@@ -46,14 +46,8 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getStaticProps = async () => {
-  // const { data: allProducts } = await axios.get(
-  //   `${
-  //     process.env.NODE_ENV === "production"
-  //       ? "online-shop-henna.vercel.app/"
-  //       : "http://localhost:3000/"
-  //   }api/allProduct`
-  // );
-  const allProducts = allProductsMock;
+  const { data: allProducts } = await vercelClient.get("api/allProduct");
+  // const allProducts = allProductsMock;
 
   const { data: FakeProd } = await axios.get(
     "https://fakestoreapi.com/products"

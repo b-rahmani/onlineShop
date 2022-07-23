@@ -3,6 +3,7 @@ import SingleProduct, {
 } from "../../../components/SingleProduct/SingleProduct";
 import { GetStaticProps } from "next";
 import { allProductsMock } from "../../api/allProduct";
+import { vercelClient } from "../../../utils/axios";
 
 interface SingleProductType {
   product: productType;
@@ -21,11 +22,7 @@ const SingleProductPage = (props: SingleProductType) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // const res = await axios.get(`${
-  //   process.env.NODE_ENV === "production"
-  //     ? "online-shop-henna.vercel.app/"
-  //     : "http://localhost:3000/"
-  // }api/product/${params?.productID}`);
+  // const productFind = await vercelClient.get(`api/product/${params?.productID}`);
 
   const productFind = allProductsMock.find(
     (p) => p.id.toString() === params?.productID
