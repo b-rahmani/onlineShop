@@ -27,7 +27,7 @@ const CartHoverBox = (props: CartHoverProps) => {
           cart?.length > 0 &&
           cart?.map((product) => (
             <div className={classes.cartItem} key={product.id}>
-              <Link href={`/product/${product.id}]`}>
+              <Link href={`/product/${product.id}`}>
                 <a className={classes.cartItemImageBox}>
                   <Image
                     src={product?.image}
