@@ -188,3 +188,30 @@ a {
     text-align: right;
   }
 }
+
+.exist {
+  padding: 10px 0;
+
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+
+  span {
+    font-size: 12px;
+    color: gray;
+
+    &.danger {
+      color: red;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: aquamarine;
+  }
+}

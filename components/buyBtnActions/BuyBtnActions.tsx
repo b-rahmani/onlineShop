@@ -17,15 +17,10 @@ import { toast, ToastContainer } from "react-toastify";
 interface Props {
   product: productType;
   attribute?: { name: string; value: string };
+  outline?: boolean;
 }
 
 const BuyBtnActions = (props: Props) => {
-  // const ProductinBasket = useSelector((state: RootState) =>
-  //   state.basket.basket.find(
-  //     (item: basketProductType) => item.id === props.product?.id
-  //   )
-  // );
-
   const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(
       (item) =>
@@ -98,15 +93,19 @@ const BuyBtnActions = (props: Props) => {
   ) {
     Btn = (
       <div
-        className={joinClassModules(classes.addToBasket, classes.advanceMode)}
+        className={joinClassModules(
+          classes.addToBasket,
+          classes.advanceMode,
+          props.outline ? classes.outline : ""
+        )}
       >
         <button onClick={increaseCountProduct}>+</button>
-        {basketProduct.quantity}
+        <span>{basketProduct.quantity}</span>
         {basketProduct.quantity !== 1 ? (
           <button onClick={decreaseCountProduct}>-</button>
         ) : (
           <button onClick={removeProduct}>
-            <RemoveIcon color="white" />
+            <RemoveIcon color={props.outline ? "#ef4056" : "white"} />
           </button>
         )}{" "}
       </div>
@@ -125,7 +124,7 @@ const BuyBtnActions = (props: Props) => {
   }
 
   return (
-    <>
+    <div>
       {Btn}
       <ToastContainer
         position="top-right"
@@ -138,7 +137,7 @@ const BuyBtnActions = (props: Props) => {
         draggable
         pauseOnHover
       />
-    </>
+    </div>
   );
 };
 export default BuyBtnActions;

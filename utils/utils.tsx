@@ -1,3 +1,5 @@
+import { productType } from "../components/SingleProduct/SingleProduct";
+
 export const convert_to_persian_digits = (text: string | number) => {
   const id = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 
@@ -26,6 +28,14 @@ export const joinClassModules = (...modules: string[]) => {
 
 export const RoundPrice = (number: number, digitRoundLength: number) => {
   return number - (number % digitRoundLength);
+};
+
+export const SumPriceCart = (cart: productType[]) => {
+  const price = cart.reduce((sum, product) => {
+    return sum + priceDiscounted(product.price, product.discount);
+  }, 0);
+
+  return price;
 };
 
 // export const copyToClipBoard = (text: string) => {

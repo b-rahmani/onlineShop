@@ -48,7 +48,7 @@ export const BasketSlice = createSlice({
       const basketData = state.basket?.map((item: basketProductType) =>
         item.id === action.payload.product.id &&
         item.selectedAttribute?.value === action.payload.attribute?.value
-          ? (item.quantity += 1)
+          ? { ...item, quantity: ++item.quantity }
           : item
       );
       localStorage.setItem("userBasket", JSON.stringify(basketData));
@@ -57,7 +57,7 @@ export const BasketSlice = createSlice({
       const basketData = state.basket.map((item: basketProductType) =>
         item.id === action.payload.product.id &&
         item.selectedAttribute?.value === action.payload.attribute?.value
-          ? (item.quantity -= 1)
+          ? { ...item, quantity: --item.quantity }
           : item
       );
       localStorage.setItem("userBasket", JSON.stringify(basketData));

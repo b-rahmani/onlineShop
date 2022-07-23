@@ -11,7 +11,8 @@ import { AllProductContext } from "../store/ContextAllProduct";
 import axios from "axios";
 import { SliderData } from "../store/ContextSlider";
 import { allProductsMock } from "./api/allProduct";
-
+import { useEffect } from "react";
+import { vercelClient } from "../utils/axios";
 
 const Home: NextPage = (props: any) => {
   const dispatch = useDispatch();
@@ -19,7 +20,13 @@ const Home: NextPage = (props: any) => {
     (state: RootState) => state.searchFocus.isSearchFocus
   );
 
- 
+  // useEffect(() => {
+  //   vercelClient
+  //     .get(`/api/logout/62d8f42c19c3f0766a4889bb`)
+  //     .then((res) => console.log(res.data))
+  //     .catch((er) => console.log(er));
+  // }, []);
+
   return (
     <>
       {/* when search is focusing */}

@@ -30,9 +30,12 @@ if(!findResult){
 console.log("اطلاعات شما درست نیست")
 res.status(500).json({message:"اطلاعات شما درست نیست"})
 }else if(findResult.password===password){
-    console.log("login successfull")
-    collection.updateOne({name:name},{$set:{token:findResult._id.toString()}})
-    const userData={name:findResult.name,id:new Date().getTime().toString(),token:findResult._id.toString()}
+    console.log("login successfull");
+    const nowTime=new Date().getTime()
+    const token=(nowTime+1000*60*5).toString();
+    console.log("valid until",new Date(+token).getDate())
+    collection.updateOne({name:name},{$set:{token:token}})
+    const userData={name:findResult.name,id:findResult._id,token:token}
     res.status(200).json({message:"ورود موفق", data:userData})
       }
     }catch(er){

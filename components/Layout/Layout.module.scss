@@ -34,50 +34,35 @@
       flex: 1;
       justify-content: flex-end;
 
-      .cart {
-        display: inline-flex;
+      .cartContainer {
+        transition: all 0.2s ease-in;
         position: relative;
-        transition: all 0.2s ease-in-out;
-        border-radius: 15px;
-        .cartBox {
-          width: 200px;
-          position: absolute;
-          left: 0;
-          top: 90%;
-          // height: 200px;
-          max-height: 300px;
-          overflow: auto;
-          opacity: 0;
-          visibility: hidden;
-          background-color: rgb(181, 186, 184);
-          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-          padding: 5px;
-          border-radius: 8px;
-          z-index: 5;
-
-          .cartBoxItem {
-            display: inline-block;
-          }
-        }
 
         &:hover {
           background-color: rgba(255, 192, 203, 0.323);
-         
 
-          .cartBox {
+          section {
             opacity: 1;
             visibility: visible;
           }
         }
-      }
 
+        .cart {
+          display: flex;
+
+          position: relative;
+          transition: all 0.2s ease-in-out;
+          border-radius: 15px;
+        }
+      }
       a {
         display: flex;
         align-items: center;
       }
 
       & > svg,
-      & > a > svg {
+      & > a > svg,
+      & > section > a > svg {
         width: 20px;
         height: 20px;
         margin: 10px;

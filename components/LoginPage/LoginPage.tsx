@@ -6,8 +6,10 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 
 import { vercelClient } from "../../utils/axios";
+import { useRouter } from "next/router";
 
 const LoginPage = () => {
+  const Router = useRouter();
   const {
     register,
     handleSubmit,
@@ -29,7 +31,10 @@ const LoginPage = () => {
     vercelClient
       .post("/api/login", { name: data.userName, password: data.password })
       .then((res) => {
-        console.log(res);
+        if (res.status === 200) {
+          localStorage.setItem("token", res.data.data.token);
+          Router.push("/");
+        }
       })
       .catch((er) => console.log(er));
   };

@@ -13,6 +13,7 @@ import { openIsExtend, openShare } from "../../store/hoverActionsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useRouter } from "next/router";
+import ProductExistCount from "../productExistCount/ProductExistCount";
 
 interface ProductCard {
   key: string | number;
@@ -85,20 +86,7 @@ const ProductCard = (props: ProductCard) => {
                   +data.stock < 1 && props.rateOff ? "hidden" : "visible",
               }}
             >
-              <div className={classes.exist}>
-                {+data.stock > 10 ? (
-                  <>
-                    <ExistIcon />
-                    <span>موجود در انبار</span>
-                  </>
-                ) : +data.stock < 10 && +data.stock !== 0 ? (
-                  <span className={classes.danger}>
-                    تنها {data.stock} عدد در انبار باقی مانده
-                  </span>
-                ) : (
-                  <span>&nbsp;</span>
-                )}
-              </div>
+              <ProductExistCount count={data.stock} />
               <div
                 className={joinClassModules(
                   classes.rating,

@@ -6,8 +6,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { vercelClient } from "../../utils/axios";
+import { useRouter } from "next/router";
 
 const Signup = () => {
+  const Router = useRouter();
   const shema = yup.object().shape({
     userName: yup.string().trim().required("نام کاربری الزامی است"),
     password: yup
@@ -43,6 +46,18 @@ const Signup = () => {
         return;
       }
     });
+    vercelClient
+      .post("/api/signup", {
+        name: data.userName,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          localStorage.setItem("token", res.data.data.token);
+          Router.replace("/");
+        }
+      });
   };
 
   return (

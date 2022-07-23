@@ -1,5 +1,7 @@
 .addToBasket {
   width: 140px;
+
+  margin: 0 auto;
   height: 50px;
   border-radius: 15px;
   color: #fff;
@@ -17,6 +19,7 @@
   span {
     font-size: 16px;
     font-weight: 700;
+    font-family: iranyekanFa;
   }
 
   &.advanceMode {
@@ -41,6 +44,17 @@
         width: 20px;
         height: 20px;
       }
+    }
+  }
+  &.outline {
+    border: 1px solid #a5a4a4;
+    background-color: #fff;
+    max-width: 70%;
+    height: 40px;
+    color: #ef4056;
+    box-shadow: unset;
+    button {
+      color: #ef4056;
     }
   }
 }

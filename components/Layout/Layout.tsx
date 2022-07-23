@@ -14,6 +14,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../store/sidebarSlice";
 import { RootState } from "../../store/store";
 import { initialBasket } from "../../store/basketProductsSlice";
+import { joinClassModules } from "../../utils/utils";
+import Badge from "../Badge/Badge";
+import CartHoverBox from "../CartHoerBox/CartHoverBox";
 interface layoutProps {
   children?: React.ReactNode;
 
@@ -52,28 +55,19 @@ const Layout = ({ children, search }: layoutProps) => {
               className={classes.acountIcon}
               click={accountClickHandler}
             />
-            <Link href="/cart">
-              <a className={classes.cart}>
-                <CartIcon />
-                <div className={classes.cartBox}>
-                  {cartItems &&
-                    cartItems.length > 0 &&
-                    cartItems.map((product) => (
-                      <Link key={product.id} href={`/product/${product.id}]`}>
-                        <a className={classes.cartBoxItem}>
-                          <div className={classes.ImageContainer}></div>
-                          <Image
-                            src={product.image}
-                            alt={product.title}
-                            layout="fill"
-                          />
-                          
-                        </a>
-                      </Link>
-                    ))}
-                </div>
-              </a>
-            </Link>
+            <section className={classes.cartContainer}>
+              <Link href="/cart">
+                <a className={classes.cart}>
+                  <CartIcon />
+                  {cartItems && cartItems.length > 0 && (
+                    <Badge count={cartItems.length} />
+                  )}
+                </a>
+              </Link>
+              {cartItems && cartItems.length > 0 && (
+                <CartHoverBox cart={cartItems} />
+              )}
+            </section>
           </div>
         </div>
         <div className="divider"></div>

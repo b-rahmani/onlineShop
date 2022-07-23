@@ -87,32 +87,32 @@
             height: 20px;
           }
         }
-        .exist {
-          padding: 10px 0;
-          display: 100%;
-          display: flex;
-          gap: 5px;
-          align-items: center;
-          justify-content: space-between;
+        // .exist {
+        //   padding: 10px 0;
+        //   display: 100%;
+        //   display: flex;
+        //   gap: 5px;
+        //   align-items: center;
+        //   justify-content: space-between;
 
-          span {
-            font-size: 12px;
-            color: gray;
+        //   span {
+        //     font-size: 12px;
+        //     color: gray;
 
-            &.danger {
-              color: red;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-          }
+        //     &.danger {
+        //       color: red;
+        //       white-space: nowrap;
+        //       overflow: hidden;
+        //       text-overflow: ellipsis;
+        //     }
+        //   }
 
-          svg {
-            width: 20px;
-            height: 20px;
-            color: aquamarine;
-          }
-        }
+        //   svg {
+        //     width: 20px;
+        //     height: 20px;
+        //     color: aquamarine;
+        //   }
+        // }
       }
       .priceBox {
         display: flex;

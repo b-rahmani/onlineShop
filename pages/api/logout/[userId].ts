@@ -1,6 +1,6 @@
 import { vercelClient } from './../../../utils/axios';
 
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import { NextApiRequest,NextApiResponse } from 'next';
 
 export default async function handler(
@@ -18,7 +18,7 @@ export default async function handler(
  
   const db = client.db(dbName);
    const collection = db.collection('users');
-  const findResult = await collection.findOne({_id:userId})
+  const findResult = await collection.findOne({_id:new ObjectId(userId.toString())})
  if(!findResult){
      console.log("not esist user")
      res.status(404).json({message:"کاربری با این مشخصات یافت نشد"})
