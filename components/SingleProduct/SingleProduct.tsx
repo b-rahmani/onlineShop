@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import RelatedSlider from "../relatedSlider/RelatedSlider";
 
-
 export interface productType {
   id: number | string;
   title: string;
@@ -23,10 +22,17 @@ export interface productType {
   customHead?: string;
   stock: number;
   images?: string[];
-  colors?: Colors[];
+  attribute?: Attribute;
 }
 
-interface Colors {
+interface Attribute {
+  name: string;
+  faName: string;
+  type: "radio" | "select" | "checkbox";
+  items: AttributeItemType[];
+}
+
+interface AttributeItemType {
   name: string;
   value: string;
 }
@@ -45,7 +51,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
 
   const [ProductAttribute, setProductAttribute] = useState(
-    props.product?.colors && props.product.colors[0]
+    props.product?.attribute?.items && props.product?.attribute?.items[0]
   );
   const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(
@@ -80,7 +86,10 @@ const SingleProduct = (props: PropsSingleProductType) => {
         <div className={classes.detailSide}>
           <div className={classes.header}>
             <h2 className={classes.productName}>
-              {props.product?.title.substring(0, 20)}
+              {
+                props.product?.title
+                // .substring(0, 20)
+              }
             </h2>
             <button
               className={classes.productLike}
@@ -143,33 +152,35 @@ const SingleProduct = (props: PropsSingleProductType) => {
             </div>
           </div>
           <div className={classes.attribute}>
-            {props.product?.colors && props.product?.colors?.length > 0 && (
-              <>
-                <span>رنگ</span>
-                <div className={classes.attributeValue}>
-                  {props?.product?.colors?.map((color, ind) => (
-                    <div className={classes.attributeSelect} key={color.name}>
-                      <input
-                        type="radio"
-                        name="radio"
-                        id={color.value}
-                        className={classes.radio}
-                        onChange={() => setProductAttribute(color)}
-                        checked={color.value === ProductAttribute?.value}
-                      />
-                      <label
-                        htmlFor={color.value}
-                        style={{ backgroundColor: color.value }}
-                      >
-                        <span
-                          style={{ border: `2px solid ${color.value}` }}
-                        ></span>
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+            {props.product?.attribute &&
+              props.product?.attribute?.items.length > 0 && (
+                <>
+                  <span>{props.product.attribute.faName}</span>
+                  <div className={classes.attributeValue}>
+                    {/* check all of types */}
+                    {props?.product?.attribute.items?.map((color, ind) => (
+                      <div className={classes.attributeSelect} key={color.name}>
+                        <input
+                          type="radio"
+                          name="radio"
+                          id={color.value}
+                          className={classes.radio}
+                          onChange={() => setProductAttribute(color)}
+                          checked={color.value === ProductAttribute?.value}
+                        />
+                        <label
+                          htmlFor={color.value}
+                          style={{ backgroundColor: color.value }}
+                        >
+                          <span
+                            style={{ border: `2px solid ${color.value}` }}
+                          ></span>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
           </div>
           <div className={classes.buyBtn}>
             <div className={classes.phoneOnly}>
@@ -217,7 +228,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
       <div className={classes.line}></div>
 
       {/* related */}
-      <RelatedSlider related={props.related}/>
+      <RelatedSlider related={props.related} />
     </div>
   );
 };

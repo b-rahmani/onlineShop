@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     // deviceSizes: [640, 900, 1500],
     // imageSizes: [16, 30, 60],
-    domains: ["fakestoreapi.com"],
+    domains: ["fakestoreapi.com", "pngimg.com"],
   },
   // env: {
   //   MONGODB_URI:
