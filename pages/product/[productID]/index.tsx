@@ -22,17 +22,18 @@ const SingleProductPage = (props: SingleProductType) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // const productFind = await vercelClient.get(`api/product/${params?.productID}`);
+  const { data } = await vercelClient.get(`/api/product/${params?.productID}`);
+  const { data: allProduct } = await vercelClient.get("/api/allProduct");
 
-  const productFind = allProductsMock.find(
-    (p) => p.id.toString() === params?.productID
-  );
+  // const productFind = allProductsMock.find(
+  //   (p) => p.id.toString() === params?.productID
+  // );
 
-  if (productFind) {
+  if (data && allProduct) {
     return {
       props: {
-        product: productFind,
-        related: allProductsMock,
+        product: data,
+        related: allProduct,
       },
       revalidate: 10,
     };
@@ -57,15 +58,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 };
 export async function getStaticPaths() {
-  // const { data: allProducts } = await axios.get(`${
-  //   process.env.NODE_ENV === "production"
-  //     ? "online-shop-henna.vercel.app/"
-  //     : "http://localhost:3000/"}api/allProduct`
-  // );
+  const allProducts = await vercelClient.get(`/api/allProduct`);
 
-  const allProducts = allProductsMock;
+  // const allProducts = allProductsMock;
 
-  const appIds = allProducts.map((el: productType) => ({
+  const appIds = allProducts?.data?.map((el: productType) => ({
     params: { productID: el.id.toString() },
   }));
 

@@ -11,7 +11,6 @@ import { AllProductContext } from "../store/ContextAllProduct";
 import axios from "axios";
 import { SliderData } from "../store/ContextSlider";
 // import { allProductsMock } from "./api/allProduct";
-import { useEffect } from "react";
 import { vercelClient } from "../utils/axios";
 
 const Home: NextPage = (props: any) => {
@@ -19,13 +18,6 @@ const Home: NextPage = (props: any) => {
   const isFocusInput = useSelector(
     (state: RootState) => state.searchFocus.isSearchFocus
   );
-
-  // useEffect(() => {
-  //   vercelClient
-  //     .get(`/api/logout/62d8f42c19c3f0766a4889bb`)
-  //     .then((res) => console.log(res.data))
-  //     .catch((er) => console.log(er));
-  // }, []);
 
   return (
     <>
@@ -47,26 +39,28 @@ const Home: NextPage = (props: any) => {
 
 export const getStaticProps = async () => {
   const { data: allProducts } = await vercelClient.get("api/allProduct");
+  const { data: sliderData } = await vercelClient.get("/api/slider");
   // const allProducts = allProductsMock;
 
-  const { data: FakeProd } = await axios.get(
-    "https://fakestoreapi.com/products"
-  );
+  // const { data: FakeProd } = await axios.get(
+  //   "https://fakestoreapi.com/products"
+  // );
 
-  const SliderData = FakeProd.filter((_: any, index: number) => index <= 9).map(
-    (p: any, ind: number) => ({
-      image: `/images/sliders/s${ind + 1}.jpg`,
-      id: p.id,
-      title: p.title,
-    })
-  );
-
-  return {
-    props: {
-      products: allProducts,
-      SliderData: SliderData,
-    },
-  };
+  // const SliderData = FakeProd.filter((_: any, index: number) => index <= 9).map(
+  //   (p: any, ind: number) => ({
+  //     image: `/images/sliders/s${ind + 1}.jpg`,
+  //     id: p.id,
+  //     title: p.title,
+  //   })
+  // );
+  if (allProducts && sliderData) {
+    return {
+      props: {
+        products: allProducts,
+        SliderData: sliderData,
+      },
+    };
+  }
 };
 
 export default Home;

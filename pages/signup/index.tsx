@@ -5,11 +5,12 @@ import { vercelClient } from "../../utils/axios";
 const SignUpPage = () => {
   useEffect(() => {
     vercelClient
-      .get(`/api/allProduct`, {
-        headers: { "content-type": "application/json" },
-      })
+      .get(`/api/product/1`)
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+      })
+      .catch((er) => {
+        console.log(er);
       });
   }, []);
 

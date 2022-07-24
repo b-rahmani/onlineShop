@@ -6,7 +6,7 @@ import { allProductsMock } from "../allProduct";
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   // if (typeof req.query.productID === "string") {
   const productID = req.query.productID;
-  let product;
+
   //get one product
   const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@online-shop.ps6bz.mongodb.net/?retryWrites=true&w=majority`;
   const client = new MongoClient(url);
@@ -18,7 +18,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       const db = client.db(dbName);
       const collection = db.collection("products");
       const product = await collection.findOne({
-        _id: new ObjectId(productID.toString()),
+        id: +productID,
       });
 
       if (!product) {
