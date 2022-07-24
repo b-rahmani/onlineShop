@@ -21,6 +21,7 @@ interface ProductCard {
   layoutId?: string;
   break?: boolean;
   rateOff?: boolean;
+  hoverOff?: boolean;
 }
 
 const ProductCard = (props: ProductCard) => {
@@ -38,7 +39,7 @@ const ProductCard = (props: ProductCard) => {
   return (
     <motion.div
       initial="rest"
-      whileHover="hover"
+      whileHover={props.hoverOff ? "" : "hover"}
       // whileTap="hoverFix"
       animate="rest"
       key={props.key}

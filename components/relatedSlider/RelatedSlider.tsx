@@ -28,7 +28,6 @@ const RelatedSlider = (props: RelatedProductType) => {
             delay: 5000,
             disableOnInteraction: false,
           }}
-        
           direction="horizontal"
           className="relatedCustomClass"
           breakpoints={{
@@ -71,6 +70,7 @@ const RelatedSlider = (props: RelatedProductType) => {
                   key={product.id}
                   break={false}
                   rateOff
+                  hoverOff
                 />
               </div>
             </SwiperSlide>
