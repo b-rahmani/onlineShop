@@ -52,9 +52,7 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
 
-  // const [ProductAttribute, setProductAttribute] = useState(
-  //   props.product?.attribute?.items && props.product?.attribute?.items[0]
-  // );
+ 
   const [selectedAttribute, setSelectedAttribute] = useState(
     props.product?.attribute?.items && props.product?.attribute?.items[0]
   );
@@ -201,7 +199,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
             </div>
             <BuyBtnActions
               product={props?.product!}
-              attribute={ProductAttribute}
+              attribute={selectedAttribute}
               attributeType={props?.product?.attribute?.name}
             />
           </div>

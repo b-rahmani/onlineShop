@@ -9,14 +9,14 @@ import {
 import { RootState } from "../../store/store";
 import { motion } from "framer-motion";
 import classes from "./buyBtnActions.module.scss";
-import { productType } from "../SingleProduct/SingleProduct";
+import { AttributeItemType, AttributeType, productType } from "../SingleProduct/SingleProduct";
 import RemoveIcon from "../icons/RemoveIcon";
 import { joinClassModules } from "../../utils/utils";
 import { toast, ToastContainer } from "react-toastify";
 
 interface Props {
   product: productType;
-  attribute?: { name: string; value: string };
+  attribute?: AttributeItemType;
   attributeType?:string;
   outline?: boolean;
 }
