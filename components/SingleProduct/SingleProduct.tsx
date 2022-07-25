@@ -24,6 +24,12 @@ export interface productType {
   stock: number;
   images?: string[];
   attribute?: AttributeType;
+  categoty?: categotyProductType;
+}
+
+export interface categotyProductType {
+  name: string;
+  value: string;
 }
 
 export interface AttributeType {
@@ -36,7 +42,7 @@ export interface AttributeType {
 export interface AttributeItemType {
   name: string;
   value: string;
-  faName:string
+  faName: string;
 }
 
 export interface ParamsType {
@@ -52,7 +58,6 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
 
- 
   const [selectedAttribute, setSelectedAttribute] = useState(
     props.product?.attribute?.items && props.product?.attribute?.items[0]
   );
@@ -131,7 +136,8 @@ const SingleProduct = (props: PropsSingleProductType) => {
                   </>
                 ) : (
                   <div className={classes.calculatedPrice}>
-                    {props.product.price.toLocaleString()}
+                    <span>{props.product.price.toLocaleString()}</span>
+                    <span className={classes.priceText}>تومان</span>
                   </div>
                 )}
               </div>
@@ -154,14 +160,14 @@ const SingleProduct = (props: PropsSingleProductType) => {
               />
             </div>
           </div>
-         {props.product?.attribute &&
-         <ProductAttribute
-         attribute={props.product?.attribute}
-         selectedAttribute={selectedAttribute!}
-         setSelectedAttribute={setSelectedAttribute}
-       />
-         }
-          
+          {props.product?.attribute && (
+            <ProductAttribute
+              attribute={props.product?.attribute}
+              selectedAttribute={selectedAttribute!}
+              setSelectedAttribute={setSelectedAttribute}
+            />
+          )}
+
           <div className={classes.buyBtn}>
             <div className={classes.phoneOnly}>
               {props.product?.stock && props.product?.stock > 0 ? (
@@ -189,7 +195,12 @@ const SingleProduct = (props: PropsSingleProductType) => {
                     </>
                   ) : (
                     <div className={classes.calculatedPrice}>
+                      <span>
+
                       {props.product.price.toLocaleString()}
+                      </span>
+                      <span className={classes.priceText}>تومان</span>
+
                     </div>
                   )}
                 </div>

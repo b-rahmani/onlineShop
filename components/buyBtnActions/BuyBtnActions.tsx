@@ -9,7 +9,11 @@ import {
 import { RootState } from "../../store/store";
 import { motion } from "framer-motion";
 import classes from "./buyBtnActions.module.scss";
-import { AttributeItemType, AttributeType, productType } from "../SingleProduct/SingleProduct";
+import {
+  AttributeItemType,
+  AttributeType,
+  productType,
+} from "../SingleProduct/SingleProduct";
 import RemoveIcon from "../icons/RemoveIcon";
 import { joinClassModules } from "../../utils/utils";
 import { toast, ToastContainer } from "react-toastify";
@@ -17,7 +21,7 @@ import { toast, ToastContainer } from "react-toastify";
 interface Props {
   product: productType;
   attribute?: AttributeItemType;
-  attributeType?:string;
+  attributeType?: string;
   outline?: boolean;
 }
 
@@ -72,7 +76,11 @@ const BuyBtnActions = (props: Props) => {
   const addToBasketHandler = () => {
     if (props.product.stock > 0) {
       dispatch(
-        addToBasket({ product: props.product, attribute: props.attribute,attributeType:props.attributeType })
+        addToBasket({
+          product: props.product,
+          attribute: props.attribute,
+          attributeType: props.attributeType,
+        })
       );
       toast.success("محصول به سبد اضافه شد ", {
         position: "top-right",
@@ -100,9 +108,16 @@ const BuyBtnActions = (props: Props) => {
           props.outline ? classes.outline : ""
         )}
       >
-        <button onClick={increaseCountProduct}>+</button>
-
-        <span>{basketProduct.quantity}</span>
+        <button
+          disabled={props.product.stock <= basketProduct.quantity}
+          onClick={increaseCountProduct}
+        >
+          +
+        </button>
+        <div className={classes.number}>
+          <span>{basketProduct.quantity}</span>
+          <span className={props.product.stock <= basketProduct.quantity?classes.active:""}>حداکثر</span>
+        </div>
         {basketProduct.quantity !== 1 ? (
           <button onClick={decreaseCountProduct}>-</button>
         ) : (

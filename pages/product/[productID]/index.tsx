@@ -1,5 +1,6 @@
 import SingleProduct, {
   productType,
+  PropsSingleProductType,
 } from "../../../components/SingleProduct/SingleProduct";
 import { GetStaticProps } from "next";
 import { allProductsMock } from "../../api/allProduct";
@@ -22,10 +23,12 @@ const SingleProductPage = (props: SingleProductType) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { data } = await vercelClient.get(`/api/product/${params?.productID}`);
+  const { data } = await vercelClient.get<productType>(
+    `/api/product/${params?.productID}`
+  );
   const { data: allProduct } = await vercelClient.get("/api/allProduct");
 
-  if (data && allProduct) {
+  if (allProduct) {
     return {
       props: {
         product: data,

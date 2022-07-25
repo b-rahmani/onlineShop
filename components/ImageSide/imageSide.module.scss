@@ -85,12 +85,6 @@
   }
 
   @include tablet-landscape-up {
-    order: 2;
-    // grid-template-columns: 25% 75%;
-    // grid-template-rows: 400px;
-
-    // .tumbnails {
-    //   order: unset;
-    // }
+    border-inline-end: 1px solid rgb(180, 180, 180);
   }
 }

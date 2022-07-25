@@ -17,11 +17,7 @@
     padding: 10px 0;
 
     .detailSide {
-      padding-left: 16px;
-
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: space-between;
+      padding-right: 16px;
 
       .header {
         display: flex;
@@ -89,12 +85,17 @@
             font-size: 20px;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             text-align: left;
             gap: 5px;
             font-family: iranyekanFa;
 
             span {
               font-family: iranyekanFa;
+            }
+
+            .priceText {
+              font-size: 12px;
             }
           }
         }
@@ -107,6 +108,7 @@
         justify-content: flex-end;
         align-items: center;
         gap: 5px;
+        margin: 16px 0;
         & > span {
           font-family: iranyekanFa !important;
 
@@ -125,52 +127,7 @@
           }
         }
       }
-      // .attribute {
-      //   margin: 16px 0;
-      //   min-height: 100px;
 
-      //   span {
-      //     display: block;
-      //     width: 100%;
-      //     margin-bottom: 10px;
-      //   }
-
-      //   .attributeValue {
-      //     display: flex;
-      //     gap: 10px;
-      //     // margin-right: 16px;
-
-      //     .attributeSelect {
-      //       .radio {
-      //         display: none;
-      //       }
-      //       .radio:checked + label > span {
-      //         display: block;
-      //       }
-
-      //       label {
-      //         width: 30px;
-      //         height: 30px;
-      //         display: block;
-      //         border-radius: 50%;
-      //         position: relative;
-
-      //         span {
-      //           display: none;
-      //           width: 130%;
-      //           height: 130%;
-      //           position: absolute;
-      //           top: 50%;
-      //           left: 50%;
-      //           transform: translate(-50%, -50%);
-      //           border-radius: 50%;
-      //           z-index: 2;
-      //           background-color: transparent;
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
       .buyBtn {
         background-color: #fff;
         position: fixed;
@@ -221,12 +178,16 @@
               font-size: 20px;
               display: flex;
               justify-content: flex-end;
+              align-items: center;
               text-align: left;
               gap: 5px;
               font-family: iranyekanFa;
 
               span {
                 font-family: iranyekanFa;
+              }
+              .priceText {
+                font-size: 12px;
               }
             }
           }
@@ -248,7 +209,6 @@
       grid-template-rows: 1fr;
 
       .detailSide {
-        border-inline-end: 1px solid rgb(180, 180, 180);
         .desktopOnly {
           display: block;
         }
@@ -264,43 +224,7 @@
             display: none;
           }
         }
-
-        // .desktopOnly {
-        //   display: block;
-        // }
-        // .buyBtn {
-        //   position: static;
-
-        //   background-color: transparent;
-        //   box-shadow: unset;
-        //   display: flex;
-        //   justify-content: center;
-
-        //   .phoneOnly {
-        //     display: none;
-        //   }
       }
     }
   }
-  // @include tablet-portrait-up {
-  //   // .divider {
-  //   //   .detailSide {
-  //   //     .desktopOnly {
-  //   //       display: block;
-  //   //     }
-  //   //     .buyBtn {
-  //   //       position: static;
-
-  //   //       background-color: transparent;
-  //   //       box-shadow: unset;
-  //   //       display: flex;
-  //   //       justify-content: center;
-
-  //   //       .phoneOnly {
-  //   //         display: none;
-  //   //       }
-  //   //     }
-  //   //   }
-  //   // }
-  // }
 }
