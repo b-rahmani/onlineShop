@@ -10,6 +10,7 @@ import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import RelatedSlider from "../relatedSlider/RelatedSlider";
+import ProductAttribute from "../productAttribute/ProductAttribute";
 
 export interface productType {
   id: number | string;
@@ -22,19 +23,20 @@ export interface productType {
   customHead?: string;
   stock: number;
   images?: string[];
-  attribute?: Attribute;
+  attribute?: AttributeType;
 }
 
-interface Attribute {
+export interface AttributeType {
   name: string;
   faName: string;
   type: "radio" | "select" | "checkbox";
   items: AttributeItemType[];
 }
 
-interface AttributeItemType {
+export interface AttributeItemType {
   name: string;
   value: string;
+  faName:string
 }
 
 export interface ParamsType {
@@ -50,14 +52,17 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
 
-  const [ProductAttribute, setProductAttribute] = useState(
+  // const [ProductAttribute, setProductAttribute] = useState(
+  //   props.product?.attribute?.items && props.product?.attribute?.items[0]
+  // );
+  const [selectedAttribute, setSelectedAttribute] = useState(
     props.product?.attribute?.items && props.product?.attribute?.items[0]
   );
   const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(
       (item) =>
         item.id === props.product?.id &&
-        ProductAttribute?.value === item.selectedAttribute?.value
+        selectedAttribute?.value === item.selectedAttribute?.value
     )
   );
 
@@ -151,37 +156,14 @@ const SingleProduct = (props: PropsSingleProductType) => {
               />
             </div>
           </div>
-          <div className={classes.attribute}>
-            {props.product?.attribute &&
-              props.product?.attribute?.items.length > 0 && (
-                <>
-                  <span>{props.product.attribute.faName}</span>
-                  <div className={classes.attributeValue}>
-                    {/* check all of types */}
-                    {props?.product?.attribute.items?.map((color, ind) => (
-                      <div className={classes.attributeSelect} key={color.name}>
-                        <input
-                          type="radio"
-                          name="radio"
-                          id={color.value}
-                          className={classes.radio}
-                          onChange={() => setProductAttribute(color)}
-                          checked={color.value === ProductAttribute?.value}
-                        />
-                        <label
-                          htmlFor={color.value}
-                          style={{ backgroundColor: color.value }}
-                        >
-                          <span
-                            style={{ border: `2px solid ${color.value}` }}
-                          ></span>
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-          </div>
+         {props.product?.attribute &&
+         <ProductAttribute
+         attribute={props.product?.attribute}
+         selectedAttribute={selectedAttribute!}
+         setSelectedAttribute={setSelectedAttribute}
+       />
+         }
+          
           <div className={classes.buyBtn}>
             <div className={classes.phoneOnly}>
               {props.product?.stock && props.product?.stock > 0 ? (
@@ -220,6 +202,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
             <BuyBtnActions
               product={props?.product!}
               attribute={ProductAttribute}
+              attributeType={props?.product?.attribute?.name}
             />
           </div>
         </div>

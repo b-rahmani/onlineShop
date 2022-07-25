@@ -15,6 +15,7 @@ const ImageSide = (props: PropsSingleProductType) => {
 
   return (
     <div className={classes.imageSide}>
+      {/* phone slider */}
       <div className={classes.swipperOnPhone}>
         <Swiper
           direction="horizontal"
@@ -40,12 +41,12 @@ const ImageSide = (props: PropsSingleProductType) => {
           ))}
         </Swiper>
       </div>
+      {/* thumbnail slider */}
       <div className={classes.tumbnails}>
         <Swiper
           modules={[Navigation]}
           spaceBetween={20}
           slidesPerView={4}
-          loop
           direction="vertical"
           className="thumbnailSwipper"
           // style={{ height: "100%" }}

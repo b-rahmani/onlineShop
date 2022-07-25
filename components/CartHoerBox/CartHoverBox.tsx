@@ -50,7 +50,7 @@ const CartHoverBox = (props: CartHoverProps) => {
                     &nbsp;
                   </p>
                   <span className={classes.attributeName}>
-                    {product.selectedAttribute?.name}
+                    {product.selectedAttribute?.faName}
                   </span>
                 </div>
                 <ProductExistCount count={product?.stock} />

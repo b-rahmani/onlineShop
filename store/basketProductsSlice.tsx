@@ -3,7 +3,7 @@ import { productType } from "../components/SingleProduct/SingleProduct";
 
 export interface basketProductType extends productType {
   quantity: number;
-  selectedAttribute: { name: string; value: string };
+  selectedAttribute: { name: string; value: string; faName: string };
 }
 
 export interface basketTypes {
@@ -28,7 +28,10 @@ export const BasketSlice = createSlice({
     addToBasket: (state, action) => {
       const basketData = state.basket.concat({
         ...action.payload.product,
-        selectedAttribute: action.payload.attribute,
+        selectedAttribute: {
+          ...action.payload.attribute,
+          type: action.payload.attributeType,
+        },
         quantity: 1,
       });
       state.basket = basketData;

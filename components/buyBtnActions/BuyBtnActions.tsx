@@ -17,6 +17,7 @@ import { toast, ToastContainer } from "react-toastify";
 interface Props {
   product: productType;
   attribute?: { name: string; value: string };
+  attributeType?:string;
   outline?: boolean;
 }
 
@@ -71,7 +72,7 @@ const BuyBtnActions = (props: Props) => {
   const addToBasketHandler = () => {
     if (props.product.stock > 0) {
       dispatch(
-        addToBasket({ product: props.product, attribute: props.attribute })
+        addToBasket({ product: props.product, attribute: props.attribute,attributeType:props.attributeType })
       );
       toast.success("محصول به سبد اضافه شد ", {
         position: "top-right",
@@ -100,6 +101,7 @@ const BuyBtnActions = (props: Props) => {
         )}
       >
         <button onClick={increaseCountProduct}>+</button>
+
         <span>{basketProduct.quantity}</span>
         {basketProduct.quantity !== 1 ? (
           <button onClick={decreaseCountProduct}>-</button>

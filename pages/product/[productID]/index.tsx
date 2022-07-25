@@ -25,10 +25,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data } = await vercelClient.get(`/api/product/${params?.productID}`);
   const { data: allProduct } = await vercelClient.get("/api/allProduct");
 
-  // const productFind = allProductsMock.find(
-  //   (p) => p.id.toString() === params?.productID
-  // );
-
   if (data && allProduct) {
     return {
       props: {
