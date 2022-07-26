@@ -51,7 +51,7 @@ const ProductAttribute = (props: productAttributeType) => {
             getOptionLabel={(option) => option.faName}
             getOptionValue={(option) => option.value}
             value={selectedAttribute}
-            onChange={(opt) => setSelectedAttribute(opt)}
+            onChange={(opt) => setSelectedAttribute(opt!)}
             options={attribute.items.map((el) => ({
               ...el,
               label: el.faName,
@@ -74,8 +74,6 @@ const ProductAttribute = (props: productAttributeType) => {
             {attribute.faName} : {selectedAttribute.faName}
           </span>
           {attType}
-
-          
         </>
       )}
     </div>
