@@ -87,18 +87,38 @@
           }
         }
       }
-      .price {
+      .priceBox {
         display: flex;
-        gap: 5px;
+        flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-around;
 
-        p {
-          font-size: 16px;
-          font-family: iranyekanFa;
+        .yourBenefit {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
+
+          span {
+            font-family: iranyekanFa;
+            font-size: 12px;
+            color: #ef394e;
+          }
         }
-        span {
-          font-size: 14px;
+
+        .price {
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          justify-content: flex-start;
+
+          p {
+            font-size: 20px;
+            font-weight: 600;
+            font-family: iranyekanFa;
+          }
+          span {
+            font-size: 14px;
+          }
         }
       }
     }

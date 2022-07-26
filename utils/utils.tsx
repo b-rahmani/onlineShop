@@ -38,6 +38,21 @@ export const SumPriceCart = (cart: productType[]) => {
   return price;
 };
 
+export const your_benefit_buy = (
+  product_products: productType | productType[]
+): number => {
+  let benefit;
+  if (Array.isArray(product_products)) {
+    benefit = product_products.reduce((sum, product: productType) => {
+      return sum + your_benefit_buy(product);
+    }, 0);
+  } else {
+    benefit = product_products.price * product_products.discount;
+  }
+
+  return benefit;
+};
+
 // export const copyToClipBoard = (text: string) => {
 //   text.select();
 //   text.setSelectionRange(0, 99999);

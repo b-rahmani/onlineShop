@@ -8,7 +8,7 @@ import "swiper/css/free-mode";
 
 import Link from "next/link";
 import Image from "next/image";
-import {  useContext } from "react";
+import { useContext } from "react";
 import { SliderData } from "../../store/ContextSlider";
 const SwipBanner = () => {
   const sliderData = useContext(SliderData);
@@ -45,21 +45,21 @@ const SwipBanner = () => {
         }}
         className="mySwipper"
       >
-        {sliderData.map((sw) => (
+        {sliderData.map((sw, ind) => (
           // <Fragment key={sw.id}>
-            <SwiperSlide key={sw.id}>
-              <Link href={`/product/${sw.id}`}>
-                <a className={classes.imageContainer}>
-                  <Image
-                    src={sw.image}
-                    alt={sw.title}
-                    layout="fill"
-                    // width={300}
-                    // height={100}
-                  />
-                </a>
-              </Link>
-            </SwiperSlide>
+          <SwiperSlide key={sw.id + ind}>
+            <Link href={`/product/${sw.id}`}>
+              <a className={classes.imageContainer}>
+                <Image
+                  src={sw.image}
+                  alt={sw.title}
+                  layout="fill"
+                  // width={300}
+                  // height={100}
+                />
+              </a>
+            </Link>
+          </SwiperSlide>
           // </Fragment>
         ))}
         {/* <SwiperSlide>

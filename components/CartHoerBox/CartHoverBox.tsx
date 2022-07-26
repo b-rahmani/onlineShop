@@ -4,7 +4,12 @@ import Image from "next/image";
 import { basketProductType } from "../../store/basketProductsSlice";
 import ProductExistCount from "../productExistCount/ProductExistCount";
 import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
-import { joinClassModules, SumPriceCart } from "../../utils/utils";
+import {
+  joinClassModules,
+  priceDiscounted,
+  SumPriceCart,
+  your_benefit_buy,
+} from "../../utils/utils";
 
 interface CartHoverProps {
   cart: basketProductType[];
@@ -26,7 +31,10 @@ const CartHoverBox = (props: CartHoverProps) => {
         {cart &&
           cart?.length > 0 &&
           cart?.map((product) => (
-            <div className={classes.cartItem} key={product.id}>
+            <div
+              className={classes.cartItem}
+              key={product.id + product.selectedAttribute.value}
+            >
               <Link href={`/product/${product.id}`}>
                 <a className={classes.cartItemImageBox}>
                   <Image
@@ -62,10 +70,19 @@ const CartHoverBox = (props: CartHoverProps) => {
                 outline
               />
 
-              <div className={classes.price}>
-                <p>{product.price.toLocaleString()}</p>
-                <span>تومان</span>
+              <div className={classes.priceBox}>
+                <div className={classes.yourBenefit}>
+                  <span>{your_benefit_buy(product).toLocaleString()}</span>
+                  <span>تومان </span>
+                  <span>تخفیف</span>
+                </div>
+                <div className={classes.price}>
+                  <p>{product.price.toLocaleString()}</p>
+                  <span>تومان</span>
+                </div>
               </div>
+
+              {/*  */}
             </div>
           ))}
       </div>
