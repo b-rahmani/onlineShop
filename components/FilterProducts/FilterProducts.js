@@ -12,6 +12,9 @@ const filters = [
 const FilterProducts = (props) => {
   return (
     <div className={classes.filterProducts}>
+      <div className={classes.innerFilter}>
+
+      
       <div className={classes.filterHead}>
         <h3>فیلتر ها </h3>
         <button
@@ -24,14 +27,15 @@ const FilterProducts = (props) => {
       <div className={classes.filters}>
         {" "}
         {filters.map((item) => (
-          <div key={item.name} className={classes.item}>
+          <div key={item.name} className={classes.item} onClick={(e)=>{e.currentTarget.classList.toggle(classes.contentshow)}}>
             <p className={classes.header}>
               <span className={classes.name}>{item.faName}</span>
               <ArrowBottom />
             </p>
-            <div> content</div>
+            <div className={classes.content}> content</div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
