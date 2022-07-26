@@ -1,5 +1,6 @@
 import classes from "./ProductAttribute.module.scss";
 import Select from "react-select";
+
 import {
   AttributeItemType,
   AttributeType,
@@ -7,12 +8,16 @@ import {
 
 interface productAttributeType {
   attribute: AttributeType;
-  setSelectedAttribute: (value: AttributeItemType) => void;
+  setSelectedAttribute: (value: unknown) => void;
   selectedAttribute: AttributeItemType;
 }
 
 const ProductAttribute = (props: productAttributeType) => {
   const { attribute, setSelectedAttribute, selectedAttribute } = props;
+
+  const selectChangeHandler = (opt: unknown) => {
+    setSelectedAttribute(opt);
+  };
 
   let attType;
 
@@ -51,7 +56,7 @@ const ProductAttribute = (props: productAttributeType) => {
             getOptionLabel={(option) => option.faName}
             getOptionValue={(option) => option.value}
             value={selectedAttribute}
-            onChange={(opt) => setSelectedAttribute(opt!)}
+            onChange={selectChangeHandler}
             options={attribute.items.map((el) => ({
               ...el,
               label: el.faName,

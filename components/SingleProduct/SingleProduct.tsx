@@ -58,7 +58,7 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
 
-  const [selectedAttribute, setSelectedAttribute] = useState(
+  const [selectedAttribute, setSelectedAttribute] = useState<any>(
     props.product?.attribute?.items && props.product?.attribute?.items[0]
   );
   const basketProduct = useSelector((state: RootState) =>
@@ -160,13 +160,14 @@ const SingleProduct = (props: PropsSingleProductType) => {
               />
             </div>
           </div>
-          {props.product?.attribute && (
-            <ProductAttribute
-              attribute={props.product?.attribute}
-              selectedAttribute={selectedAttribute!}
-              setSelectedAttribute={setSelectedAttribute}
-            />
-          )}
+          {props.product?.attribute &&
+            props.product?.attribute?.items.length > 0 && (
+              <ProductAttribute
+                attribute={props.product?.attribute}
+                selectedAttribute={selectedAttribute!}
+                setSelectedAttribute={setSelectedAttribute}
+              />
+            )}
 
           <div className={classes.buyBtn}>
             <div className={classes.phoneOnly}>
@@ -195,12 +196,8 @@ const SingleProduct = (props: PropsSingleProductType) => {
                     </>
                   ) : (
                     <div className={classes.calculatedPrice}>
-                      <span>
-
-                      {props.product.price.toLocaleString()}
-                      </span>
+                      <span>{props.product.price.toLocaleString()}</span>
                       <span className={classes.priceText}>تومان</span>
-
                     </div>
                   )}
                 </div>

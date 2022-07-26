@@ -3,7 +3,7 @@ import SingleProduct, {
   PropsSingleProductType,
 } from "../../../components/SingleProduct/SingleProduct";
 import { GetStaticProps } from "next";
-import { allProductsMock } from "../../api/allProduct";
+
 import { vercelClient } from "../../../utils/axios";
 
 interface SingleProductType {
@@ -23,12 +23,15 @@ const SingleProductPage = (props: SingleProductType) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { data } = await vercelClient.get<productType>(
-    `/api/product/${params?.productID}`
-  );
+  // const { data } = await vercelClient.get<productType>(
+  //   `/api/product/${params?.productID}`
+  // );
   const { data: allProduct } = await vercelClient.get("/api/allProduct");
+  const data = await allProduct?.find(
+    (p: productType) => p.id === Number(params?.productID)
+  );
 
-  if (allProduct) {
+  if (allProduct && data) {
     return {
       props: {
         product: data,
@@ -43,32 +46,23 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         status: 404,
       },
     };
-
-    // if(e.response.status===404){
-    // return {
-    //   // notFound: true,
-    //   props: {
-    //     status: er.response.status,
-    //   },
-
-    // }
-
-    // }
   }
 };
 export async function getStaticPaths() {
-  const allProducts = await vercelClient.get(`/api/allProduct`);
+  const { data: allProducts } = await vercelClient.get(`/api/allProduct`);
 
   // const allProducts = allProductsMock;
 
-  const appIds = allProducts?.data?.map((el: productType) => ({
+  const appIds = allProducts?.map((el: productType) => ({
     params: { productID: el.id.toString() },
   }));
 
-  return {
-    paths: appIds,
-    fallback: true,
-  };
+  if (allProducts && appIds) {
+    return {
+      paths: appIds,
+      fallback: false,
+    };
+  }
 }
 
 export default SingleProductPage;

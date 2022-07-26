@@ -39,20 +39,20 @@ const Home: NextPage = (props: any) => {
 
 export const getStaticProps = async () => {
   const { data: allProducts } = await vercelClient.get("api/allProduct");
-  const { data: sliderData } = await vercelClient.get("/api/slider");
+  // const { data: sliderData } = await vercelClient.get("/api/slider");
   // const allProducts = allProductsMock;
 
   // const { data: FakeProd } = await axios.get(
   //   "https://fakestoreapi.com/products"
   // );
 
-  // const SliderData = FakeProd.filter((_: any, index: number) => index <= 9).map(
-  //   (p: any, ind: number) => ({
-  //     image: `/images/sliders/s${ind + 1}.jpg`,
-  //     id: p.id,
-  //     title: p.title,
-  //   })
-  // );
+  const sliderData = Array.from(Array(10).keys()).map(
+    (p: any, ind: number) => ({
+      image: `/images/sliders/s${ind + 1}.jpg`,
+      id: ind+1,
+      title: ind+1,
+    })
+  );
   if (allProducts && sliderData) {
     return {
       props: {

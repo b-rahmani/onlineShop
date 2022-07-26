@@ -6,7 +6,7 @@ import { MongoClient } from "mongodb";
 
 
 
-export default async function handler(
+export default  function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -22,11 +22,7 @@ const dbName=process.env.DB_NAME;
  const db = client.db(dbName);
   const collection = db.collection('sliders');
  const findResult = await collection.find({}).toArray();
-if(!findResult){
-    console.log("not esist user")
-    res.status(404).json({message:"اطلاعات یافت نشد"})
-    
-}
+
 
 res.status(200).json(findResult);
     }catch(er){
