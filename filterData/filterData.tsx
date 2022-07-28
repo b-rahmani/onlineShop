@@ -1,4 +1,65 @@
-export const filters = {
+export const filters = [
+  {
+    name: "category",
+    type: "list",
+    faName: "دسته بندی",
+    items: [
+      { name: "clothes", faName: "لباس و پوشاک", value: "clothes" },
+      { name: "ornaments", faName: "زیور آلات", value: "ornaments" },
+      { name: "digital", faName: "کالای دیجیتال", value: "digital" },
+    ],
+  },
+  {
+    name: "isExist",
+    type: "radio",
+    faName: "فقط کالاهای موجود",
+    items: [
+      { name: "exist", faName: "موجود", value: true },
+      { name: "notExist", faName: "ناموجود", value: false },
+    ],
+  },
+  {
+    name: "color",
+    type: "select",
+    faName: "رنگ",
+    items: [
+      { name: "yellow", faName: "زرد", value: "#ffea4f" },
+      { name: "red", faName: "قرمز", value: "#ff0000" },
+      { name: "gold", faName: "طلایی", value: "gold" },
+      { name: "silver", faName: "نقره ای", value: "silver" },
+      { name: "black", faName: "مشکی", value: "black" },
+    ],
+  },
+  {
+    name: "isDiscount",
+    type: "radio",
+    faName: "فقط کالای تخفیف دار",
+    items: [
+      { name: "discount", faName: "تخفیف", value: true },
+      { name: "notDiscount", faName: "بدون تخفیف", value: false },
+    ],
+  },
+  {
+    name: "customHead",
+    type: "select",
+    faName: "جشنواره ها",
+    items: [
+      { name: "discount", faName: "تخفیف", value: true },
+      { name: "notDiscount", faName: "بدون تخفیف", value: false },
+    ],
+  },
+  {
+    name: "price",
+    type: "range",
+    faName: "محدوده قیمت",
+    items: [
+      { name: "min-price", faName: "حداقل", vaule: "0" },
+      { name: "max-price", faName: "حداکثر", vaule: "1000000" },
+    ],
+  },
+];
+
+export const digikala_filters = {
   brands: {
     type: "checkbox",
     title: "برند",

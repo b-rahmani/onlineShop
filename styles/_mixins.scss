@@ -24,4 +24,8 @@
   }
 }
 
-
+@mixin only-hover {
+  @media (hover: hover) {
+    @content;
+  }
+}

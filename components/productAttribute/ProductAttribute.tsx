@@ -6,7 +6,7 @@ import {
   AttributeType,
 } from "../SingleProduct/SingleProduct";
 
-interface productAttributeType {
+export interface productAttributeType {
   attribute: AttributeType;
   setSelectedAttribute: (value: unknown) => void;
   selectedAttribute: AttributeItemType;
@@ -52,7 +52,7 @@ const ProductAttribute = (props: productAttributeType) => {
     case "select":
       attType = (
         <div className={classes.attributeValue}>
-          <Select
+          <Select 
             getOptionLabel={(option) => option.faName}
             getOptionValue={(option) => option.value}
             value={selectedAttribute}

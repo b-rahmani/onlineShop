@@ -13,6 +13,11 @@
     gap: 10px;
     // margin-right: 16px;
 
+    input {
+      pointer-events: none !important;
+      display: none !important;
+    }
+
     .attributeSelect {
       .radio {
         display: none;

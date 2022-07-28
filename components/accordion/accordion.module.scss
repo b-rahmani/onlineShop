@@ -1,0 +1,19 @@
+.accordionItem {
+  user-select: none;
+  border-bottom: 1px solid #efee;
+  overflow: hidden;
+
+  .accordionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 2px;
+  }
+
+  .accordionContent {
+    width: 100%;
+    max-height: 0px;
+    height: auto;
+    transition: all 0.2s ease;
+  }
+}
