@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import CheckIcon from "../icons/checkIcon";
 import classes from "./filter.module.scss";
-const FilterListMode = (props) => {
+const FilterListMode = (props: { filter: any }) => {
   const { filter, ...custom } = props;
   const Router = useRouter();
   const urlParams = Router.query;
@@ -16,7 +16,7 @@ const FilterListMode = (props) => {
 
   return (
     <div>
-      {filter.items?.map((el) => (
+      {filter.items?.map((el: any) => (
         <div
           key={el.name}
           className={classes.list}
