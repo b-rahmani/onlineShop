@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import CheckIcon from "../icons/checkIcon";
 import classes from "./filter.module.scss";
-const FilterListMode = (props: { filter: any }) => {
-  const { filter, ...custom } = props;
+import { filteritemType, filterType } from "./FiltersTypeGenerate";
+const FilterListMode = (props: { filter: filterType }) => {
+  const { filter } = props;
   const Router = useRouter();
   const urlParams = Router.query;
 
@@ -10,17 +11,17 @@ const FilterListMode = (props: { filter: any }) => {
     const prevQuery = Router.query;
     Router.push({
       pathname: "/",
-      query: {...prevQuery, [name]: encodeURI(value) },
+      query: { ...prevQuery, [name]: encodeURI(value) },
     });
   };
 
   return (
     <div>
-      {filter.items?.map((el: any) => (
+      {filter.items?.map((el: filteritemType) => (
         <div
           key={el.name}
           className={classes.list}
-          onClick={() => filterClickHandler(filter.name, el.value)}
+          onClick={() => filterClickHandler(filter.name, el.value.toString())}
         >
           <span>{el.faName}</span>
           {Object.entries(urlParams).some(

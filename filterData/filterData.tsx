@@ -35,8 +35,8 @@ export const filters = [
     type: "radio",
     faName: "فقط کالای تخفیف دار",
     items: [
-      { name: "discount", faName: "تخفیف", value: true },
-      { name: "notDiscount", faName: "بدون تخفیف", value: false },
+      { name: "discount", faName: "تخفیف", value: "1" },
+      { name: "notDiscount", faName: "بدون تخفیف", value: "0" },
     ],
   },
   {

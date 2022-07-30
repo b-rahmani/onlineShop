@@ -1,15 +1,19 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import {
+  filteritemType,
+  filterType,
+} from "../filtersGenerate/FiltersTypeGenerate";
 import classes from "./filterSelectMode.module.scss";
 
 interface selectType {
-  name: "string";
-  value: "string";
+  name: string;
+  value: string;
 }
 interface IObjectKeys {
   [key: string]: string | number | undefined;
 }
-const FilterSelectMode = (props: any) => {
+const FilterSelectMode = (props: { filter: filterType }) => {
   const [select, setSelect] = useState<selectType[]>([]);
   const Router = useRouter();
 
@@ -27,7 +31,7 @@ const FilterSelectMode = (props: any) => {
     });
   }, [select]);
 
-  const selectFilterHandler = (name: any, value: any) => {
+  const selectFilterHandler = (name: string, value: string) => {
     if (select.some((el) => el.value === value)) {
       setSelect((prev) => prev.filter((item) => item.value !== value));
     } else {
@@ -37,13 +41,13 @@ const FilterSelectMode = (props: any) => {
 
   return (
     <div className={classes.filteSelect}>
-      {props.filter.items.map((item: any) => (
+      {props.filter.items.map((item: filteritemType) => (
         <div className={classes.item} key={item.value}>
           <label>
             <input
               type="checkbox"
               onChange={() =>
-                selectFilterHandler(props.filter.name, item.value)
+                selectFilterHandler(props.filter.name, item.value.toString())
               }
             />
           </label>
@@ -52,7 +56,7 @@ const FilterSelectMode = (props: any) => {
             className={classes.color}
             style={{
               backgroundColor:
-                props.filter.name === "color" ? item.value : "none",
+                props.filter.name === "color" ? item.value.toString() : "none",
             }}
           >
             &nbsp;

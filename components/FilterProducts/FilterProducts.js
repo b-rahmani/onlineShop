@@ -4,14 +4,14 @@ import { filters } from "../../filterData/filterData";
 import FiltersTypeGenerate from "../filtersGenerate/FiltersTypeGenerate";
 import Accordion from "../accordion/Accordion";
 
-const FilterProducts = (props) => {
+const FilterProducts = () => {
   return (
     <div className={classes.filterProducts}>
       <div className={classes.innerFilter}>
         <div className={classes.filterHead}>
           <h3>فیلتر ها </h3>
           <button
-          // onClick={}
+          
           >
             حذف فیلتر ها{" "}
           </button>

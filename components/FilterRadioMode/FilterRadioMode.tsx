@@ -1,27 +1,28 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { joinClassModules } from "../../utils/utils";
+import { filteritemType, filterType } from "../filtersGenerate/FiltersTypeGenerate";
 import classes from "./FilterRadioMode.module.scss";
 
 interface RadioBtnProps {
   size: "sm" | "md" | "lg";
-  filter: any;
+  filter: filterType;
 }
 
 const FilterRadioMode = (props: RadioBtnProps) => {
   const Router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
-  const clickHandler = (name: any, value: any) => {
+  const clickHandler = (name: string, value: filteritemType[]) => {
     const prevQuery = Router.query;
     if (inputRef?.current?.checked) {
       Router.push({
         pathname: "/",
-        query: {...prevQuery, [name]: encodeURI(value[0].value) },
+        query: { ...prevQuery, [name]: encodeURI(value[0].value.toString()) },
       });
     } else {
       Router.push({
         pathname: "/",
-        query: {...prevQuery},
+        query: { ...prevQuery },
       });
     }
   };
