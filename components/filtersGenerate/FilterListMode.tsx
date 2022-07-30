@@ -7,7 +7,7 @@ const FilterListMode = (props: { filter: any }) => {
   const urlParams = Router.query;
 
   const filterClickHandler = (name: string, value: string) => {
-    console.log(name, value);
+   
     Router.push({
       pathname: "/",
       query: { [name]: encodeURI(value) },

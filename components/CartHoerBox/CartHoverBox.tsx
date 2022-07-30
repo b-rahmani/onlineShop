@@ -11,6 +11,8 @@ import {
   your_benefit_buy,
 } from "../../utils/utils";
 
+
+
 interface CartHoverProps {
   cart: basketProductType[];
 }
@@ -49,6 +51,7 @@ const CartHoverBox = (props: CartHoverProps) => {
                   {product.title}
                 </p>
                 <div className={classes.attribute}>
+                  {/* <p>{product?.selectedAttribute?.type}</p> */}
                   <p
                     className={classes.colorAttribute}
                     style={{

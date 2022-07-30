@@ -215,3 +215,18 @@ a {
     color: aquamarine;
   }
 }
+
+.input-range {
+  direction: ltr;
+  margin: 10px 0;
+  width: 100% !important;
+
+  .input-range__label.input-range__label--value {
+    display: none !important;
+  }
+
+  .input-range__label--min,
+  .input-range__label--max {
+    display: none !important;
+  }
+}

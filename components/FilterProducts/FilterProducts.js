@@ -20,20 +20,22 @@ const FilterProducts = (props) => {
         <div className={classes.filters}>
           {" "}
           {filters.map((item) => (
-            // <div
-            //   key={item.name}
-            //   className={classes.item}
-
-            // >
-            //   <p className={classes.header}>
-            //     <span className={classes.name}>{item.faName}</span>
-            //     <ArrowBottom />
-            //   </p>
-            //   <FiltersTypeGenerate filter={item}  />
-            // </div>
-            <Accordion title={item.faName} key={item.name}>
-              <FiltersTypeGenerate filter={item} />
-            </Accordion>
+            <>
+              {item.type === "radio" ? (
+                <div className={classes.RadioFilters}>
+                  <div className={classes.filterName}>{item.faName}</div>
+                  <FiltersTypeGenerate filter={item} />
+                </div>
+              ) : (
+                <Accordion
+                  title={item.faName}
+                  key={item.name}
+                  onlyChild={item.type === "radio"}
+                >
+                  <FiltersTypeGenerate filter={item} />
+                </Accordion>
+              )}
+            </>
           ))}
         </div>
       </div>

@@ -14,8 +14,8 @@ export const filters = [
     type: "radio",
     faName: "فقط کالاهای موجود",
     items: [
-      { name: "exist", faName: "موجود", value: true },
-      { name: "notExist", faName: "ناموجود", value: false },
+      { name: "exist", faName: "موجود", value: "1" },
+      { name: "notExist", faName: "ناموجود", value: "0" },
     ],
   },
   {
@@ -23,11 +23,11 @@ export const filters = [
     type: "select",
     faName: "رنگ",
     items: [
+      { name: "silver", faName: "نقره ای", value: "#C0C0C0" },
       { name: "yellow", faName: "زرد", value: "#ffea4f" },
       { name: "red", faName: "قرمز", value: "#ff0000" },
-      { name: "gold", faName: "طلایی", value: "gold" },
-      { name: "silver", faName: "نقره ای", value: "silver" },
-      { name: "black", faName: "مشکی", value: "black" },
+      { name: "black", faName: "مشکی", value: "#000000" },
+      { name: "gold", faName: "طلایی", value: "#FFD700" },
     ],
   },
   {
@@ -44,8 +44,8 @@ export const filters = [
     type: "select",
     faName: "جشنواره ها",
     items: [
-      { name: "discount", faName: "تخفیف", value: true },
-      { name: "notDiscount", faName: "بدون تخفیف", value: false },
+      { name: "yearSell", faName: "فروش سال", value: "yearSell" },
+      { name: "customSell", faName: "فروش ویژه ", value: "customSell" },
     ],
   },
   {
@@ -53,8 +53,8 @@ export const filters = [
     type: "range",
     faName: "محدوده قیمت",
     items: [
-      { name: "min-price", faName: "حداقل", vaule: "0" },
-      { name: "max-price", faName: "حداکثر", vaule: "1000000" },
+      { name: "min-price", faName: "حداقل", value: 0 },
+      { name: "max-price", faName: "حداکثر", value: 50000000 },
     ],
   },
 ];

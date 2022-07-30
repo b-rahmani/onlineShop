@@ -1,0 +1,51 @@
+.filterRange {
+  margin: 10px 0;
+  margin-bottom: 25px;
+
+  .inputBox {
+    padding: 0 10px;
+    .minPrice,
+    .maxPrice {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 0;
+      margin: 16px 0;
+
+      span {
+        font-size: 12px;
+      }
+      .inputBox {
+        flex: 1;
+        font-size: 20px;
+        margin: 0 30px 0 15px;
+        padding: 5px 0;
+        text-align: left;
+        border-bottom: 1px solid #eeee;
+
+        input {
+          display: block;
+          text-align: left;
+          width: 100%;
+          border: none;
+          outline: none;
+          font-size: 20px;
+          font-family: iranyekanFa;
+          &::-webkit-inner-spin-button,
+          &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+          }
+        }
+      }
+    }
+  }
+  .labels {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+}

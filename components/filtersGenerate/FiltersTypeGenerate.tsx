@@ -1,3 +1,6 @@
+import FilterRadioMode from "../FilterRadioMode/FilterRadioMode";
+import FilterRange from "../FilterRange/FilterRange";
+import FilterSelectMode from "../FilterSelectMode/FilterSelectMode";
 import classes from "./filter.module.scss";
 
 import FilterListMode from "./FilterListMode";
@@ -12,16 +15,21 @@ const FiltersTypeGenerate = (props: any) => {
       return <FilterListMode filter={filter} />;
 
     case "radio":
-      //   return <Radio {...custom} />;
-      return <div>radio</div>;
+      return <FilterRadioMode filter={filter} />;
 
     case "select":
-      //   return <Select {...custom} />;
-      return <div>select</div>;
+      return <FilterSelectMode filter={filter} />;
+    // return <div>select</div>;
 
     case "range":
-      //   return <Range {...custom} />;
-      return <div>range</div>;
+      return (
+        <FilterRange
+          filter={filter}
+          min={filter.items[0].value}
+          max={filter.items[1].value}
+        />
+      );
+    // return <div>range</div>;
 
     default:
       console.log("your type in invalid");
