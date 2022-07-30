@@ -12,15 +12,16 @@ const FilterRadioMode = (props: RadioBtnProps) => {
   const Router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const clickHandler = (name: any, value: any) => {
+    const prevQuery = Router.query;
     if (inputRef?.current?.checked) {
       Router.push({
         pathname: "/",
-        query: { [name]: encodeURI(value[0].value) },
+        query: {...prevQuery, [name]: encodeURI(value[0].value) },
       });
     } else {
       Router.push({
         pathname: "/",
-        query: {},
+        query: {...prevQuery},
       });
     }
   };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputRange from "react-input-range";
 import classes from "./filterRange.module.scss";
 import "react-input-range/lib/css/index.css";
@@ -27,21 +27,24 @@ const FilterRange = (props: any) => {
   const [prices, setPrices] = useState<filterRangeTypes>(props.filter.items);
   const Router = useRouter();
 
+  useEffect(() => {
+    const prevQuery = Router.query;
+    Router.push({
+      pathname: "/",
+      query: {
+        ...prevQuery,
+        min_price: encodeURI(prices[0].value.toString()),
+        max_price: encodeURI(prices[1].value.toString()),
+      },
+    });
+  }, [prices]);
+
   const priceChangeHandler = (value: any) => {
     const state = [...prices];
     state[0].value = value.min;
     state[1].value = value.max;
 
     setPrices(state);
-    // if (inputRef?.current?.checked) {
-    Router.push({
-      pathname: "/",
-      query: {
-        min_price: encodeURI(value.min),
-        max_price: encodeURI(value.max),
-      },
-    });
-    // }
   };
 
   const singleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

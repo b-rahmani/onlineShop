@@ -6,20 +6,24 @@ interface selectType {
   name: "string";
   value: "string";
 }
-
+interface IObjectKeys {
+  [key: string]: string | number | undefined;
+}
 const FilterSelectMode = (props: any) => {
   const [select, setSelect] = useState<selectType[]>([]);
   const Router = useRouter();
 
   useEffect(() => {
-    const querys = {};
-    select.forEach((item: selectType, ind: number) => {
-      querys[`${item.name}[${ind}]`] = encodeURI(item.value);
+    const querys: IObjectKeys = {};
+    select.forEach(({ name, value }, ind: number) => {
+      let label = `${name}[${ind.toString()}]`;
+      querys[label] = encodeURI(value);
     });
+    const prevQuery = Router.query;
 
     Router.push({
       pathname: "/",
-      query: { ...querys },
+      query: { ...prevQuery, ...querys },
     });
   }, [select]);
 
