@@ -3,6 +3,7 @@ import classes from "./filterProducts.module.scss";
 import { filters } from "../../filterData/filterData";
 import FiltersTypeGenerate from "../filtersGenerate/FiltersTypeGenerate";
 import Accordion from "../accordion/Accordion";
+import { Fragment } from "react";
 
 const FilterProducts = () => {
   return (
@@ -10,17 +11,13 @@ const FilterProducts = () => {
       <div className={classes.innerFilter}>
         <div className={classes.filterHead}>
           <h3>فیلتر ها </h3>
-          <button
-          
-          >
-            حذف فیلتر ها{" "}
-          </button>
+          <button>حذف فیلتر ها </button>
         </div>
 
         <div className={classes.filters}>
           {" "}
           {filters.map((item) => (
-            <>
+            <Fragment key={item.name}>
               {item.type === "radio" ? (
                 <div className={classes.RadioFilters}>
                   <div className={classes.filterName}>{item.faName}</div>
@@ -35,7 +32,7 @@ const FilterProducts = () => {
                   <FiltersTypeGenerate filter={item} />
                 </Accordion>
               )}
-            </>
+            </Fragment>
           ))}
         </div>
       </div>
