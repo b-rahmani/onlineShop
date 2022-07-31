@@ -33,11 +33,15 @@
     outline: none;
     border: none;
     font-size: 20px;
-    direction: ltr;
+  
     line-height: normal;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 14px;
+    &::-webkit-search-cancel-button {
+      appearance: none;
+    }
 
     &::placeholder {
       font-size: 15px;
