@@ -4,6 +4,7 @@ import classes from "./accordion.module.scss";
 interface propsAccordionType {
   title: string;
   children: React.ReactNode;
+  mobile?: boolean;
 }
 
 const Accordion = (props: propsAccordionType) => {
@@ -12,7 +13,7 @@ const Accordion = (props: propsAccordionType) => {
     <div className={classes.accordionItem}>
       <div
         className={classes.accordionTitle}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => !props.mobile && setIsOpen((prev) => !prev)}
       >
         <div>{props.title}</div>
         <div>{isOpen ? "-" : "+"}</div>

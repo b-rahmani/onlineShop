@@ -4,7 +4,7 @@ import ArrowLeftIcon from "../icons/arrowLeftIcon";
 import classes from "./login.module.scss";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-
+import { toast, ToastContainer } from "react-toastify";
 import { vercelClient } from "../../utils/axios";
 import { useRouter } from "next/router";
 
@@ -19,8 +19,6 @@ const LoginPage = () => {
     setValue,
   } = useForm();
   const formSubmitHandler = (data: any) => {
-    console.log(data);
-
     Object.entries(data).map((el: any) => {
       if (el[1].trim() === "") {
         setError(el[0], { type: "required" }, { shouldFocus: true });
@@ -36,7 +34,17 @@ const LoginPage = () => {
           Router.push("/");
         }
       })
-      .catch((er) => console.log(er));
+      .catch((er) => {
+        toast.error(er.response?.data?.message ?? "مشکلی پیش آمده", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   return (
@@ -47,7 +55,11 @@ const LoginPage = () => {
 
       <div className={classes.formSide}>
         <div className={classes.content}>
-          <motion.div className={classes.backIcon} whileHover={{ x: -10 }}>
+          <motion.div
+            className={classes.backIcon}
+            whileHover={{ x: -10 }}
+            onClick={() => Router.back()}
+          >
             <ArrowLeftIcon />
           </motion.div>
           <h3>خوش آمدید</h3>
@@ -109,6 +121,17 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

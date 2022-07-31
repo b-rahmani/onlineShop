@@ -4,6 +4,7 @@ import classes from "./filterRange.module.scss";
 import "react-input-range/lib/css/index.css";
 import { useRouter } from "next/router";
 import { filterType } from "../filtersGenerate/FiltersTypeGenerate";
+import { produceWithPatches } from "immer";
 
 const FilterRange = (props: {
   filter: filterType;
@@ -15,20 +16,23 @@ const FilterRange = (props: {
   const Router = useRouter();
 
   useEffect(() => {
-    let time = setTimeout(() => {
-      const prevQuery = Router.query;
-      Router.push({
-        pathname: "/",
-        query: {
-          ...prevQuery,
-          min_price: encodeURI(prices[0].value.toString()),
-          max_price: encodeURI(prices[1].value.toString()),
-        },
-      });
-    }, 350);
-
+    let timer: any;
+    if (prices[0].value === props.min && prices[1].value === props.max) {
+    } else {
+      timer = setTimeout(() => {
+        const prevQuery = Router.query;
+        Router.push({
+          pathname: "/",
+          query: {
+            ...prevQuery,
+            min_price: encodeURI(prices[0].value.toString()),
+            max_price: encodeURI(prices[1].value.toString()),
+          },
+        });
+      }, 350);
+    }
     return () => {
-      clearTimeout(time);
+      clearTimeout(timer);
     };
   }, [prices]);
 

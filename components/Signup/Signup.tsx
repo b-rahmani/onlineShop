@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { vercelClient } from "../../utils/axios";
 import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
 
 const Signup = () => {
   const Router = useRouter();
@@ -34,11 +35,6 @@ const Signup = () => {
   } = useForm({ resolver: yupResolver(shema) });
 
   const formSubmitHandler = (data: any) => {
-    console.log(data);
-    // if(Object.entries(data).some((el:any)=>el[1].trim()==="")){
-
-    // }
-
     Object.entries(data).map((el: any) => {
       if (el[1].trim() === "") {
         setError(el[0], { type: "required" }, { shouldFocus: true });
@@ -57,6 +53,17 @@ const Signup = () => {
           localStorage.setItem("token", res.data.data.token);
           Router.replace("/");
         }
+      })
+      .catch((er) => {
+        toast.error(er.response?.data?.message ?? "مشکلی پیش آمده", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 
@@ -68,7 +75,11 @@ const Signup = () => {
 
       <div className={classes.formSide}>
         <div className={classes.content}>
-          <motion.div className={classes.backIcon} whileHover={{ x: -10 }}>
+          <motion.div
+            className={classes.backIcon}
+            whileHover={{ x: -10 }}
+            onClick={() => Router.back()}
+          >
             <ArrowLeftIcon />
           </motion.div>
           <h3>ثبت نام</h3>
@@ -137,6 +148,17 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
