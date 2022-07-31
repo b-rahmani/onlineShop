@@ -11,20 +11,25 @@ const FilterRange = (props: {
   max: number;
 }) => {
   const [prices, setPrices] = useState([...props.filter.items]);
-  const [min, setMin] = useState(props.min);
-  const [max, setMax] = useState(props.max);
+
   const Router = useRouter();
 
   useEffect(() => {
-    const prevQuery = Router.query;
-    Router.push({
-      pathname: "/",
-      query: {
-        ...prevQuery,
-        min_price: encodeURI(prices[0].value.toString()),
-        max_price: encodeURI(prices[1].value.toString()),
-      },
-    });
+    let time = setTimeout(() => {
+      const prevQuery = Router.query;
+      Router.push({
+        pathname: "/",
+        query: {
+          ...prevQuery,
+          min_price: encodeURI(prices[0].value.toString()),
+          max_price: encodeURI(prices[1].value.toString()),
+        },
+      });
+    }, 350);
+
+    return () => {
+      clearTimeout(time);
+    };
   }, [prices]);
 
   const priceChangeHandler = (value: any) => {
@@ -34,8 +39,6 @@ const FilterRange = (props: {
     ];
 
     setPrices(state);
-    setMin(+value.min);
-    setMax(+value.max);
   };
 
   const singleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,17 +52,6 @@ const FilterRange = (props: {
     setPrices(newState);
   };
 
-  const changeSingleWithDelay = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === "min-price") {
-      setMin(Number(e.target.value.replace(/\D/g, "")));
-    } else {
-      setMax(Number(e.target.value.replace(/\D/g, "")));
-    }
-
-    setTimeout(() => {
-      singleChangeHandler(e);
-    }, 2000);
-  };
   return (
     <div className={classes.filterRange}>
       <div className={classes.inputBox}>
@@ -68,10 +60,10 @@ const FilterRange = (props: {
           <div className={classes.inputBox}>
             <input
               type="text"
-              value={min.toLocaleString()}
+              value={prices[0].value.toLocaleString()}
               name="min-price"
               inputMode="numeric"
-              onChange={changeSingleWithDelay}
+              onChange={singleChangeHandler}
             />
           </div>
           <span>تومان</span>
@@ -83,8 +75,8 @@ const FilterRange = (props: {
               type="text"
               name="max-price"
               inputMode="numeric"
-              value={max.toLocaleString()}
-              onChange={changeSingleWithDelay}
+              value={prices[1].value.toLocaleString()}
+              onChange={singleChangeHandler}
             />
           </div>
           <span>تومان</span>
