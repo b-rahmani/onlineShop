@@ -17,6 +17,8 @@ import { initialBasket } from "../../store/basketProductsSlice";
 import { joinClassModules } from "../../utils/utils";
 import Badge from "../Badge/Badge";
 import CartHoverBox from "../CartHoerBox/CartHoverBox";
+import Footer from "../footer/Footer";
+import LoginIcon from "../icons/Login";
 interface layoutProps {
   children?: React.ReactNode;
 
@@ -27,10 +29,13 @@ const Layout = ({ children, search }: layoutProps) => {
   const Router = useRouter();
   const isOpen = useSelector((state: RootState) => state.sidebar.isOpensidebar);
   const dispatch = useDispatch();
-  let user = "d";
-  const accountClickHandler = () => {
-    user ? Router.push("/profile") : Router.push("/login");
-  };
+  let user;
+  if (typeof window !== "undefined" && localStorage?.getItem("token")) {
+    user = localStorage?.getItem("token");
+  }
+  // const accountClickHandler = () => {
+  //   user ? Router.push("/profile") : Router.push("/login");
+  // };
   const cartItems = useSelector((state: RootState) => state.basket.basket);
 
   useEffect(() => {
@@ -51,10 +56,22 @@ const Layout = ({ children, search }: layoutProps) => {
           </Link>
           <div className={classes.actionBar}>
             {search && <SearchBar />}
-            <AccountIcon
-              className={classes.acountIcon}
-              click={accountClickHandler}
-            />
+            {user ? (
+              <AccountIcon
+                className={classes.acountIcon}
+                click={() => Router.push("/profile")}
+              />
+            ) : (
+              <div
+                className={classes.loginSignup}
+                onClick={() => Router.push("/login")}
+              >
+                <LoginIcon />
+                <span>ورود | ثبت نام</span>
+                <span>ورود</span>
+              </div>
+            )}
+
             <section className={classes.cartContainer}>
               <Link href="/cart">
                 <a className={classes.cart}>
@@ -99,7 +116,7 @@ const Layout = ({ children, search }: layoutProps) => {
         </div>
       </header>
       <main className="relative">{children}</main>
-      <footer>foooter</footer>
+      <Footer />
     </div>
   );
 };

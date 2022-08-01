@@ -1,0 +1,51 @@
+.footer {
+  padding: 32px 16px 10px;
+  background-color: #fff;
+  // color: #f6f6ee;
+  color: #111;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  h2 {
+    text-align: center;
+  }
+  p {
+    max-width: 50%;
+    text-align: center;
+    margin: 16px auto;
+    line-height: 2.5;
+  }
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin: 32px 0;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+
+      svg {
+        stroke: #111;
+        width: 40px;
+        height: 40px;
+        fill: #fff;
+      }
+    }
+  }
+  .copyRight {
+    border-top: 1px solid #f6f6ee;
+    padding: 16px 0;
+
+    margin: 0 auto;
+    text-align: center;
+  }
+}

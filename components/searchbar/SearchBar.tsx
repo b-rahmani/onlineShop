@@ -17,8 +17,8 @@ const SearchBar = () => {
     <div className={classes.searchBar}>
       <input
         type="search"
-        dir="auto"
-        placeholder="search products..."
+        dir="rtl"
+        placeholder="جستجو"
         onFocus={searchFocusHandler}
         onBlur={closeFocusHandler}
       />

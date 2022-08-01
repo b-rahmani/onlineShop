@@ -17,6 +17,7 @@ import { LayoutGroup, motion } from "framer-motion";
 import { useContext } from "react";
 import { AllProductContext } from "../../store/ContextAllProduct";
 import { Dictionary } from "../../store/ContextAllProduct";
+import CheckIcon from "../icons/checkIcon";
 
 const ProductMap = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const ProductMap = () => {
               className={classes.copyLinkBox}
               onClick={() => copy(sharedLink)}
             >
-              <CopyIcon />
+              {copied ? <CheckIcon /> : <CopyIcon />}
               {copied ? <span>کپی شد</span> : <span>کپی کردن لینک</span>}{" "}
             </div>
             <div className={classes.Icons}>

@@ -34,6 +34,45 @@
       flex: 1;
       justify-content: flex-end;
 
+      .loginSignup {
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        cursor: pointer;
+        font-size: 14px;
+
+        span {
+          &:first-of-type {
+            display: none;
+          }
+          &:last-of-type {
+            display: inline-block;
+          }
+        }
+
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+
+        @include tablet-landscape-up {
+          border: 1px solid #eee;
+          border-radius: 15px;
+
+          span {
+            &:first-of-type {
+              display: inline-block;
+            }
+            &:last-of-type {
+              display: none;
+            }
+          }
+        }
+      }
+
       .cartContainer {
         transition: all 0.2s ease-in;
         position: relative;
@@ -65,8 +104,8 @@
       & > svg,
       & > a > svg,
       & > section > a > svg {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         margin: 10px;
         cursor: pointer;
         stroke: #424750;

@@ -3,14 +3,18 @@
   display: flex;
   margin-inline-end: auto;
   margin-inline-start: 20px;
-  width: 200px;
+  // width: 200px;
   align-items: center;
   background-color: rgb(228, 228, 228);
   border-radius: 15px;
+  padding: 15px 5px;
+  width: 90%;
+  max-width: 500px;
 
   @include phone-only {
     margin-inline-start: 0;
-    width: 150px;
+    width: 70%;
+    max-width: 300px;
   }
 
   label {
@@ -33,7 +37,7 @@
     outline: none;
     border: none;
     font-size: 20px;
-  
+
     line-height: normal;
     white-space: nowrap;
     overflow: hidden;
