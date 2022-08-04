@@ -1,3 +1,4 @@
+@import "../../styles//mixins";
 .footer {
   padding: 32px 16px 10px;
   background-color: #fff;
@@ -10,10 +11,10 @@
     text-align: center;
   }
   p {
-    max-width: 50%;
+    max-width: 100%;
     text-align: center;
     margin: 16px auto;
-    line-height: 2.5;
+    line-height: 1.7;
   }
   .icons {
     display: flex;
@@ -47,5 +48,15 @@
 
     margin: 0 auto;
     text-align: center;
+  }
+
+  @include tablet-landscape-up {
+    padding: 32px 16px 10px;
+    p {
+      max-width: 50%;
+      text-align: center;
+      margin: 16px auto;
+      line-height: 2.5;
+    }
   }
 }

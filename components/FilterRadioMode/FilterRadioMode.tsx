@@ -1,7 +1,10 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { joinClassModules } from "../../utils/utils";
-import { filteritemType, filterType } from "../filtersGenerate/FiltersTypeGenerate";
+import {
+  filteritemType,
+  filterType,
+} from "../filtersGenerate/FiltersTypeGenerate";
 import classes from "./FilterRadioMode.module.scss";
 
 interface RadioBtnProps {
@@ -22,7 +25,7 @@ const FilterRadioMode = (props: RadioBtnProps) => {
     } else {
       Router.push({
         pathname: "/",
-        query: { ...prevQuery },
+        query: { ...prevQuery, [name]: encodeURI(value[1].value.toString()) },
       });
     }
   };

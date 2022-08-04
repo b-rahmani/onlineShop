@@ -516,8 +516,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       console.log("Connected successfully to server");
       const db = client.db(dbName);
       const collection = db.collection("products");
+
       const findResult = await collection.find({}).toArray();
-      
 
       res.status(200).json(findResult);
     } catch (er) {

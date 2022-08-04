@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 // import { saveState } from "../store/browser-storage/browser-storage";
 // import { debounce } from "debounce";
 import "react-toastify/dist/ReactToastify.min.css";
+import { useRouter } from "next/router";
 
 // store.subscribe(
 //   // we use debounce to save the state once each 800ms
@@ -18,14 +19,15 @@ import "react-toastify/dist/ReactToastify.min.css";
 // );
 
 function MyApp({ Component, pageProps, ...appProps }: AppProps) {
+  const router = useRouter();
   const getContent = () => {
     const ignoreLayout = ["/login", "/signup"];
     if (ignoreLayout.includes(appProps.router.pathname)) {
-      return <Component {...pageProps} />;
+      return <Component {...pageProps} key={router.asPath} />;
     } else {
       return (
         <Layout search>
-          <Component {...pageProps} />
+          <Component {...pageProps} key={router.asPath} />
         </Layout>
       );
     }

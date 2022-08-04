@@ -7,49 +7,164 @@
   align-items: center;
   background-color: rgb(228, 228, 228);
   border-radius: 15px;
-  padding: 15px 5px;
+  padding: 15px 10px;
   width: 90%;
   max-width: 500px;
+  position: relative;
+  flex-wrap: wrap;
+  // &.focus {
+  //   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  //   background-color: #fff;
+
+  //   .inputBox {
+  //     border-bottom: 1px solid red;
+  //   }
+  // }
 
   @include phone-only {
     margin-inline-start: 0;
     width: 70%;
     max-width: 300px;
+    padding: 10px 5px;
   }
-
-  label {
-    color: gray;
-    display: flex;
-    margin-left: 5px;
-    display: flex;
-    align-items: center;
-
-    & > svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  input {
-    padding: 5px 10px;
+  .inputBox {
     width: 100%;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    font-size: 20px;
+    display: flex;
 
-    line-height: normal;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    &::-webkit-search-cancel-button {
-      appearance: none;
+    label {
+      color: gray;
+      display: flex;
+      margin-left: 5px;
+      display: flex;
+      align-items: center;
+
+      & > svg {
+        width: 20px;
+        height: 20px;
+      }
     }
 
-    &::placeholder {
-      font-size: 15px;
+    input {
+      padding: 5px 10px;
+      width: 100%;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      font-size: 20px;
+
       line-height: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      &::-webkit-search-cancel-button {
+        appearance: none;
+      }
+
+      &::placeholder {
+        font-size: 15px;
+        line-height: normal;
+      }
+    }
+  }
+  .focusedBox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 21;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background-color: #fff;
+    transition: opacity 0.2s ease-in;
+    overflow: hidden;
+    border-radius: 15px;
+
+    &.focus {
+      opacity: 1;
+      transform: scale(1);
+      // visibility: visible;
+      // display: block;
+    }
+    &.notfocus {
+      // display: none;
+      transform: scale(0);
+      opacity: 0;
+      // visibility: hidden;
+    }
+    .inputBox {
+      display: flex;
+      padding: 15px 10px;
+      border-bottom: 1px solid rgb(53, 169, 247);
+      align-items: center;
+      background-color: transparent;
+
+      width: 90%;
+      margin: 0 auto;
+
+      label {
+        color: gray;
+        display: flex;
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+
+        & > svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      input {
+        padding: 5px 10px;
+
+        width: 100%;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        font-size: 20px;
+
+        line-height: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+
+        &::-webkit-search-cancel-button {
+          appearance: none;
+        }
+
+        &::placeholder {
+          font-size: 15px;
+          line-height: normal;
+        }
+      }
+    }
+    .ResaultBox {
+      top: 100%;
+      width: 100%;
+      padding: 10px 5%;
+      max-height: 300px;
+      overflow: scroll;
+
+      .product {
+        display: grid;
+        grid-template-columns: 20% 1fr;
+        align-items: center;
+        border-bottom: 1px solid gray;
+        padding: 5px 0;
+        cursor: pointer;
+
+        .imageContainer {
+          position: relative;
+          aspect-ratio: 1/1;
+          img {
+            object-fit: contain;
+            width: 100%;
+
+            max-height: auto;
+            display: block;
+          }
+        }
+      }
     }
   }
 }

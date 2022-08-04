@@ -52,7 +52,7 @@ const ProductAttribute = (props: productAttributeType) => {
     case "select":
       attType = (
         <div className={classes.attributeValue}>
-          <Select 
+          <Select
             getOptionLabel={(option) => option.faName}
             getOptionValue={(option) => option.value}
             value={selectedAttribute}
@@ -76,7 +76,7 @@ const ProductAttribute = (props: productAttributeType) => {
       {attribute && attribute?.items.length > 0 && (
         <>
           <span>
-            {attribute.faName} : {selectedAttribute.faName}
+            {attribute?.faName} : {selectedAttribute?.faName}
           </span>
           {attType}
         </>

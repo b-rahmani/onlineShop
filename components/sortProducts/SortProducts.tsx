@@ -71,17 +71,28 @@ const SortProducts = () => {
     dispatch(changeSelectedSort(item));
     const hash = Router.asPath.split("#")[1];
     const url = "/";
-
-    Router.replace(
-      {},
-      {
-        pathname: url,
-        hash: hash,
-
-        query: { ...Query, sort: item.value },
-      },
-      { scroll: false }
-    );
+    const Query = Router.query;
+    Query.sort = item.value;
+    console.log(Query);
+    const display= Object.keys(Query).map(function(key) {
+      return key + '=' + Query[key];
+    }).join('&');
+    
+   
+    Router.replace(`${url}?${display}${hash ? `#${hash}` : ""}`);
+    // Router.replace(
+    //   {
+    //     // pathname: url,
+    //     // hash: hash,
+    //     // query: { ...Query, sort: item.value },
+    //   },
+    //   {
+    //     pathname: url,
+    //     hash: hash,
+    //     query: { ...Query, sort: item.value },
+    //   },
+    //   { scroll: false }
+    // );
   };
 
   // let sortName;
