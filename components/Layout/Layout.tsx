@@ -56,7 +56,7 @@ const Layout = ({ children, search }: layoutProps) => {
           </Link>
           <div className={classes.actionBar}>
             {search && <SearchBar />}
-            {user ? (
+            { user ? (
               <AccountIcon
                 className={classes.acountIcon}
                 click={() => Router.push("/profile")}
@@ -102,11 +102,14 @@ const Layout = ({ children, search }: layoutProps) => {
                 <ActiveLink href="/">صفحه اصلی</ActiveLink>
               </li>
 
-              <li>
+              {/* <li>
                 <ActiveLink href="/#main">محصولات</ActiveLink>
-              </li>
+              </li> */}
               <li>
                 <ActiveLink href="/cart">سبد خرید</ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="/aboutus">درباره ما</ActiveLink>
               </li>
               <li>
                 <ActiveLink href="/other">دیگر</ActiveLink>

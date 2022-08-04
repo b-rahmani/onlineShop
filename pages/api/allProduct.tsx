@@ -517,7 +517,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const db = client.db(dbName);
       const collection = db.collection("products");
 
-      const findResult = await collection.find({}).toArray();
+      let findResult;
+      if (req.query.search && typeof req.query.search === "string") {
+        const all = await collection.find({}).toArray();
+        const search = decodeURIComponent(req.query.search);
+        findResult = all.filter((item) => item.title.includes(search));
+      } else {
+        findResult = await collection.find({}).toArray();
+      }
 
       res.status(200).json(findResult);
     } catch (er) {

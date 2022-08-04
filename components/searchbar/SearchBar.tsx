@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allProductsMock } from "../../filterData/fakeProductData";
+
 import { openFocusInput, closeFocusInput } from "../../store/searchFocusSlice";
 import { RootState } from "../../store/store";
 import { vercelClient } from "../../utils/axios";
@@ -16,7 +16,9 @@ import classes from "./searchbar.module.scss";
 const SearchBar = () => {
   const topSearchRef = useRef<HTMLInputElement>(null);
   const topSearchBoxRef = useRef<HTMLDivElement>(null);
-  const [searched,setSearched]=useState("");
+  const [searched, setSearched] = useState("");
+  const [result, setResault] = useState([]);
+  const [loading, setLoading] = useState(false);
   const Router = useRouter();
   const dispatch = useDispatch();
 
@@ -40,9 +42,9 @@ const SearchBar = () => {
     }
   };
 
-  const onChangeHandler=(e:React.ChangeEvent<HTMLInputElement>)=>{
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearched(e.target.value);
-  }
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -56,13 +58,18 @@ const SearchBar = () => {
     closeFocusHandler();
   }, [Router.asPath]);
 
-  useEffect(()=>{
-let timer=setTimeout(()=>{
-vercelClient.get()
-},250)
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setLoading(true);
+      vercelClient
+        .get(`/api/allProduct/?search=${searched}`)
+        .then((res) => setResault(res.data))
+        .catch((er) => console.log(er))
+        .finally(() => setLoading(false));
+    }, 300);
 
-return()=>clearTimeout(timer);
-  },[search])
+    return () => clearTimeout(timer);
+  }, [searched]);
 
   return (
     <div className={classes.searchBar} onClick={searchFocusHandler}>
@@ -96,26 +103,40 @@ return()=>clearTimeout(timer);
             // onFocus={searchFocusHandler}
             // onBlur={closeFocusHandler}
           />
+          {loading && (
+            <figure>
+              <div
+                className={joinClassModules(classes.dot, classes.white)}
+              ></div>
+              <div className={classes.dot}></div>
+              <div className={classes.dot}></div>
+              <div className={classes.dot}></div>
+              <div className={classes.dot}></div>
+            </figure>
+          )}
           <label>
             <SearchIcon />
           </label>
         </div>
-        <div className={classes.ResaultBox}>
-          {allProductsMock.map((product: productType) => (
-            <Link href={`/product/${product.id}`} key={product.id}>
-              <a className={joinClassModules(classes.product)}>
-                <div className={classes.imageContainer}>
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    layout="fill"
-                  />
-                </div>
-                <div className="ellips-3">{product.title}</div>
-              </a>
-            </Link>
-          ))}
-        </div>
+        {result && (
+          <div className={classes.ResaultBox}>
+            {result && result?.length === 0 && <p>نتیجه ای یافت نشد</p>}
+            {result?.map((product: productType) => (
+              <Link href={`/product/${product.id}`} key={product.id}>
+                <a className={joinClassModules(classes.product)}>
+                  <div className={classes.imageContainer}>
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      layout="fill"
+                    />
+                  </div>
+                  <div className="ellips-3">{product.title}</div>
+                </a>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
