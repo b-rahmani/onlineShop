@@ -7,9 +7,12 @@ import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import { vercelClient } from "../../utils/axios";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import Loader from "../loading/Loading";
 
 const LoginPage = () => {
   const Router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -19,10 +22,12 @@ const LoginPage = () => {
     setValue,
   } = useForm();
   const formSubmitHandler = (data: any) => {
+    setIsLoading(true);
     Object.entries(data).map((el: any) => {
       if (el[1].trim() === "") {
         setError(el[0], { type: "required" }, { shouldFocus: true });
         setValue(el[0], "", { shouldValidate: true });
+        setIsLoading(false);
         return;
       }
     });
@@ -44,7 +49,8 @@ const LoginPage = () => {
           draggable: true,
           progress: undefined,
         });
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -102,8 +108,7 @@ const LoginPage = () => {
               </Link>
 
               <button className={classes.loginButton} type="submit">
-                {" "}
-                ورود
+                {isLoading ? <Loader type="static"/> : "ورود"}
               </button>
               <button className={classes.loginWithGoogle} type="button">
                 ورود با گوگل

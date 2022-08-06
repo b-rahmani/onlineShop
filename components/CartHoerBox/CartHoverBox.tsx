@@ -51,7 +51,7 @@ const CartHoverBox = (props: CartHoverProps) => {
                   {product.title}
                 </p>
                 <div className={classes.attribute}>
-                  {/* <p>{product?.selectedAttribute?.type}</p> */}
+               
                   <p
                     className={classes.colorAttribute}
                     style={{

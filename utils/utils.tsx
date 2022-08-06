@@ -37,6 +37,13 @@ export const SumPriceCart = (cart: productType[]) => {
 
   return price;
 };
+export const SumPriceWithoutDiscountCart = (cart: productType[]) => {
+  const price = cart.reduce((sum, product) => {
+    return sum + product.price;
+  }, 0);
+
+  return price;
+};
 
 export const your_benefit_buy = (
   product_products: productType | productType[]
@@ -47,14 +54,11 @@ export const your_benefit_buy = (
       return sum + your_benefit_buy(product);
     }, 0);
   } else {
-    benefit = product_products.price * product_products.discount;
+    benefit = (product_products.price * product_products.discount) / 100;
   }
 
   return benefit;
 };
-
-
-
 
 // export const copyToClipBoard = (text: string) => {
 //   text.select();

@@ -1,0 +1,213 @@
+.cartPage {
+  max-width: 1200px;
+  margin: 25px auto;
+
+  .titlePage {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 10px;
+    gap: 15px;
+    align-items: center;
+    border-bottom: 1px solid gray;
+
+    & > * {
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    & > div {
+      border-bottom: 3px solid #ef4056;
+      color: #ef4056;
+    }
+    & > p {
+      color: #8f8f92;
+    }
+  }
+  main {
+    margin: 16px 0;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .cartitemsContainer {
+      flex: 1;
+      border: 1px solid gray;
+      border-radius: 15px;
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 16px 10px;
+
+        span {
+          font-size: 16px;
+          font-weight: 500;
+          color: black;
+        }
+        p {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          span {
+            width: 5px;
+            height: 5px;
+            background-color: gray;
+            border-radius: 50%;
+          }
+        }
+      }
+      & > span {
+        font-size: 14px;
+        color: gray;
+
+        display: inline-block;
+        padding: 0 16px;
+      }
+      .cartItemsBox {
+        width: 100%;
+
+        .cartItem {
+          display: grid;
+          grid-template-columns: 120px 1fr;
+          padding: 16px;
+
+          &:not(:last-of-type) {
+            border-bottom: 1px solid gray;
+          }
+
+          .imageContainer {
+            & > p {
+              text-align: center;
+              color: #ef4056;
+              padding: 5px;
+            }
+
+            .imageBox {
+              position: relative;
+              aspect-ratio: 1/1;
+
+              img {
+                display: block;
+                object-fit: contain;
+              }
+            }
+          }
+          .productDetails {
+            .title {
+              padding: 10px 0;
+            }
+            .attribute {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              gap: 10px;
+              .colorAttribute {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+              }
+              .attributeName {
+                color: rgb(124, 124, 124);
+                font-size: 14px;
+              }
+            }
+          }
+          .price {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column;
+            gap: 5px;
+
+            .benefit {
+              display: flex;
+              align-items: center;
+              font-size: 12px;
+              color: #ef4056;
+              gap: 5px;
+
+              span {
+                font-family: iranyekanFa;
+              }
+            }
+            .discountedPrice {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 5px;
+              span {
+                font-family: iranyekanFa;
+                &:first-of-type {
+                  font-size: 18px;
+                }
+                &:last-of-type {
+                  font-size: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .checkoutContainer {
+      width: 300px;
+      border: 1px solid gray;
+      border-radius: 15px;
+      padding: 16px;
+      position: sticky;
+      top: 20px;
+
+      .prices {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &.benefit {
+          & > * {
+            color: #ef4056;
+            font-weight: 600;
+          }
+        }
+        p {
+          color: #404041;
+          padding: 16px 0;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 14px;
+
+          span {
+            font-family: iranyekanFa;
+            font-weight: 600;
+
+            &:last-of-type {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      .info {
+        font-size: 12px;
+        line-height: 2.5;
+        color: #606062;
+      }
+
+      .checkout {
+        background-color: #ef4056;
+        padding: 10px;
+        outline: none;
+        border: none;
+        border-radius: 15px;
+        width: 90%;
+        margin: 0 auto;
+        display: block;
+        color: #fff;
+        font-weight: 600;
+      }
+    }
+  }
+}

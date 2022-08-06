@@ -1,4 +1,3 @@
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,8 +8,11 @@ import { openFocusInput, closeFocusInput } from "../../store/searchFocusSlice";
 import { RootState } from "../../store/store";
 import { vercelClient } from "../../utils/axios";
 import { joinClassModules } from "../../utils/utils";
+import ArrowLeftIcon from "../icons/arrowLeftIcon";
 
 import SearchIcon from "../icons/SearchIcon";
+import Loader from "../loading/Loading";
+import Modal from "../modal/Modal";
 import { productType } from "../SingleProduct/SingleProduct";
 import classes from "./searchbar.module.scss";
 const SearchBar = () => {
@@ -18,7 +20,7 @@ const SearchBar = () => {
   const topSearchBoxRef = useRef<HTMLDivElement>(null);
   const [searched, setSearched] = useState("");
   const [result, setResault] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const Router = useRouter();
   const dispatch = useDispatch();
 
@@ -60,12 +62,12 @@ const SearchBar = () => {
 
   useEffect(() => {
     let timer = setTimeout(() => {
-      setLoading(true);
+      setIsLoading(true);
       vercelClient
         .get(`/api/allProduct/?search=${searched}`)
         .then((res) => setResault(res.data))
         .catch((er) => console.log(er))
-        .finally(() => setLoading(false));
+        .finally(() => setIsLoading(false));
     }, 300);
 
     return () => clearTimeout(timer);
@@ -103,16 +105,17 @@ const SearchBar = () => {
             // onFocus={searchFocusHandler}
             // onBlur={closeFocusHandler}
           />
-          {loading && (
-            <figure>
-              <div
-                className={joinClassModules(classes.dot, classes.white)}
-              ></div>
-              <div className={classes.dot}></div>
-              <div className={classes.dot}></div>
-              <div className={classes.dot}></div>
-              <div className={classes.dot}></div>
-            </figure>
+          {isLoading && (
+            // <figure>
+            //   <div
+            //     className={joinClassModules(classes.dot, classes.white)}
+            //   ></div>
+            //   <div className={classes.dot}></div>
+            //   <div className={classes.dot}></div>
+            //   <div className={classes.dot}></div>
+            //   <div className={classes.dot}></div>
+            // </figure>
+            <Loader />
           )}
           <label>
             <SearchIcon />
@@ -120,7 +123,7 @@ const SearchBar = () => {
         </div>
         {result && (
           <div className={classes.ResaultBox}>
-            {result && result?.length === 0 && <p>نتیجه ای یافت نشد</p>}
+            {result?.length === 0 && <p>نتیجه ای یافت نشد</p>}
             {result?.map((product: productType) => (
               <Link href={`/product/${product.id}`} key={product.id}>
                 <a className={joinClassModules(classes.product)}>
@@ -138,6 +141,44 @@ const SearchBar = () => {
           </div>
         )}
       </div>
+      <Modal
+        type="fixBottomFull"
+        close={closeFocusHandler}
+        show={isFocusSearch}
+      >
+        <div className={classes.searchPhone}>
+          <div className={classes.header}>
+            <div className={classes.searchBox}>
+              <input
+                type="text"
+                value={searched}
+                onChange={onChangeHandler}
+                dir="rtl"
+                placeholder="جستجو"
+              />
+              {isLoading && <Loader />}
+            </div>
+            <ArrowLeftIcon click={() => Router.back()} />
+          </div>
+          <div className={classes.result}>
+            {result?.length === 0 && <p>نتیجه ای یافت نشد</p>}
+            {result?.map((product: productType) => (
+              <Link href={`/product/${product.id}`} key={product.id}>
+                <a className={joinClassModules(classes.product)}>
+                  <div className={classes.imageContainer}>
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      layout="fill"
+                    />
+                  </div>
+                  <div className="ellips-3">{product.title}</div>
+                </a>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

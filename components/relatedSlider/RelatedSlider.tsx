@@ -11,12 +11,13 @@ import ProductCard from "../productCard/ProductCard";
 
 export interface RelatedProductType {
   related?: productType[];
+  text?: string;
 }
 
 const RelatedSlider = (props: RelatedProductType) => {
   return (
     <section className={classes.relatedProduct}>
-      <p className={classes.title}>کالاهای مشابه</p>
+      <p className={classes.title}>{props.text}</p>
       {/*  */}
       <div className={classes.related}>
         <Swiper
@@ -80,5 +81,9 @@ const RelatedSlider = (props: RelatedProductType) => {
       {/*  */}
     </section>
   );
+};
+
+RelatedSlider.defaultProps = {
+  text: "کالاهای مشابه",
 };
 export default RelatedSlider;
