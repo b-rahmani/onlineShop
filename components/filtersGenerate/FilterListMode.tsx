@@ -9,10 +9,14 @@ const FilterListMode = (props: { filter: filterType }) => {
 
   const filterClickHandler = (name: string, value: string) => {
     const prevQuery = Router.query;
-    Router.push({
-      pathname: "/",
-      query: { ...prevQuery, [name]: encodeURI(value) },
-    });
+    Router.push(
+      {
+        pathname: "/",
+        query: { ...prevQuery, [name]: encodeURI(value) },
+      },
+      undefined,
+      { shallow: true }
+    );
   };
 
   return (

@@ -108,7 +108,10 @@ const LoginPage = () => {
               </Link>
 
               <button className={classes.loginButton} type="submit">
-                {isLoading ? <Loader type="static"/> : "ورود"}
+                <span style={{ visibility: isLoading ? "hidden" : "visible" }}>
+                  ورود
+                </span>
+                {isLoading && <Loader type="static" />}
               </button>
               <button className={classes.loginWithGoogle} type="button">
                 ورود با گوگل

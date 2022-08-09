@@ -56,9 +56,9 @@ const Layout = ({ children, search }: layoutProps) => {
           </Link>
           <div className={classes.actionBar}>
             {search && <SearchBar />}
-            { user ? (
+            {user ? (
               <AccountIcon
-                className={classes.acountIcon}
+                // className={classes.acountIcon}
                 click={() => Router.push("/profile")}
               />
             ) : (

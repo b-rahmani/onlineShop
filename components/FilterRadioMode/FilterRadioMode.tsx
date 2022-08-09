@@ -18,15 +18,23 @@ const FilterRadioMode = (props: RadioBtnProps) => {
   const clickHandler = (name: string, value: filteritemType[]) => {
     const prevQuery = Router.query;
     if (inputRef?.current?.checked) {
-      Router.push({
-        pathname: "/",
-        query: { ...prevQuery, [name]: encodeURI(value[0].value.toString()) },
-      });
+      Router.push(
+        {
+          pathname: "/",
+          query: { ...prevQuery, [name]: encodeURI(value[0].value.toString()) },
+        },
+        undefined,
+        { shallow: true }
+      );
     } else {
-      Router.push({
-        pathname: "/",
-        query: { ...prevQuery, [name]: encodeURI(value[1].value.toString()) },
-      });
+      Router.push(
+        {
+          pathname: "/",
+          query: { ...prevQuery, [name]: encodeURI(value[1].value.toString()) },
+        },
+        undefined,
+        { shallow: true }
+      );
     }
   };
 

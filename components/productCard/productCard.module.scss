@@ -41,7 +41,7 @@
       // height: 0;
 
       overflow: hidden;
-      background: white;
+      // background: white;
       position: relative;
 
       img {
@@ -66,6 +66,7 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
+
         .rating {
           padding: 10px 0;
           display: flex;
@@ -200,6 +201,11 @@
         .cardTitle {
           flex: 1;
           font-size: 14px;
+        }
+        .existRating {
+          &.skeleton {
+            margin-top: 40px;
+          }
         }
       }
     }

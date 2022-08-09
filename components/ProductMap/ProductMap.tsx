@@ -16,12 +16,15 @@ import useCopyToClipboard from "../hooks/useCopyToClipBoard";
 import { LayoutGroup, motion } from "framer-motion";
 import { useContext } from "react";
 import { AllProductContext } from "../../store/ContextAllProduct";
-import { Dictionary } from "../../store/ContextAllProduct";
+
+// import { Dictionary } from "../../store/ContextAllProduct";
 import CheckIcon from "../icons/checkIcon";
+import { productType } from "../SingleProduct/SingleProduct";
+import LoadingCard from "../productCard/LoadingCard";
 
 const ProductMap = () => {
   const dispatch = useDispatch();
-  const AllProducts = useContext(AllProductContext);
+  const { allProductState, loading } = useContext(AllProductContext);
   const [copied, copy] = useCopyToClipboard("", 3000);
   const isShare = useSelector(
     (state: RootState) => state.CartHoverAction.share.isShare
@@ -45,7 +48,11 @@ const ProductMap = () => {
   return (
     <LayoutGroup>
       <div className={classes.productMapLayout}>
-        {AllProducts.map((item: Dictionary) => (
+        {loading &&
+          Array.from(Array(12).keys()).map((item) => (
+            <LoadingCard key={item} break />
+          ))}
+        {allProductState?.map((item: productType) => (
           <Mothened
             layout
             key={item.id.toString()}

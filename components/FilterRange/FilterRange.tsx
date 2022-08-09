@@ -21,14 +21,18 @@ const FilterRange = (props: {
     } else {
       timer = setTimeout(() => {
         const prevQuery = Router.query;
-        Router.push({
-          pathname: "/",
-          query: {
-            ...prevQuery,
-            min_price: encodeURI(prices[0].value.toString()),
-            max_price: encodeURI(prices[1].value.toString()),
+        Router.push(
+          {
+            pathname: "/",
+            query: {
+              ...prevQuery,
+              min_price: encodeURI(prices[0].value.toString()),
+              max_price: encodeURI(prices[1].value.toString()),
+            },
           },
-        });
+          undefined,
+          { shallow: true }
+        );
       }, 350);
     }
     return () => {

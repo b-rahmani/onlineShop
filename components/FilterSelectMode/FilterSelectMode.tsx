@@ -25,10 +25,14 @@ const FilterSelectMode = (props: { filter: filterType }) => {
     });
     const prevQuery = Router.query;
 
-    Router.push({
-      pathname: "/",
-      query: { ...prevQuery, ...querys },
-    });
+    Router.push(
+      {
+        pathname: "/",
+        query: { ...prevQuery, ...querys },
+      },
+      undefined,
+      { shallow: true }
+    );
   }, [select]);
 
   const selectFilterHandler = (name: string, value: string) => {
