@@ -26,16 +26,24 @@ const SortMobile = () => {
     const hash = Router.asPath.split("#")[1];
     const url = "/";
     const Query = Router.query;
-    Router.replace(
-      {},
-      {
-        pathname: url,
-        hash: hash,
+    Query.sort = sortItem.value;
+    // Router.replace(
+    //   {},
+    //   {
+    //     pathname: url,
+    //     hash: hash,
 
-        query: { ...Query, sort: sortItem.value },
-      },
-      { scroll: false }
-    );
+    //     query: { ...Query, sort: sortItem.value },
+    //   },
+    //   { scroll: false }
+    // );
+    const display = Object.keys(Query)
+      .map(function (key) {
+        return key + "=" + Query[key];
+      })
+      .join("&");
+
+    Router.replace(`${url}?${display}${hash ? `#${hash}` : ""}`);
     dispatch(closeSort());
   };
 
