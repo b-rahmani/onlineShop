@@ -30,7 +30,7 @@ const AllProductProvider = (props: Iprops) => {
     const { data } = await vercelClient.get("/api/allProduct", {
       params: { ...Router.query },
     });
-    const selectedSort = Router.query.sort;
+    // const selectedSort = Router.query.sort;
 
     // const sortedData=data.sort(item=>item.)
     return data;
