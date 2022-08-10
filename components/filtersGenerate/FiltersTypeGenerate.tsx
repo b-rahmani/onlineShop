@@ -2,11 +2,11 @@ import FilterRadioMode from "../FilterRadioMode/FilterRadioMode";
 import FilterRange from "../FilterRange/FilterRange";
 import FilterSelectMode from "../FilterSelectMode/FilterSelectMode";
 
-export interface filteritemType  {
- name:string;
- faName:string;
- value:string|number;
-};
+export interface filteritemType {
+  name: string;
+  faName: string;
+  value: string | number;
+}
 export interface filterType {
   name: string;
   type: string;
@@ -26,11 +26,10 @@ const FiltersTypeGenerate = (props: { filter: filterType }) => {
       return <FilterListMode filter={filter} />;
 
     case "radio":
-      return <FilterRadioMode filter={filter} />;
+      return <FilterRadioMode filter={filter} name={filter.name} />;
 
     case "select":
       return <FilterSelectMode filter={filter} />;
-   
 
     case "range":
       return (
@@ -40,7 +39,6 @@ const FiltersTypeGenerate = (props: { filter: filterType }) => {
           max={+filter.items[1].value}
         />
       );
-    
 
     default:
       console.log("your type in invalid");

@@ -61,16 +61,18 @@ const SearchBar = () => {
   }, [Router.asPath]);
 
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setIsLoading(true);
-      vercelClient
-        .get(`/api/allProduct/?search=${searched}`)
-        .then((res) => setResault(res.data))
-        .catch((er) => console.log(er))
-        .finally(() => setIsLoading(false));
-    }, 300);
+    if (searched) {
+      let timer = setTimeout(() => {
+        setIsLoading(true);
+        vercelClient
+          .get(`/api/search/?search=${searched}`)
+          .then((res) => setResault(res.data))
+          .catch((er) => console.log(er))
+          .finally(() => setIsLoading(false));
+      }, 300);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, [searched]);
 
   return (

@@ -43,7 +43,7 @@ const ProductMap = () => {
       : "";
 
   let Mothened = motion(ProductCard);
-  // console.log("props.res", props);
+ 
 
   return (
     <LayoutGroup>

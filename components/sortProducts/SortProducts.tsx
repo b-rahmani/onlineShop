@@ -73,7 +73,7 @@ const SortProducts = () => {
     const url = "/";
     const Query = Router.query;
     Query.sort = item.value;
-    console.log(Query);
+    
     const display= Object.keys(Query).map(function(key) {
       return key + '=' + Query[key];
     }).join('&');

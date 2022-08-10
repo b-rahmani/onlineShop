@@ -18,6 +18,24 @@ const FilterSelectMode = (props: { filter: filterType }) => {
   const Router = useRouter();
 
   useEffect(() => {
+    // console.log(Router.query);
+    const selectItemsINQuery = [];
+    // for key,value} in Router.query{
+
+    // }
+    if (Router.isReady) {
+      for (const key in Router.query) {
+        if (key.includes(props.filter.name))
+          selectItemsINQuery.push({
+            name: props.filter.name,
+            value: Router.query[key] as string,
+          });
+      }
+      setSelect(selectItemsINQuery);
+    }
+  }, []);
+
+  useEffect(() => {
     const querys: IObjectKeys = {};
     select.forEach(({ name, value }, ind: number) => {
       let label = `${name}[${ind.toString()}]`;
@@ -50,6 +68,7 @@ const FilterSelectMode = (props: { filter: filterType }) => {
           <label>
             <input
               type="checkbox"
+              checked={select?.some((s: selectType) => s.value === item.value)}
               onChange={() =>
                 selectFilterHandler(props.filter.name, item.value.toString())
               }

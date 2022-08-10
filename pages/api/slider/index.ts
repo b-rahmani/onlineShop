@@ -11,16 +11,19 @@ export default  function handler(
   res: NextApiResponse
 ) {
   
-  const url=`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@online-shop.ps6bz.mongodb.net/?retryWrites=true&w=majority`
+  const url=`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`
 const client = new MongoClient(url);
 const dbName=process.env.DB_NAME;
+const coll=process.env.USERS_COLLECTION!;
+  // const collection_P=process.env.USERS_COLLECTION_P;
+
     async function run() {
       try {
  
         await client.connect();
 
  const db = client.db(dbName);
-  const collection = db.collection('sliders');
+  const collection = db.collection(coll);
  const findResult = await collection.find({}).toArray();
 
 

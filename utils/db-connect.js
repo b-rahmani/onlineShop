@@ -10,11 +10,11 @@ export async function dbConnect() {
     console.log("using existing connection");
     return global.mongoose.conn;
   } else {
-    console.log("creating new connection");
+    // console.log("creating new connection");
     const user = process.env.USER;
     const password = process.env.PASSWORD;
     const dataBase = process.env.MONGODB_DB;
-    const conString = `mongodb+srv://${user}:${password}@online-shop.ps6bz.mongodb.net/?retryWrites=true&w=majority`;
+    const conString = `mongodb+srv://${user}:${password}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
 
     const promise = mongoose
       .connect(conString, {

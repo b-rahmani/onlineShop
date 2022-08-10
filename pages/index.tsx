@@ -29,7 +29,9 @@ const Home: NextPage = (props: any) => {
   // const [loading, setIsloading] = useState(true);
 
   // const getAllProduct = async () => {
-  //   const { data } = await vercelClient.get("/api/allProduct");
+  //   const { data } = await vercelClient.get("/api/allProduct",{
+  //     params:{}
+  //   });
   //   return data;
   // };
 
@@ -40,13 +42,13 @@ const Home: NextPage = (props: any) => {
   //     })
   //     .finally(() => setIsloading(false));
   // }, []);
-  // const sliderData = Array.from(Array(10).keys()).map(
-  //   (p: any, ind: number): SingleSliderDataTypes => ({
-  //     id: ind + 1,
-  //     image: `/images/sliders/s${ind + 1}.jpg`,
-  //     title: (ind + 1).toString(),
-  //   })
-  // );
+  const sliderData = Array.from(Array(10).keys()).map(
+    (p: any, ind: number): SingleSliderDataTypes => ({
+      id: ind + 1,
+      image: `/images/sliders/s${ind + 1}.jpg`,
+      title: (ind + 1).toString(),
+    })
+  );
 
   return (
     <>
@@ -62,7 +64,7 @@ const Home: NextPage = (props: any) => {
       <AllProductProvider>
         <MainProducts />
       </AllProductProvider>
-       {/* </AllProductContext.Provider>  */}
+      {/* </AllProductContext.Provider>  */}
       <SortMobile />
       <FilterMobile />
     </>

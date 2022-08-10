@@ -4,7 +4,7 @@ import classes from "./filterRange.module.scss";
 import "react-input-range/lib/css/index.css";
 import { useRouter } from "next/router";
 import { filterType } from "../filtersGenerate/FiltersTypeGenerate";
-import { produceWithPatches } from "immer";
+
 
 const FilterRange = (props: {
   filter: filterType;

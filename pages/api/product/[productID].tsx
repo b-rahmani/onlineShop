@@ -4,15 +4,17 @@ import { NextApiRequest, NextApiResponse } from "next";
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   //get one product
   const productID = req.query.productID;
-  const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@online-shop.ps6bz.mongodb.net/?retryWrites=true&w=majority`;
+  const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
   const client = new MongoClient(url);
   const dbName = process.env.DB_NAME;
+  const coll=process.env.PRODUCTS_COLLECTION!;
+  // const collection_P=process.env.PRODUCTS_COLLECTION_P;
   async function run() {
     try {
       await client.connect();
-      console.log("Connected successfully to server");
+  
       const db = client.db(dbName);
-      const collection = db.collection("products");
+      const collection = db.collection(coll);
 
       const product = await collection.findOne({
         id: +productID,

@@ -27,16 +27,23 @@ const AllProductProvider = (props: Iprops) => {
   const Router = useRouter();
 
   const getAllProduct = async () => {
-    const { data } = await vercelClient.get("/api/allProduct");
+    const { data } = await vercelClient.get("/api/allProduct", {
+      params: { ...Router.query },
+    });
+    const selectedSort = Router.query.sort;
+
+    // const sortedData=data.sort(item=>item.)
     return data;
   };
 
   useEffect(() => {
-    getAllProduct()
-      .then((res) => {
-        setAlllProduct(res);
-      })
-      .finally(() => setIsloading(false));
+    if (Router.query) {
+      getAllProduct()
+        .then((res) => {
+          setAlllProduct(res);
+        })
+        .finally(() => setIsloading(false));
+    }
   }, [Router.query]);
 
   return (
