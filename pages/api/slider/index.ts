@@ -14,7 +14,7 @@ export default  function handler(
   const url=`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`
 const client = new MongoClient(url);
 const dbName=process.env.DB_NAME;
-const coll=process.env.USERS_COLLECTION!;
+// const coll=process.env.SLIDERS_COLLECTION!;
   // const collection_P=process.env.USERS_COLLECTION_P;
 
     async function run() {
@@ -23,7 +23,7 @@ const coll=process.env.USERS_COLLECTION!;
         await client.connect();
 
  const db = client.db(dbName);
-  const collection = db.collection(coll);
+  const collection = db.collection("sliders");
  const findResult = await collection.find({}).toArray();
 
 

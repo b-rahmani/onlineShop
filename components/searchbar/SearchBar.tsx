@@ -18,7 +18,7 @@ import classes from "./searchbar.module.scss";
 const SearchBar = () => {
   const topSearchRef = useRef<HTMLInputElement>(null);
   const topSearchBoxRef = useRef<HTMLDivElement>(null);
-  const [searched, setSearched] = useState("");
+  const [searched, setSearched] = useState<string>("");
   const [result, setResault] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const Router = useRouter();
@@ -125,7 +125,9 @@ const SearchBar = () => {
         </div>
         {result && (
           <div className={classes.ResaultBox}>
-            {result?.length === 0 && <p>نتیجه ای یافت نشد</p>}
+            {searched.trim() !== "" && result?.length === 0 && !isLoading && (
+              <p>نتیجه ای یافت نشد</p>
+            )}
             {result?.map((product: productType) => (
               <Link href={`/product/${product.id}`} key={product.id}>
                 <a className={joinClassModules(classes.product)}>

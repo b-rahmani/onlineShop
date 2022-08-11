@@ -11,7 +11,7 @@ export default async function handler(
  const url=`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`
  const client = new MongoClient(url);
  const dbName=process.env.DB_NAME;
- const coll=process.env.USERS_COLLECTION!;
+//  const coll=process.env.USERS_COLLECTION!;
   // const collection_P=process.env.USERS_COLLECTION_P;
      async function run() {
        try {
@@ -19,7 +19,7 @@ export default async function handler(
          await client.connect();
  
   const db = client.db(dbName);
-   const collection = db.collection(coll);
+   const collection = db.collection("users");
   const findResult = await collection.findOne({_id:new ObjectId(userId.toString())})
  if(!findResult){
     //  console.log("not esist user")

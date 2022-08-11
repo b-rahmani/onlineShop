@@ -7,14 +7,14 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
   const client = new MongoClient(url);
   const dbName = process.env.DB_NAME;
-  const coll=process.env.PRODUCTS_COLLECTION!;
+  // const coll=process.env.PRODUCTS_COLLECTION!;
   // const collection_P=process.env.PRODUCTS_COLLECTION_P;
   async function run() {
     try {
       await client.connect();
-  
+
       const db = client.db(dbName);
-      const collection = db.collection(coll);
+      const collection = db.collection("allProducts");
 
       const product = await collection.findOne({
         id: +productID,
