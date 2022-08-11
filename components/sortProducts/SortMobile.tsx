@@ -23,27 +23,23 @@ const SortMobile = () => {
   const Router = useRouter();
   const sortItemClickHandler = (sortItem: singleSortItemType) => {
     dispatch(changeSelectedSort(sortItem));
-    const hash = Router.asPath.split("#")[1];
+    // const hash = Router.asPath.split("#")[1];
     const url = "/";
     const Query = Router.query;
-    Query.sort = sortItem.value;
-    // Router.replace(
-    //   {},
-    //   {
-    //     pathname: url,
-    //     hash: hash,
+    // Query.sort = sortItem.value;
+    Router.replace({
+      pathname: url,
+      // hash: hash,
 
-    //     query: { ...Query, sort: sortItem.value },
-    //   },
-    //   { scroll: false }
-    // );
-    const display = Object.keys(Query)
-      .map(function (key) {
-        return key + "=" + Query[key];
-      })
-      .join("&");
+      query: { ...Query, sort: sortItem.value },
+    });
+    // const display = Object.keys(Query)
+    //   .map(function (key) {
+    //     return key + "=" + Query[key];
+    //   })
+    //   .join("&");
 
-    Router.replace(`${url}?${display}${hash ? `#${hash}` : ""}`);
+    // Router.replace(`${url}?${display}${hash ? `#${hash}` : ""}`);
     dispatch(closeSort());
   };
 
