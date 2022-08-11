@@ -25,7 +25,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       ];
       const Query = req.query;
       const sort = Query?.sort;
-      console.log(Query);
+      // console.log(Query);
       // console.log(Query.sort)
       const selectedSort =
         sortMap?.find((el) => el.value == sort) || sortMap[0];

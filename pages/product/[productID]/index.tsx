@@ -5,6 +5,7 @@ import SingleProduct, {
 import { GetStaticProps } from "next";
 
 import { vercelClient } from "../../../utils/axios";
+import { allProductsMock } from "../../../filterData/fakeProductData";
 
 interface SingleProductType {
   product: productType;
@@ -22,47 +23,53 @@ const SingleProductPage = (props: SingleProductType) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }: { [key: string]: any }) => {
   // const { data } = await vercelClient.get<productType>(
   //   `/api/product/${params?.productID}`
   // );
-  const { data: allProduct } = await vercelClient.get("/api/allProduct");
-  const data = await allProduct?.find(
-    (p: productType) => p.id === Number(params?.productID)
-  );
 
-  if (allProduct && data) {
+  try {
+    const { data: allProduct } = await vercelClient.get("/api/allData");
+
+    const product = await allProduct?.find(
+      (p: productType) => p.id == params?.productID
+    );
+
     return {
       props: {
-        product: data,
+        product: product,
         related: allProduct,
       },
       revalidate: 10,
     };
-  } else {
-    return {
-      //   // notFound: true,
-      props: {
-        status: 404,
-      },
-    };
+  } catch (error) {
+    console.log(error);
   }
+
+  // } else {
+  //   return {
+  // //     // notFound: true,
+  //     props: {
+  //       status: 404,
+  //     },
+  //   };
+  // }
 };
-export async function getStaticPaths() {
-  const { data: allProducts } = await vercelClient.get(`/api/allProduct`);
+export const getStaticPaths = async () => {
+  try {
+    const { data } = await vercelClient.get("/api/allData");
+    const appIds = await data?.map((el: productType) => ({
+      params: { productID: el.id.toString() },
+    }));
 
-  // const allProducts = allProductsMock;
-
-  const appIds = allProducts?.map((el: productType) => ({
-    params: { productID: el.id.toString() },
-  }));
-
-  if (allProducts && appIds) {
+    // if (data && appIds) {
     return {
       paths: appIds,
       fallback: false,
     };
+    // }
+  } catch (error) {
+    console.log(error);
   }
-}
-
+};
 export default SingleProductPage;
