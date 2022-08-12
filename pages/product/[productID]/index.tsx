@@ -65,7 +65,7 @@ export const getStaticPaths = async () => {
     // if (data && appIds) {
     return {
       paths: appIds,
-      fallback: false,
+      fallback: true,
     };
     // }
   } catch (error) {

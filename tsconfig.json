@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/FilterProducts/FilterProducts.js", "utils/db-connect.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/FilterProducts/FilterProducts.js", "utils/db-connect.ts"],
   "exclude": ["node_modules"]
 }
