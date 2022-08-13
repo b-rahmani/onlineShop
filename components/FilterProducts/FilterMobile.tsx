@@ -9,6 +9,7 @@ import FiltersTypeGenerate from "../filtersGenerate/FiltersTypeGenerate";
 import Accordion from "../accordion/Accordion";
 import { Fragment, useState } from "react";
 import ArrowLeftIcon from "../icons/arrowLeftIcon";
+import { useRouter } from "next/router";
 
 const FilterMobile = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>("");
@@ -16,6 +17,7 @@ const FilterMobile = () => {
     (state: RootState) => state.filterSort.isOpenfilter
   );
   const dispatch = useDispatch();
+  const Router = useRouter();
 
   const renderedFilter = filters.find((el) => el.faName === selectedFilter);
 
@@ -37,7 +39,12 @@ const FilterMobile = () => {
             <>
               <CloseIcon click={() => dispatch(closeFilter())} />
               <p className={classes.title}>فیلتر ها</p>
-              <p className={classes.removeFilter}>حذف فیلترها </p>
+              <p
+                className={classes.removeFilter}
+                onClick={() => Router.replace("/")}
+              >
+                حذف فیلترها{" "}
+              </p>
             </>
           )}
         </div>

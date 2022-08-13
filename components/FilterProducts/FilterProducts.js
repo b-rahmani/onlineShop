@@ -4,14 +4,16 @@ import { filters } from "../../filterData/filterData";
 import FiltersTypeGenerate from "../filtersGenerate/FiltersTypeGenerate";
 import Accordion from "../accordion/Accordion";
 import { Fragment } from "react";
+import { useRouter } from "next/router";
 
 const FilterProducts = () => {
+  const Router = useRouter();
   return (
     <div className={classes.filterProducts}>
       <div className={classes.innerFilter}>
         <div className={classes.filterHead}>
           <h3>فیلتر ها </h3>
-          <button>حذف فیلتر ها </button>
+          <button onClick={() => Router.replace("/")}>حذف فیلتر ها </button>
         </div>
 
         <div className={classes.filters}>

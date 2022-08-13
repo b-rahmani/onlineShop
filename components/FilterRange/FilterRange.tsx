@@ -31,7 +31,7 @@ const FilterRange = (props: {
             },
           },
           undefined,
-          { shallow: true }
+          // { shallow: true }
         );
       }, 350);
     }

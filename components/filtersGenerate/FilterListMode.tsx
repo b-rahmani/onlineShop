@@ -14,8 +14,8 @@ const FilterListMode = (props: { filter: filterType }) => {
         pathname: "/",
         query: { ...prevQuery, [name]: encodeURI(value) },
       },
-      undefined,
-      { shallow: true }
+      undefined
+      // { shallow: true }
     );
   };
 

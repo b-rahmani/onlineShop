@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useState } from "react";
+import { object } from "yup";
 import { productType } from "../components/SingleProduct/SingleProduct";
 import { vercelClient } from "../utils/axios";
 import { SingleSliderDataTypes } from "./ContextSlider";
@@ -23,6 +24,7 @@ interface Iprops {
 
 const AllProductProvider = (props: Iprops) => {
   const [allProductState, setAlllProduct] = useState<productType[]>([]);
+  const [query, setQuery] = useState({});
   const [loading, setIsloading] = useState(true);
   const Router = useRouter();
 
@@ -30,10 +32,52 @@ const AllProductProvider = (props: Iprops) => {
     const { data } = await vercelClient.get("/api/allProduct", {
       params: { ...Router.query },
     });
-    const selectedSort = Router.query.sort;
 
-    // const sortedData=data.sort(item=>item.)
-    return data;
+    const { sort, ...FilterQ } = Router.query;
+    //=> filterQ={isExist:"1",maxPrice:12500,...}
+
+    let filtered;
+    if (Router.isReady) {
+      filtered = await data.filter((product: any) => {
+        let isValid = true;
+        for (const key in FilterQ) {
+          if (key === "min_price") {
+            isValid = isValid && product.price >= +FilterQ[key]!;
+          } else if (key === "max_price") {
+            isValid = isValid && product.price <= +FilterQ[key]!;
+          } else if (key === "category") {
+            isValid = isValid && product[key].name === FilterQ[key]!;
+          } else if (key === "isExist") {
+            isValid =
+              isValid &&
+              product[key].stock > 0 &&
+              Boolean(+(FilterQ[key] as string));
+          } else if (key === "isDiscount") {
+            isValid = isValid && product.discount > 0 && FilterQ[key] == "1";
+          } else if (key.includes("color")) {
+            isValid =
+              isValid &&
+              product.attribute.items.some(
+                (option: any) =>
+                  option.value === decodeURIComponent(FilterQ[key]!.toString())
+              );
+          } else if (key.includes("customHead")) {
+            isValid = isValid && product.customHead === FilterQ[key];
+          } else {
+            isValid = isValid && product[key] == FilterQ[key];
+          }
+        }
+        return isValid;
+      });
+    }
+    console.log("query", Router.query);
+    // const filtered = await data.filter((el: productType) => el);
+
+    if (Object.keys(FilterQ).length > 0) {
+      return filtered;
+    } else {
+      return data;
+    }
   };
 
   useEffect(() => {
@@ -42,9 +86,10 @@ const AllProductProvider = (props: Iprops) => {
         .then((res) => {
           setAlllProduct(res);
         })
+        .catch((er) => console.log(er))
         .finally(() => setIsloading(false));
     }
-  }, [Router.query]);
+  }, [Router.query, Router.isReady]);
 
   return (
     <AllProductContext.Provider value={{ allProductState, loading }}>

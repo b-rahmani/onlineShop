@@ -49,7 +49,7 @@ const FilterSelectMode = (props: { filter: filterType }) => {
         query: { ...prevQuery, ...querys },
       },
       undefined,
-      { shallow: true }
+      // { shallow: true }
     );
   }, [select]);
 
