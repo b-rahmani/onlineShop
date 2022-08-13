@@ -170,8 +170,19 @@ const Cart = (props: Iprops) => {
               <span>تومان</span>
             </p>
           </div>
+
           <button className={classes.checkout}>ادامه</button>
         </section>
+        <div className={classes.checkoutBoxMobile}>
+          <button className={classes.checkout}>ادامه</button>
+          <div className={classes.text}>
+            <p>جمع سبد خرید</p>
+            <p>
+              <span>{SumPriceCart(cartItems).toLocaleString()}</span>
+              <span>تومان</span>
+            </p>
+          </div>
+        </div>
       </main>
       <RelatedSlider related={props.slider} text="بازدید های اخیر شما" />
     </div>

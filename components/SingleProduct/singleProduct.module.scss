@@ -142,7 +142,8 @@
           rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
         .phoneOnly {
-          display: block;
+          display: flex;
+          align-items: center;
           order: 1;
 
           .price {
@@ -172,6 +173,7 @@
                 padding: 2px 7px;
                 font-size: 14px;
                 color: #fff;
+                font-family: iranyekanFa;
               }
             }
             .calculatedPrice {
