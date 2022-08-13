@@ -14,6 +14,8 @@ import {
 import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
 import RelatedSlider from "../relatedSlider/RelatedSlider";
 import { productType } from "../SingleProduct/SingleProduct";
+import EmptyCart from "../icons/emptyCart";
+import Link from "next/link";
 
 interface Iprops {
   slider: productType[];
@@ -33,81 +35,101 @@ const Cart = (props: Iprops) => {
       </div>
       <main>
         <section className={classes.cartitemsContainer}>
-          <div className={classes.header}>
-            <span>سبد خرید شما</span>
-            <p>
-              <span></span>
-              <span></span>
-              <span></span>
-            </p>
-          </div>
-          <span>{cartItems?.length} کالا</span>
-          <div className={classes.cartItemsBox}>
-            {cartItems?.map((product: basketProductType) => (
-              <div
-                className={classes.cartItem}
-                key={product.id + product.selectedAttribute.value}
-              >
-                <div className={classes.imageContainer}>
-                  <div className={classes.imageBox}>
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      layout="fill"
-                    />
-                  </div>
-                  <p>{product.customHead}</p>
-                </div>
-                <div
-                  className={joinClassModules(
-                    classes.productDetails,
-                    "ellips--3"
-                  )}
-                >
-                  <p className={classes.title}>{product.title}</p>
-                  <div className={classes.attribute}>
-                    <p
-                      className={classes.colorAttribute}
-                      style={{
-                        backgroundColor: product?.selectedAttribute?.value,
-                      }}
-                    >
-                      &nbsp;
-                    </p>
-                    <span className={classes.attributeName}>
-                      {product.selectedAttribute?.faName}
-                    </span>
-                  </div>
-                </div>
-                <BuyBtnActions
-                  product={product}
-                  attribute={product.selectedAttribute}
-                  outline
-                />
-
-                <div className={classes.price}>
-                  {your_benefit_buy(product) > 0 && (
-                    <p className={classes.benefit}>
-                      <span>{your_benefit_buy(product).toLocaleString()}</span>
-                      <span>تومان</span>
-                      <span>تخفیف</span>
-                    </p>
-                  )}
-                  <p className={classes.discountedPrice}>
-                    <span>
-                      {priceDiscounted(
-                        product.price,
-                        product.discount
-                      ).toLocaleString()}
-                    </span>
-                    <span>تومان</span>
-                  </p>
-                </div>
+          {cartItems.length > 0 ? (
+            <>
+              <div className={classes.header}>
+                <span>سبد خرید شما</span>
+                <p>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </p>
               </div>
-            ))}
-          </div>
+              <span>{cartItems?.length} کالا</span>
+              <div className={classes.cartItemsBox}>
+                {cartItems?.map((product: basketProductType) => (
+                  <div
+                    className={classes.cartItem}
+                    key={product.id + product.selectedAttribute.value}
+                  >
+                    <div className={classes.imageContainer}>
+                      <div className={classes.imageBox}>
+                        <Image
+                          src={product.image}
+                          alt={product.title}
+                          layout="fill"
+                        />
+                      </div>
+                      <p>{product.customHead}</p>
+                    </div>
+                    <div
+                      className={joinClassModules(
+                        classes.productDetails,
+                        "ellips--3"
+                      )}
+                    >
+                      <p className={classes.title}>{product.title}</p>
+                      <div className={classes.attribute}>
+                        <p
+                          className={classes.colorAttribute}
+                          style={{
+                            backgroundColor: product?.selectedAttribute?.value,
+                          }}
+                        >
+                          &nbsp;
+                        </p>
+                        <span className={classes.attributeName}>
+                          {product.selectedAttribute?.faName}
+                        </span>
+                      </div>
+                    </div>
+                    <BuyBtnActions
+                      product={product}
+                      attribute={product.selectedAttribute}
+                      outline
+                    />
+
+                    <div className={classes.price}>
+                      {your_benefit_buy(product) > 0 && (
+                        <p className={classes.benefit}>
+                          <span>
+                            {your_benefit_buy(product).toLocaleString()}
+                          </span>
+                          <span>تومان</span>
+                          <span>تخفیف</span>
+                        </p>
+                      )}
+                      <p className={classes.discountedPrice}>
+                        <span>
+                          {priceDiscounted(
+                            product.price,
+                            product.discount
+                          ).toLocaleString()}
+                        </span>
+                        <span>تومان</span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className={classes.emptyBasket}>
+              <EmptyCart />
+              <p>سبد خرید شما خالی است!</p>
+              <p>می‌توانید برای مشاهده محصولات بیشتر به صفحه زیر بروید:</p>
+              <Link href={"/"}>
+                <a>محصولات</a>
+              </Link>
+            </div>
+          )}
         </section>
-        <section className={classes.checkoutContainer}>
+        <section
+          className={joinClassModules(
+            classes.checkoutContainer,
+            cartItems.length > 0 ? "" : classes.empty
+          )}
+        >
           <div className={classes.prices}>
             <p>قیمت کالاها ({cartItems?.length})</p>
             <p>

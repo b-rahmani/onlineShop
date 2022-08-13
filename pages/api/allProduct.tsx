@@ -20,7 +20,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         { faName: "پرفروش ترین", value: "7", name: "discount", sortmode: -1 },
         { faName: "ارزانترین", value: "20", name: "price", sortmode: 1 },
         { faName: "گرانترین", value: "21", name: "price", sortmode: -1 },
-        { faName: "مرتبط ترین", value: "22", name: "category", sortmode: -1 },
+        { faName: "مرتبط ترین", value: "22", name: "category", sortmode: 1 },
         { faName: "پربازدید ترین", value: "4", name: "rating", sortmode: -1 },
         { faName: "جدید ترین", value: "1", name: "stock", sortmode: -1 },
       ];

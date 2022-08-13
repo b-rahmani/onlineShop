@@ -1,4 +1,5 @@
-export const a=5;
+import { MongoClient } from "mongodb";
+
 
 
 export const Db={
@@ -6,37 +7,33 @@ export const Db={
     PASSWORD:"admin1234",
     DB_NAME:"new",
 }
-// import mongoose from "mongoose";
 
-// global.mongoose = {
-//   conn: null,
-//   promise: null,
-// };
+export const allProductDb=async()=>{
+    const url = `mongodb+srv://${Db.USER}:${Db.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
+    const client = new MongoClient(url);
+    const dbName = Db.DB_NAME;
+  
+    try {
+      await client.connect();
+      const db = client.db(dbName);
+      const collection = db.collection("allProducts");
+  
+      let findResult;
+  
+      findResult = await collection.find({}).toArray();
+    
+      client.close();
+      
+      const converted = await findResult.map((item: any) => ({
+        ...item,
+        _id: item._id.toString(),
+      }));
+      
+      return  await converted;
+    } catch (er) {
+      client.close();
+  
+      throw er;
+    }
+}
 
-// export async function dbConnect() {
-//   if (global.mongoose && global.mongoose.conn) {
-//     console.log("using existing connection");
-//     return global.mongoose.conn;
-//   } else {
-//     // console.log("creating new connection");
-//     const user = process.env.USER;
-//     const password = process.env.PASSWORD;
-//     const dataBase = process.env.MONGODB_DB;
-//     const conString = `mongodb+srv://${user}:${password}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
-
-//     const promise = mongoose
-//       .connect(conString, {
-//         useNewUrlParser: true,
-
-//         useUnifinedTopology: true,
-//         autoIndex: true,
-//       })
-//       .then((mongoose) => mongoose);
-
-//     global.mongoose = {
-//       conn: await promise,
-//       promise,
-//     };
-//     return await promise;
-//   }
-// }
