@@ -1,4 +1,11 @@
 export const a=5;
+
+
+export const Db={
+    USER:"admin",
+    PASSWORD:"admin1234",
+    DB_NAME:"new",
+}
 // import mongoose from "mongoose";
 
 // global.mongoose = {

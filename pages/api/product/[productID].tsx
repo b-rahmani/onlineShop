@@ -1,12 +1,13 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
+import { Db } from "../../../utils/db-connect";
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   //get one product
   const productID = req.query.productID;
-  const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
+  const url = `mongodb+srv://${Db.USER}:${Db.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
   const client = new MongoClient(url);
-  const dbName = process.env.DB_NAME;
+  const dbName = Db.DB_NAME;
   // const coll=process.env.PRODUCTS_COLLECTION!;
   // const collection_P=process.env.PRODUCTS_COLLECTION_P;
   async function run() {

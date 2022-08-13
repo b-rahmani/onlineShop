@@ -1,10 +1,11 @@
 import { MongoClient } from "mongodb";
 import { NextApiResponse, NextApiRequest } from "next";
+import { Db } from "../../utils/db-connect";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const url = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
+  const url = `mongodb+srv://${Db.USER}:${Db.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
   const client = new MongoClient(url);
-  const dbName = process.env.DB_NAME;
+  const dbName = Db.DB_NAME;
   // const coll = process.env.PRODUCTS_COLLECTION;
   // const collection_P=process.env.PRODUCTS_COLLECTION_P;
   async function run() {
