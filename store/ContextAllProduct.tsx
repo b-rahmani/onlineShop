@@ -36,9 +36,9 @@ const AllProductProvider = (props: Iprops) => {
     const { sort, ...FilterQ } = Router.query;
     //=> filterQ={isExist:"1",maxPrice:12500,...}
 
-    let filtered;
-    if (Router.isReady) {
-      filtered = await data.filter((product: any) => {
+   
+   
+     let filtered = await data.filter((product: any) => {
         let isValid = true;
         for (const key in FilterQ) {
           if (key === "min_price") {
@@ -69,9 +69,9 @@ const AllProductProvider = (props: Iprops) => {
         }
         return isValid;
       });
-    }
-    console.log("query", Router.query);
-    // const filtered = await data.filter((el: productType) => el);
+    
+  
+   
 
     if (Object.keys(FilterQ).length > 0) {
       return filtered;
@@ -89,7 +89,7 @@ const AllProductProvider = (props: Iprops) => {
         .catch((er) => console.log(er))
         .finally(() => setIsloading(false));
     }
-  }, [Router.query, Router.isReady]);
+  }, [Router.query]);
 
   return (
     <AllProductContext.Provider value={{ allProductState, loading }}>
