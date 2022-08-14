@@ -42,13 +42,19 @@ const FilterSelectMode = (props: { filter: filterType }) => {
       querys[label] = encodeURI(value);
     });
     const prevQuery = Router.query;
+    // const filteredPrevQuery=Object.keys(prevQuery).map(el=>el.includes(props.filter.name)?"":el);
+    const filteredPrevQuery = Object.fromEntries(
+      Object.entries(prevQuery).filter(
+        ([key]) => !key.includes(props.filter.name)
+      )
+    );
 
     Router.push(
       {
         pathname: "/",
-        query: { ...prevQuery, ...querys },
+        query: { ...filteredPrevQuery, ...querys },
       },
-      undefined,
+      undefined
       // { shallow: true }
     );
   }, [select]);

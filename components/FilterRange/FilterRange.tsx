@@ -33,7 +33,7 @@ const FilterRange = (props: {
           undefined,
           // { shallow: true }
         );
-      }, 350);
+      }, 400);
     }
     return () => {
       clearTimeout(timer);
