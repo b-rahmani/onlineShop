@@ -23,11 +23,11 @@ export const filters = [
     type: "select",
     faName: "رنگ",
     items: [
-      { name: "silver", faName: "نقره ای", value: "#C0C0C0" },
+      { name: "silver", faName: "نقره ای", value: "#c0c0c0" },
       { name: "yellow", faName: "زرد", value: "#ffea4f" },
       { name: "red", faName: "قرمز", value: "#ff0000" },
       { name: "black", faName: "مشکی", value: "#000000" },
-      { name: "gold", faName: "طلایی", value: "#FFD700" },
+      { name: "gold", faName: "طلایی", value: "#ffd700" },
     ],
   },
   {

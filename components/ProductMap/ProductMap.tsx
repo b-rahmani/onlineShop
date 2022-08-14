@@ -21,6 +21,7 @@ import { AllProductContext } from "../../store/ContextAllProduct";
 import CheckIcon from "../icons/checkIcon";
 import { productType } from "../SingleProduct/SingleProduct";
 import LoadingCard from "../productCard/LoadingCard";
+import NotFoundSearch from "../icons/NotFoundSearch";
 
 const ProductMap = () => {
   const dispatch = useDispatch();
@@ -43,15 +44,23 @@ const ProductMap = () => {
       : "";
 
   let Mothened = motion(ProductCard);
- 
 
   return (
     <LayoutGroup>
+      {!loading && allProductState?.length === 0 ? (
+        <section className={classes.notFoundSearch}>
+          <NotFoundSearch />
+          <p>تیجه‌ای یافت نشد!</p>
+        </section>
+      ) : (
+        ""
+      )}
       <div className={classes.productMapLayout}>
         {loading &&
           Array.from(Array(12).keys()).map((item) => (
             <LoadingCard key={item} break />
           ))}
+
         {allProductState?.map((item: productType) => (
           <Mothened
             layout

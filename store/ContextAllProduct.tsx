@@ -36,48 +36,13 @@ const AllProductProvider = (props: Iprops) => {
     const { sort, ...FilterQ } = Router.query;
     //=> filterQ={isExist:"1",maxPrice:12500,...}
 
-   
-   
-     let filtered = await data.filter((product: any) => {
-        let isValid = true;
-        for (const key in FilterQ) {
-          if (key === "min_price") {
-            isValid = isValid && product.price >= +FilterQ[key]!;
-          } else if (key === "max_price") {
-            isValid = isValid && product.price <= +FilterQ[key]!;
-          } else if (key === "category") {
-            isValid = isValid && product[key].name === FilterQ[key]!;
-          } else if (key === "isExist") {
-            isValid =
-              isValid &&
-              product[key].stock > 0 &&
-              Boolean(+(FilterQ[key] as string));
-          } else if (key === "isDiscount") {
-            isValid = isValid && product.discount > 0 && FilterQ[key] == "1";
-          } else if (key.includes("color")) {
-            isValid =
-              isValid &&
-              product.attribute.items.some(
-                (option: any) =>
-                  option.value === decodeURIComponent(FilterQ[key]!.toString())
-              );
-          } else if (key.includes("customHead")) {
-            isValid = isValid && product.customHead === FilterQ[key];
-          } else {
-            isValid = isValid && product[key] == FilterQ[key];
-          }
-        }
-        return isValid;
-      });
-    
-  
-   
+    return data;
 
-    if (Object.keys(FilterQ).length > 0) {
-      return filtered;
-    } else {
-      return data;
-    }
+    // if (Object.keys(FilterQ).length > 0) {
+    //   return filtered;
+    // } else {
+    //   return data;
+    // }
   };
 
   useEffect(() => {

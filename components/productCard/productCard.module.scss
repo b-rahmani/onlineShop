@@ -6,6 +6,8 @@
   font-family: iranyekanFa;
   user-select: none;
   width: 100%;
+  // max-width: 330px;
+  max-height: 450px;
 
   .share,
   .expand {
@@ -182,7 +184,7 @@
   }
   @include phone-only {
     padding: 5px;
-
+    max-width: 100%;
     .link {
       flex-direction: row;
       flex-wrap: wrap;

@@ -25,8 +25,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         { faName: "جدید ترین", value: "1", name: "stock", sortmode: -1 },
       ];
       const Query = req.query;
-      const sort = Query?.sort;
-      // console.log(Query);
+      // const sort = Query?.sort;
+      const { sort, ...FilterQ } = Query;
       // console.log(Query.sort)
       const selectedSort =
         sortMap?.find((el) => el.value == sort) || sortMap[0];
@@ -41,9 +41,50 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         .find({})
         .sort({ [selectedSort.name]: selectedSort.sortmode as any })
         .toArray();
-      // }
 
-      res.status(200).json(findResult);
+      if (Object.keys(FilterQ).length > 0) {
+        let filtered = await findResult.filter((product: any) => {
+          let isValid = true;
+          for (const key in FilterQ) {
+            console.log(
+              key,
+              FilterQ[key],
+              decodeURIComponent(FilterQ[key]!.toString())
+            );
+            if (key === "min_price") {
+              isValid = isValid && product.price >= +FilterQ[key]!;
+            } else if (key === "max_price") {
+              isValid = isValid && product.price <= +FilterQ[key]!;
+            } else if (key === "category") {
+              isValid = isValid && product[key].name === FilterQ[key]!;
+            } else if (key === "isExist") {
+              isValid =
+                isValid &&
+                product.stock > 0 &&
+                Boolean(+(FilterQ[key] as string));
+            } else if (key === "isDiscount") {
+              isValid = isValid && product.discount > 0 && FilterQ[key] == "1";
+            } else if (key.includes("color")) {
+              isValid =
+                isValid &&
+                product.attribute?.items?.some(
+                  (option: any) =>
+                    option.value ===
+                    decodeURIComponent(FilterQ[key]!.toString())
+                );
+            } else if (key.includes("customHead")) {
+              isValid = isValid && product.customHead === FilterQ[key];
+            } else {
+              isValid = isValid && product[key] == FilterQ[key];
+            }
+          }
+          return isValid;
+        });
+
+        res.status(200).json(filtered);
+      } else {
+        res.status(200).json(findResult);
+      }
     } catch (er) {
       res.status(500).json({ message: "اشکالی پیش آمده" });
     } finally {
