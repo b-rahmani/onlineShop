@@ -54,8 +54,8 @@ const FilterSelectMode = (props: { filter: filterType }) => {
         pathname: "/",
         query: { ...filteredPrevQuery, ...querys },
       },
-      undefined
-      // { shallow: true }
+      undefined,
+      { shallow: true }
     );
   }, [select]);
 

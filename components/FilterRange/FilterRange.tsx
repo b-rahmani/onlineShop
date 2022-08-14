@@ -5,7 +5,6 @@ import "react-input-range/lib/css/index.css";
 import { useRouter } from "next/router";
 import { filterType } from "../filtersGenerate/FiltersTypeGenerate";
 
-
 const FilterRange = (props: {
   filter: filterType;
   min: number;
@@ -14,6 +13,15 @@ const FilterRange = (props: {
   const [prices, setPrices] = useState([...props.filter.items]);
 
   const Router = useRouter();
+
+  useEffect(() => {
+    if (Router.query && Router.query.max_price) {
+      setPrices((prev) => [
+        { ...prev[0], value: +Router.query.min_price! },
+        { ...prev[1], value: +Router.query.max_price! },
+      ]);
+    }
+  }, []);
 
   useEffect(() => {
     let timer: any;
@@ -31,7 +39,7 @@ const FilterRange = (props: {
             },
           },
           undefined,
-          // { shallow: true }
+          { shallow: true }
         );
       }, 400);
     }

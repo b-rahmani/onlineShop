@@ -44,6 +44,9 @@ const AllProductProvider = (props: Iprops) => {
     //   return data;
     // }
   };
+  const compare = Object.keys(Router.query).length > 0;
+
+ 
 
   useEffect(() => {
     if (Router.query) {
@@ -54,7 +57,7 @@ const AllProductProvider = (props: Iprops) => {
         .catch((er) => console.log(er))
         .finally(() => setIsloading(false));
     }
-  }, [Router.query]);
+  }, [compare]);
 
   return (
     <AllProductContext.Provider value={{ allProductState, loading }}>
