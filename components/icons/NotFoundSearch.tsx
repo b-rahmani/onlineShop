@@ -137,7 +137,7 @@ const NotFoundSearch = () => {
           width="109.85"
           height="9.8505"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
@@ -158,7 +158,7 @@ const NotFoundSearch = () => {
           width="109.85"
           height="9.8505"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
@@ -179,7 +179,7 @@ const NotFoundSearch = () => {
           width="68.8475"
           height="43.4348"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
