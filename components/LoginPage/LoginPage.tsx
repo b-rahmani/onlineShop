@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { vercelClient } from "../../utils/axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Loader from "../loading/Loading";
+import Loader from "../loading/Loading2";
 
 const LoginPage = () => {
   const Router = useRouter();
@@ -107,11 +107,15 @@ const LoginPage = () => {
                 <a className={classes.forgetPass}>فراموشی رمز عبور</a>
               </Link>
 
-              <button className={classes.loginButton} type="submit">
+              <button
+                className={classes.loginButton}
+                disabled={isLoading}
+                type="submit"
+              >
                 <span style={{ visibility: isLoading ? "hidden" : "visible" }}>
                   ورود
                 </span>
-                {isLoading && <Loader type="static" />}
+                {isLoading && <Loader />}
               </button>
               <button className={classes.loginWithGoogle} type="button">
                 ورود با گوگل

@@ -9,8 +9,11 @@ import * as yup from "yup";
 import { vercelClient } from "../../utils/axios";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
+import { useState } from "react";
+import Loader from "../loading/Loading2";
 
 const Signup = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const Router = useRouter();
   const shema = yup.object().shape({
     userName: yup.string().trim().required("نام کاربری الزامی است"),
@@ -42,6 +45,7 @@ const Signup = () => {
         return;
       }
     });
+    setIsLoading(true);
     vercelClient
       .post("/api/signup", {
         name: data.userName,
@@ -64,7 +68,8 @@ const Signup = () => {
           draggable: true,
           progress: undefined,
         });
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -134,9 +139,16 @@ const Signup = () => {
                 <a className={classes.forgetPass}>فراموشی رمز عبور</a>
               </Link>
 
-              <button className={classes.loginButton} type="submit">
-                {" "}
-                ثبت نام
+              <button
+                className={classes.loginButton}
+                disabled={isLoading}
+                type="submit"
+              >
+                {isLoading && <Loader />}
+                <span style={{ visibility: isLoading ? "hidden" : "visible" }}>
+                  {" "}
+                  ثبت نام
+                </span>
               </button>
             </form>
           </div>

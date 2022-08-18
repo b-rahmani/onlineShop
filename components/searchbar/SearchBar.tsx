@@ -11,7 +11,8 @@ import { joinClassModules } from "../../utils/utils";
 import ArrowLeftIcon from "../icons/arrowLeftIcon";
 
 import SearchIcon from "../icons/SearchIcon";
-import Loader from "../loading/Loading";
+
+import Loader from "../loading/Loading2";
 import Modal from "../modal/Modal";
 import { productType } from "../SingleProduct/SingleProduct";
 import classes from "./searchbar.module.scss";
@@ -117,21 +118,13 @@ const SearchBar = () => {
             // onFocus={searchFocusHandler}
             // onBlur={closeFocusHandler}
           />
-          {isLoading && (
-            // <figure>
-            //   <div
-            //     className={joinClassModules(classes.dot, classes.white)}
-            //   ></div>
-            //   <div className={classes.dot}></div>
-            //   <div className={classes.dot}></div>
-            //   <div className={classes.dot}></div>
-            //   <div className={classes.dot}></div>
-            // </figure>
-            <Loader />
+          {isLoading ? (
+            <Loader type="static" />
+          ) : (
+            <label>
+              <SearchIcon />
+            </label>
           )}
-          <label>
-            <SearchIcon />
-          </label>
         </div>
         {result && (
           <div className={classes.ResaultBox}>
@@ -171,11 +164,11 @@ const SearchBar = () => {
                 placeholder="جستجو"
                 ref={phoneSearchRef}
               />
-              {isLoading && <Loader />}
             </div>
             <ArrowLeftIcon click={closeFocusHandler} />
           </div>
           <div className={classes.result}>
+            {isLoading && <Loader type="static" />}
             {searched.trim() !== "" && result?.length === 0 && !isLoading && (
               <p>نتیجه ای یافت نشد</p>
             )}{" "}

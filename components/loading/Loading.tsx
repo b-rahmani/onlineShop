@@ -8,7 +8,7 @@ interface Iprops {
 const Loading = (props: Iprops) => {
   return (
     <>
-      <div className={props.type === "static" ? classes.static : ""}>
+      <div className={joinClassModules( classes.loading, props.type === "static" ? classes.static : "")}>
         <figure className={classes.container}>
           <div className={joinClassModules(classes.dot, classes.white)}></div>
           <div className={classes.dot}></div>

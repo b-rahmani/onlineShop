@@ -15,8 +15,6 @@
   z-index: 10;
   cursor: unset;
 
-  
-
   .header {
     display: flex;
     justify-content: space-between;
@@ -33,13 +31,13 @@
       justify-content: space-between;
       position: relative;
       gap: 5px;
-      color: aqua;
+      color: #ef394e;
       font-size: 12px;
       cursor: pointer;
 
       &::after {
         content: ">";
-        font-size: 20px;
+        font-size: 15px;
         display: inline-block;
         margin: 0 5px;
         transform: translateY(2px);

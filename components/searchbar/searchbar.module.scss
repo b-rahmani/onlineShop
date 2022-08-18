@@ -31,6 +31,7 @@
     width: 100%;
     display: flex;
     position: relative;
+    align-items: center;
 
     label {
       color: gray;
@@ -189,7 +190,7 @@
   .searchPhone {
     padding: 20px;
     height: 100%;
-    
+
     .header {
       display: flex;
       align-items: center;
@@ -200,9 +201,11 @@
       .searchBox {
         position: relative;
         flex: 1;
+        display: flex;
 
         input {
-          width: 100%;
+          // width: 100%;
+          flex: 1;
           display: block;
           border: none;
           outline: none;

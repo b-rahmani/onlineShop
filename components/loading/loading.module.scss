@@ -1,4 +1,4 @@
-div {
+.loading {
   &.static {
     // width: 100%;
     width: 30px;
@@ -121,5 +121,41 @@ div {
     66% {
       opacity: 0;
     }
+  }
+}
+
+.dot {
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: d5 1s infinite linear alternate;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &.static {
+    position: static;
+    transform: unset;
+    top: unset;
+    left: unset;
+  }
+}
+@keyframes d5 {
+  0% {
+    box-shadow: 15px 0 #000, -15px 0 #0002;
+    background: #000;
+  }
+  33% {
+    box-shadow: 15px 0 #000, -15px 0 #0002;
+    background: #0002;
+  }
+  66% {
+    box-shadow: 15px 0 #0002, -15px 0 #000;
+    background: #0002;
+  }
+  100% {
+    box-shadow: 15px 0 #0002, -15px 0 #000;
+    background: #000;
   }
 }

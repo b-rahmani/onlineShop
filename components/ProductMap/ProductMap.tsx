@@ -50,7 +50,7 @@ const ProductMap = () => {
       {!loading && allProductState?.length === 0 ? (
         <section className={classes.notFoundSearch}>
           <NotFoundSearch />
-          <p>تیجه‌ای یافت نشد!</p>
+          <p>نتیجه‌ای یافت نشد!</p>
         </section>
       ) : (
         ""
