@@ -167,6 +167,10 @@
         padding: 5px 0;
         cursor: pointer;
 
+        &:last-of-type {
+          border-bottom: none;
+        }
+
         .imageContainer {
           position: relative;
           aspect-ratio: 1/1;
@@ -183,19 +187,39 @@
   }
 
   .searchPhone {
+    padding: 20px;
+    height: 100%;
+    
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-bottom: 1px solid #2fc4db;
+      // margin-top: 20px;
+
       .searchBox {
         position: relative;
+        flex: 1;
+
+        input {
+          width: 100%;
+          display: block;
+          border: none;
+          outline: none;
+          padding: 10px;
+        }
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
       }
     }
     .result {
       width: 100%;
       padding: 10px 5%;
-      max-height: 300px;
-      overflow: scroll;
+      // max-height: 300px;
+      // overflow: scroll;
 
       .product {
         display: grid;
@@ -204,6 +228,10 @@
         border-bottom: 1px solid gray;
         padding: 5px 0;
         cursor: pointer;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
 
         .imageContainer {
           position: relative;

@@ -18,6 +18,8 @@ import classes from "./searchbar.module.scss";
 const SearchBar = () => {
   const topSearchRef = useRef<HTMLInputElement>(null);
   const topSearchBoxRef = useRef<HTMLDivElement>(null);
+  const topSearchphoneRef = useRef<HTMLDivElement>(null);
+  const phoneSearchRef = useRef<HTMLInputElement>(null);
   const [searched, setSearched] = useState<string>("");
   const [result, setResault] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,9 +29,12 @@ const SearchBar = () => {
   const searchFocusHandler = () => {
     dispatch(openFocusInput());
     topSearchRef.current?.focus();
+    phoneSearchRef.current?.focus();
   };
 
   const closeFocusHandler = () => {
+    setSearched("");
+    setResault([]);
     dispatch(closeFocusInput());
   };
   const isFocusSearch = useSelector(
@@ -38,7 +43,9 @@ const SearchBar = () => {
   const handleClickOutside = (e: any) => {
     if (
       topSearchBoxRef.current &&
-      !topSearchBoxRef.current.contains(e.target)
+      !topSearchBoxRef.current.contains(e.target) &&
+      topSearchphoneRef.current &&
+      !topSearchphoneRef.current.contains(e.target)
     ) {
       closeFocusHandler();
     }
@@ -76,13 +83,16 @@ const SearchBar = () => {
   }, [searched]);
 
   return (
-    <div className={classes.searchBar} onClick={searchFocusHandler}>
+    <div
+      className={classes.searchBar}
+      //  onClick={searchFocusHandler}
+    >
       <div className={classes.inputBox}>
         <input
           type="search"
           dir="rtl"
           placeholder="جستجو"
-          // onFocus={searchFocusHandler}
+          onFocus={searchFocusHandler}
           // onBlur={closeFocusHandler}
         />
         <label>
@@ -150,7 +160,7 @@ const SearchBar = () => {
         close={closeFocusHandler}
         show={isFocusSearch}
       >
-        <div className={classes.searchPhone}>
+        <div className={classes.searchPhone} ref={topSearchphoneRef}>
           <div className={classes.header}>
             <div className={classes.searchBox}>
               <input
@@ -159,15 +169,22 @@ const SearchBar = () => {
                 onChange={onChangeHandler}
                 dir="rtl"
                 placeholder="جستجو"
+                ref={phoneSearchRef}
               />
               {isLoading && <Loader />}
             </div>
-            <ArrowLeftIcon click={() => Router.back()} />
+            <ArrowLeftIcon click={closeFocusHandler} />
           </div>
           <div className={classes.result}>
-            {result?.length === 0 && <p>نتیجه ای یافت نشد</p>}
+            {searched.trim() !== "" && result?.length === 0 && !isLoading && (
+              <p>نتیجه ای یافت نشد</p>
+            )}{" "}
             {result?.map((product: productType) => (
-              <Link href={`/product/${product.id}`} key={product.id}>
+              <Link
+                href={`/product/${product.id}`}
+                key={product.id}
+                onClick={closeFocusHandler}
+              >
                 <a className={joinClassModules(classes.product)}>
                   <div className={classes.imageContainer}>
                     <Image
