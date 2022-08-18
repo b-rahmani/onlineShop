@@ -253,7 +253,7 @@
       padding: 10px 16px;
       box-shadow: 0 6px 12px -2px rgb(50 50 93 / 25%),
         0 3px 7px -3px rgb(0 0 0 / 30%);
-  
+
       & > .checkout {
         background-color: #ef4056;
         // padding: 10px;
@@ -261,7 +261,7 @@
         border: none;
         border-radius: 15px;
         width: 50%;
-  
+
         color: #fff;
         font-weight: 600;
       }
@@ -270,7 +270,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-  
+
         & > p:first-of-type {
           font-size: 10px;
           color: rgb(166, 165, 165);
@@ -280,7 +280,11 @@
           font-weight: 600;
           display: flex;
           gap: 5px;
-  
+
+          span {
+            font-family: iranyekanFa;
+          }
+
           & > span:last-of-type {
             font-size: 10px;
           }
@@ -289,7 +293,6 @@
     }
   }
 
-  
   @include tablet-landscape-up {
     main {
       flex-direction: row;
