@@ -36,4 +36,41 @@ export const allProductDb=async()=>{
       throw er;
     }
 }
+export const UserDetails=async(token:string)=>{
+    const url = `mongodb+srv://${Db.USER}:${Db.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
+    const client = new MongoClient(url);
+    const dbName = Db.DB_NAME;
+  
+    try {
+      await client.connect();
+      const db = client.db(dbName);
+      const collection = db.collection("users");
+  
+      let findResult;
+  
+      findResult = await collection.find({}).toArray();
+      interface Iuser {
+        name:string;
+        token:string;
+        _id:any;
+        
+
+        [key: string]: any;
+    }
+
+    const user=await findResult.find(u=>u.token ===token)!;
+    const newuser={...user,password:undefined};
+   
+    
+      client.close();
+      
+      
+      
+      return  await newuser ;
+    } catch (er) {
+      client.close();
+  
+      throw er;
+    }
+}
 

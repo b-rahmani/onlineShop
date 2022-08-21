@@ -1,0 +1,51 @@
+.aboutus {
+  //   margin-top: 60px;
+  padding: 0 16px;
+  max-width: 1280px;
+  margin: 60px auto 20px;
+
+  h2 {
+    margin-right: 20px;
+  }
+
+  .box {
+    width: 100%;
+    background-color: #f7f7f7;
+    min-height: 20vh;
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    p {
+      max-width: 45%;
+      font-size: 16px;
+      font-weight: 600px;
+      line-height: 1.9;
+      color: #424750;
+    }
+
+    .imageBox {
+      position: relative;
+      flex: 1 450px;
+      aspect-ratio: 2/1;
+      margin-top: -70px;
+
+      img {
+      }
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .box {
+      padding: 0.5rem;
+      flex-wrap: wrap-reverse;
+      .imageBox {
+        margin-top: 0;
+      }
+      p {
+        margin-top: 20px;
+        max-width: 90%;
+      }
+    }
+  }
+}

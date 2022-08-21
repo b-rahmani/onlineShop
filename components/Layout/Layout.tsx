@@ -26,13 +26,14 @@ interface layoutProps {
 }
 
 const Layout = ({ children, search }: layoutProps) => {
+  const [user,setUser]=useState("");
   const Router = useRouter();
   const isOpen = useSelector((state: RootState) => state.sidebar.isOpensidebar);
   const dispatch = useDispatch();
-  let user;
-  if (typeof window !== "undefined" && localStorage?.getItem("token")) {
-    user = localStorage?.getItem("token");
-  }
+  // let user;
+  // if (typeof window !== "undefined" && localStorage?.getItem("token")) {
+  //   user = localStorage?.getItem("token");
+  // }
   // const accountClickHandler = () => {
   //   user ? Router.push("/profile") : Router.push("/login");
   // };
@@ -40,6 +41,11 @@ const Layout = ({ children, search }: layoutProps) => {
 
   useEffect(() => {
     dispatch(initialBasket());
+    const local=localStorage.getItem("token")
+    if(local){
+
+      setUser(local);
+    }
   }, []);
 
   return (
@@ -57,10 +63,7 @@ const Layout = ({ children, search }: layoutProps) => {
           <div className={classes.actionBar}>
             {search && <SearchBar />}
             {user ? (
-              <AccountIcon
-                // className={classes.acountIcon}
-                click={() => Router.push("/profile")}
-              />
+              <AccountIcon click={() => Router.push("/profile")} />
             ) : (
               <div
                 className={classes.loginSignup}
