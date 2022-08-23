@@ -1,11 +1,16 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+}
 .aboutus {
   //   margin-top: 60px;
   padding: 0 16px;
-  max-width: 1280px;
-  margin: 60px auto 20px;
+  // max-width: 1280px;
+  margin: 60px 0 20px;
 
   h2 {
-    margin-right: 20px;
+    margin: 20px 20px 50px 0;
   }
 
   .box {
@@ -21,7 +26,7 @@
       max-width: 45%;
       font-size: 16px;
       font-weight: 600px;
-      line-height: 1.9;
+      line-height: 3;
       color: #424750;
     }
 
@@ -35,6 +40,42 @@
       }
     }
   }
+
+  .shopInView {
+    margin: 10px 0 50px;
+
+    h4 {
+      margin: 50px 0;
+    }
+    .inViewItems {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .countUpBox {
+        min-width: 150px;
+        max-width: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .CountupImage {
+          position: relative;
+          aspect-ratio: 1;
+          width: 100%;
+          max-width: 100px;
+        }
+
+        .text {
+          font-size: 12px;
+          color: #868686;
+        }
+      }
+    }
+  }
+  .whatDoIt {
+    background-color: #f7f7f7;
+    min-height: 40vh;
+  }
   @media screen and (max-width: 900px) {
     .box {
       padding: 0.5rem;
@@ -46,6 +87,22 @@
         margin-top: 20px;
         max-width: 90%;
       }
+      span {
+        flex: 1;
+      }
     }
+  }
+}
+
+.countup {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+
+  p {
+    padding: 20px 0;
+    font-size: 25px;
+    font-family: iranyekanFa;
   }
 }
