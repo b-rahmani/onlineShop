@@ -6,9 +6,10 @@ interface Iprops {
   end: number;
   plus?: boolean;
   locale?: boolean;
+  isVisible: boolean;
 }
 const CounterUp = (props: Iprops) => {
-  const { start, diuration, end, plus, locale } = props;
+  const { start, diuration, end, plus, locale, isVisible } = props;
   const [timer, setTimer] = useState<number>(0);
 
   useEffect(() => {
@@ -35,8 +36,17 @@ const CounterUp = (props: Iprops) => {
   }, [timer]);
   return (
     <div className={classes.countup}>
-      <p>{locale ? timer.toLocaleString() : timer}</p>
-      <span>{plus ? "+" : ""}</span>
+      {isVisible ? (
+        <>
+          <p>{locale ? timer.toLocaleString() : timer}</p>
+          <span>{plus ? "+" : ""}</span>
+        </>
+      ) : (
+        <>
+          <p>{end.toLocaleString()}</p>
+          <span>{plus ? "+" : ""}</span>
+        </>
+      )}
     </div>
   );
 };

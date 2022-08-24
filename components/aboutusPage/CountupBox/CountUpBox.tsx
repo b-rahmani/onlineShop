@@ -20,7 +20,7 @@ const CountUpBox = (props: Iprops) => {
       <div className={classes.CountupImage}>
         <Image src={imageAddress} alt="countup view" layout="fill" />
       </div>
-      {isVisible && <CounterUp {...countProps} />}
+       <CounterUp isVisible={isVisible} {...countProps} />
       <p className={classes.text}>{title}</p>
     </div>
   );
