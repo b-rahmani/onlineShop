@@ -10,7 +10,7 @@ export interface productAttributeType {
   variations?:string[];
   attribute: AttributeType;
   setSelectedAttribute: (value: unknown) => void;
-  selectedAttribute: AttributeItemType;
+  selectedAttribute: AttributeType;
 }
 
 const ProductAttribute = (props: productAttributeType) => {

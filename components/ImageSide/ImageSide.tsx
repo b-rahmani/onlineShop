@@ -29,7 +29,7 @@ const ImageSide = (props: PropsSingleProductType) => {
               <div className="onlyPhoneSlider">
                 <Image
                   src={slide}
-                  alt={props.product?.title}
+                  alt={props.product?.name}
                   className={classes.image}
                   // layout="responsive"
                   width={250}
@@ -54,7 +54,7 @@ const ImageSide = (props: PropsSingleProductType) => {
             <SwiperSlide
               key={image}
               onClick={() => {
-                // setImagesNavSlider(image);
+                setImagesNavSlider(image);
               }}
               className={image === imagesNavSlider ? "active" : ""}
             >
@@ -74,7 +74,7 @@ const ImageSide = (props: PropsSingleProductType) => {
       <div className={classes.image}>
         <Image
           src={imagesNavSlider!}
-          alt={props.product?.title}
+          alt={props.product?.name}
           className={classes.image}
           // layout="responsive"
           width={250}

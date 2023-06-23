@@ -26,6 +26,7 @@ export interface productType {
   variations?:string[];
   attribute?: AttributeType;
   categoty?: categotyProductType;
+  info?:any[];
 }
 
 export interface categotyProductType {
@@ -38,6 +39,7 @@ export interface AttributeType {
   faName: string;
   type: "radio" | "select" | "checkbox";
   items: AttributeItemType[];
+  size?: number;
 }
 
 export interface AttributeItemType {
@@ -106,9 +108,12 @@ const SingleProduct = (props: PropsSingleProductType) => {
               <HeartIcon heartType={isLikeProduct ? "fill" : "outline"} />
             </button>
           </div>
-          <h4 className={joinClassModules(classes.description, "ellips-3")}>
+          <h4 className={joinClassModules(classes.description, "ellips-4")}>
             {props.product?.description}
           </h4>
+          <ul className={classes.info}>
+          {props?.product?.info!.map(item=><li key={item?.id}>{item.value}</li>)}
+          </ul>
           {/* if stock !==0 (exist product ) show price section else shoe ناموجود  */}
           <div className={classes.desktopOnly}>
             {props.product?.stock && props.product?.stock > 0 ? (
