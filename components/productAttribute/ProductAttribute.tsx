@@ -7,6 +7,7 @@ import {
 } from "../SingleProduct/SingleProduct";
 
 export interface productAttributeType {
+  variations?:string[];
   attribute: AttributeType;
   setSelectedAttribute: (value: unknown) => void;
   selectedAttribute: AttributeItemType;
@@ -21,7 +22,7 @@ const ProductAttribute = (props: productAttributeType) => {
 
   let attType;
 
-  switch (attribute?.type) {
+  switch (attribute?.type||"select") {
     case "radio":
       attType = (
         <div className={classes.attributeValue}>
@@ -53,13 +54,13 @@ const ProductAttribute = (props: productAttributeType) => {
       attType = (
         <div className={classes.attributeValue}>
           <Select
-            getOptionLabel={(option) => option.faName}
-            getOptionValue={(option) => option.value}
+            getOptionLabel={(option) => option.size}
+            getOptionValue={(option) => option.size}
             value={selectedAttribute}
             onChange={selectChangeHandler}
-            options={attribute.items.map((el) => ({
+            options={attribute.map((el) => ({
               ...el,
-              label: el.faName,
+              label: el.size,
             }))}
           />
         </div>
@@ -73,10 +74,10 @@ const ProductAttribute = (props: productAttributeType) => {
 
   return (
     <div className={classes.attribute}>
-      {attribute && attribute?.items.length > 0 && (
+      {attribute && attribute?.length > 0 && (
         <>
           <span>
-            {attribute?.faName} : {selectedAttribute?.faName}
+            {"size"} : {selectedAttribute?.size}
           </span>
           {attType}
         </>

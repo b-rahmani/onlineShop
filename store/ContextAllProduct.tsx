@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useState } from "react";
 import { object } from "yup";
@@ -29,14 +30,21 @@ const AllProductProvider = (props: Iprops) => {
   const Router = useRouter();
 
   const getAllProduct = async () => {
-    const { data } = await vercelClient.get("/api/allProduct", {
-      params: { ...Router.query },
-    });
+    // const { data } = await vercelClient.get("/api/allProduct", {
+    //   params: { ...Router.query },
+    // });
+    setIsloading(true)
+    try {
+      const {data}=await axios.get("http://ramin021.pythonanywhere.com/products/") 
+      setIsloading(false)
+      setAlllProduct(data.results)
+      console.log("set product",data.results)
+    } catch (error) {
+      setIsloading(false)
+    }
 
-    const { sort, ...FilterQ } = Router.query;
+    // const { sort, ...FilterQ } = Router.query;
     //=> filterQ={isExist:"1",maxPrice:12500,...}
-
-    return data;
 
     // if (Object.keys(FilterQ).length > 0) {
     //   return filtered;
@@ -51,11 +59,11 @@ const AllProductProvider = (props: Iprops) => {
   useEffect(() => {
     if (Router.query) {
       getAllProduct()
-        .then((res) => {
-          setAlllProduct(res);
-        })
-        .catch((er) => console.log(er))
-        .finally(() => setIsloading(false));
+        // .then((res) => {
+        //   setAlllProduct(res.result);
+        // })
+        // .catch((er) => console.log(er))
+        // .finally(() => setIsloading(false));
     }
   }, [compare]);
 

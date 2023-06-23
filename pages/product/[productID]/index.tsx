@@ -1,9 +1,10 @@
+import { raminBaseUrl } from "../../../utils/axios";
 import SingleProduct, {
   productType,
   PropsSingleProductType,
 } from "../../../components/SingleProduct/SingleProduct";
 
-import { allProductDb } from "../../../utils/db-connect";
+// import { allProductDb } from "../../../utils/db-connect";
 
 interface SingleProductType {
   product: productType;
@@ -12,6 +13,7 @@ interface SingleProductType {
 }
 
 const SingleProductPage = (props: SingleProductType) => {
+  console.log("page",props)
   return (
     <SingleProduct
       product={props.product}
@@ -23,17 +25,20 @@ const SingleProductPage = (props: SingleProductType) => {
 
 export const getStaticProps = async ({ params }: { [key: string]: any }) => {
   try {
-    const data = await allProductDb();
-    const product = await data?.find(
-      (p: productType) => p.id == params?.productID
-    );
+    // const data = await allProductDb();
+    // const product = await data?.find(
+    //   (p: productType) => p.id == params?.productID
+    // );
+    console.log("params product id *****",params)
+    const {data:singleProduct}=await raminBaseUrl.get(`/products/${params?.productID}`)
+    const {data}=await raminBaseUrl.get('/products')
 
     return {
       props: {
-        product: product,
+        product: singleProduct?.results.product,
         related: data,
       },
-      revalidate: 10,
+      revalidate: 3600,
     };
   } catch (error) {
     return {
@@ -45,8 +50,9 @@ export const getStaticProps = async ({ params }: { [key: string]: any }) => {
 };
 export const getStaticPaths = async () => {
   try {
-    const data = await allProductDb();
-    const appIds = await data.map((item: any) => ({
+    const {data}:any = await raminBaseUrl.get('/products')
+    console.log("#######&&&&&&&%%%%%",data)
+    const appIds = await data.results.map((item: any) => ({
       params: { productID: item.id.toString() },
     }));
     return {

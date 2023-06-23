@@ -1,8 +1,12 @@
 import { MongoClient } from "mongodb";
 import { NextApiResponse, NextApiRequest } from "next";
 import { Db } from "../../utils/db-connect";
+import { raminBaseUrl } from "../../utils/axios";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+
+{/*
+
   const url = `mongodb+srv://${Db.USER}:${Db.PASSWORD}@cluster0.zisqoh9.mongodb.net/?retryWrites=true&w=majority`;
   const client = new MongoClient(url);
   const dbName = Db.DB_NAME;
@@ -91,6 +95,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       () => client.close();
     }
   }
+    */}
+    const run =async()=>{
+     const {data}=  await raminBaseUrl.get("/products/") 
+     console.log("ramin api data",data)
+     return data
+
+    }
 
   run();
 

@@ -80,7 +80,7 @@ const ProductCard = (props: ProductCard) => {
               <br />
               <br />
             </div>
-            <div
+         {data.rating &&   <div
               className={classes.existRating}
               style={{
                 visibility:
@@ -97,7 +97,7 @@ const ProductCard = (props: ProductCard) => {
                 <span>{data.rating.rate}</span>
                 <StarIcon fill="gold" />
               </div>
-            </div>
+            </div>}
             <div className={classes.priceBox}>
               {data.stock ? (
                 <>

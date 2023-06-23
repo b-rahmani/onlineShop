@@ -1,0 +1,18 @@
+product
+
+image change on click 
+add slelect for product option 
+add to basket functionality 
+ration functionality 
+like functionality 
+related product 
+
+
+login 
+
+
+
+checkout page 
+
+
+

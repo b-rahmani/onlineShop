@@ -46,25 +46,8 @@ const RelatedSlider = (props: RelatedProductType) => {
             },
           }}
         >
-          {props.related?.map((product, ind) => (
+          {/* {props.related?.map((product, ind) => (
             <SwiperSlide key={product.id}>
-              {/* <div
-                className={classes.productCard}
-                style={{ display: "flex", flexDirection: "column" }}
-              >
-                <div className={classes.imageContainer}>
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    layout="fill"
-                    // width={300}
-                    // height={100}
-                  />
-                </div>
-                <p className="ellips-2">{product.title}</p>
-                <p>کوجود</p>
-                <div>قیمت</div>
-              </div> */}
               <div className={classes.productCard}>
                 <ProductCard
                   data={product}
@@ -75,7 +58,7 @@ const RelatedSlider = (props: RelatedProductType) => {
                 />
               </div>
             </SwiperSlide>
-          ))}
+          ))} */}
         </Swiper>
       </div>
       {/*  */}

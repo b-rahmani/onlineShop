@@ -14,15 +14,16 @@ import ProductAttribute from "../productAttribute/ProductAttribute";
 
 export interface productType {
   id: number | string;
-  title: string;
-  image: string;
+  name: string;
+  // image: string;
   price: number;
   discount: number;
   description: string;
-  rating: { rate: number; count: number };
+  rate:number;
   customHead?: string;
   stock: number;
-  images?: string[];
+  image?: string[];
+  variations?:string[];
   attribute?: AttributeType;
   categoty?: categotyProductType;
 }
@@ -57,7 +58,6 @@ export interface PropsSingleProductType {
 
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
-
   const [selectedAttribute, setSelectedAttribute] = useState<any>(
     props.product?.attribute?.items && props.product?.attribute?.items[0]
   );
@@ -95,7 +95,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
           <div className={classes.header}>
             <h2 className={classes.productName}>
               {
-                props.product?.title
+                props.product?.name
                 // .substring(0, 20)
               }
             </h2>
@@ -147,23 +147,23 @@ const SingleProduct = (props: PropsSingleProductType) => {
           </div>
           <div className={classes.Rating}>
             <div className={classes.review}>
-              <span>{props.product?.rating.count}</span>
-              <span>دیدگاه</span>
+              <span>{props.product?.rate}</span>
+              <span>امتیاز</span>
             </div>
             <div className={classes.rate}>
               <Rate
                 count={4}
-                value={+props.product?.rating.rate.toFixed(1)!}
+                value={+props.product?.rate!}
                 allowHalf
                 disabled
                 style={{ direction: "ltr", userSelect: "none" }}
               />
             </div>
           </div>
-          {props.product?.attribute &&
-            props.product?.attribute?.items.length > 0 && (
+          {props.product?.variations &&
+            props.product?.variations?.length > 0 && (
               <ProductAttribute
-                attribute={props.product?.attribute}
+                attribute={props.product?.variations}
                 selectedAttribute={selectedAttribute!}
                 setSelectedAttribute={setSelectedAttribute}
               />
@@ -212,7 +212,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
             />
           </div>
         </div>
-        <ImageSide product={props.product} />
+        <ImageSide product={props.product!} />
       </section>
       <div className={classes.line}></div>
 

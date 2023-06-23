@@ -9,9 +9,8 @@ import { useState } from "react";
 import { PropsSingleProductType } from "../SingleProduct/SingleProduct";
 
 const ImageSide = (props: PropsSingleProductType) => {
-  const [imagesNavSlider, setImagesNavSlider] = useState(
-    props?.product?.images !== undefined && props?.product?.images[0]
-  );
+  console.log("images",props)
+  const [imagesNavSlider, setImagesNavSlider] = useState(props?.product?.image![0]);
 
   return (
     <div className={classes.imageSide}>
@@ -25,14 +24,14 @@ const ImageSide = (props: PropsSingleProductType) => {
           className="swiper-onlyPhone"
           modules={[Pagination]}
         >
-          {props.product?.images?.map((slide) => (
+          {props.product?.image?.map((slide) => (
             <SwiperSlide key={slide}>
               <div className="onlyPhoneSlider">
                 <Image
                   src={slide}
                   alt={props.product?.title}
                   className={classes.image}
-                  layout="responsive"
+                  // layout="responsive"
                   width={250}
                   height={250}
                 />
@@ -51,11 +50,11 @@ const ImageSide = (props: PropsSingleProductType) => {
           className="thumbnailSwipper"
           // style={{ height: "100%" }}
         >
-          {props.product?.images?.map((image, ind) => (
+          {props.product?.image?.map((image, ind) => (
             <SwiperSlide
               key={image}
               onClick={() => {
-                setImagesNavSlider(image);
+                // setImagesNavSlider(image);
               }}
               className={image === imagesNavSlider ? "active" : ""}
             >
@@ -74,10 +73,10 @@ const ImageSide = (props: PropsSingleProductType) => {
       </div>
       <div className={classes.image}>
         <Image
-          src={imagesNavSlider ? imagesNavSlider : props.product?.image!}
+          src={imagesNavSlider!}
           alt={props.product?.title}
           className={classes.image}
-          layout="responsive"
+          // layout="responsive"
           width={250}
           height={250}
         />
