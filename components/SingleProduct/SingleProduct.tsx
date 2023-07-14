@@ -53,7 +53,7 @@ export interface ParamsType {
 }
 
 export interface PropsSingleProductType {
-  product?: productType;
+  product?: ``productType``;
   status?: number;
   related?: productType[];
 }
@@ -61,7 +61,7 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
   const [selectedAttribute, setSelectedAttribute] = useState<any>(
-    props.product?.attribute?.items && props.product?.attribute?.items[0]
+    props.product?.variations?.length>0 && props.product?.variations[0]
   );
   const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(
@@ -70,6 +70,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
         selectedAttribute?.value === item.selectedAttribute?.value
     )
   );
+console.log("single product",props.product)
 
   const favoritClickHandler = () => {
     setIsLikeProduct((prev) => !prev);
@@ -115,25 +116,27 @@ const SingleProduct = (props: PropsSingleProductType) => {
           {props?.product?.info!.map(item=><li key={item?.id}>{item.value}</li>)}
           </ul>
           {/* if stock !==0 (exist product ) show price section else shoe ناموجود  */}
+          {console.log(selectedAttribute)}
+          s
           <div className={classes.desktopOnly}>
-            {props.product?.stock && props.product?.stock > 0 ? (
+            {selectedAttribute.stock && selectedAttribute.stock > 0 ? (
               <div className={classes.price}>
-                {props.product.discount ? (
+                {selectedAttribute.discount ? (
                   <>
                     <div className={classes.discountSec}>
                       <div className={classes.oldPrice}>
                         {" "}
-                        {props.product.price.toLocaleString()}
+                        {selectedAttribute.price.toLocaleString()}
                       </div>
                       <div className={classes.discount}>
-                        {props.product.discount + "%"}
+                        {selectedAttribute.discount + "%"}
                       </div>
                     </div>
                     <div className={classes.calculatedPrice}>
                       <span>
                         {priceDiscounted(
-                          props.product.price,
-                          props.product.discount
+                          selectedAttribute.price,
+                          selectedAttribute.discount
                         ).toLocaleString()}
                       </span>
                       <span className={classes.priceText}>تومان</span>
@@ -141,7 +144,7 @@ const SingleProduct = (props: PropsSingleProductType) => {
                   </>
                 ) : (
                   <div className={classes.calculatedPrice}>
-                    <span>{props.product.price.toLocaleString()}</span>
+                    <span>{selectedAttribute.price.toLocaleString()}</span>
                     <span className={classes.priceText}>تومان</span>
                   </div>
                 )}

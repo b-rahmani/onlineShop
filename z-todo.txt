@@ -1,7 +1,7 @@
 product
 
-image change on click 
-add slelect for product option 
+image change on click done
+add slelect for product option done 
 add to basket functionality 
 ration functionality 
 like functionality 

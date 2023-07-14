@@ -57,6 +57,7 @@ const ProductAttribute = (props: productAttributeType) => {
             getOptionLabel={(option) => option.size}
             getOptionValue={(option) => option.size}
             value={selectedAttribute}
+            defaultValue={selectedAttribute}
             onChange={selectChangeHandler}
             options={attribute.map((el) => ({
               ...el,

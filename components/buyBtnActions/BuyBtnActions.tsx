@@ -26,6 +26,8 @@ interface Props {
 }
 
 const BuyBtnActions = (props: Props) => {
+
+  
   const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(
       (item) =>
@@ -74,6 +76,7 @@ const BuyBtnActions = (props: Props) => {
     });
   };
   const addToBasketHandler = () => {
+    console.log("selected attributes",props.attribute)
     if (props.product.stock > 0) {
       dispatch(
         addToBasket({
