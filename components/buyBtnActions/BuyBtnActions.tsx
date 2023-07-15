@@ -32,7 +32,8 @@ const BuyBtnActions = (props: Props) => {
     state.basket.basket.find(
       (item) =>
         item.id === props.product?.id &&
-        item.selectedAttribute?.value === props.attribute?.value
+        item.selectedAttribute?.size === props.attribute?.size &&
+        item.selectedAttribute?.color === props.attribute?.color 
     )
   );
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ const BuyBtnActions = (props: Props) => {
   };
   const addToBasketHandler = () => {
     console.log("selected attributes",props.attribute)
-    if (props.product.stock > 0) {
+    if (props.attribute.stock > 0) {
       dispatch(
         addToBasket({
           product: props.product,

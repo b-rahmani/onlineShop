@@ -19,6 +19,7 @@ interface CartHoverProps {
 
 const CartHoverBox = (props: CartHoverProps) => {
   const { cart } = props;
+  console.log("card",cart)
   return (
     <section className={classes.cartBox}>
       <div className={classes.header}>
@@ -40,22 +41,22 @@ const CartHoverBox = (props: CartHoverProps) => {
               <Link href={`/product/${product.id}`}>
                 <a className={classes.cartItemImageBox}>
                   <Image
-                    src={product?.image}
-                    alt={product.title}
+                    src={product?.image[0]}
+                    alt={product.name}
                     layout="fill"
                   />
                 </a>
               </Link>
               <div className={classes.details}>
                 <p className={joinClassModules(classes.title, "ellips-4")}>
-                  {product.title}
+                  {`${product.name} (${product.selectedAttribute.size})`}
                 </p>
                 <div className={classes.attribute}>
                
                   <p
                     className={classes.colorAttribute}
                     style={{
-                      backgroundColor: product?.selectedAttribute?.value,
+                      backgroundColor: product?.selectedAttribute?.color,
                     }}
                   >
                     &nbsp;
@@ -72,7 +73,6 @@ const CartHoverBox = (props: CartHoverProps) => {
                 attribute={product?.selectedAttribute}
                 outline
               />
-
               <div className={classes.priceBox}>
                 <div className={classes.yourBenefit}>
                   <span>{your_benefit_buy(product).toLocaleString()}</span>
@@ -80,7 +80,7 @@ const CartHoverBox = (props: CartHoverProps) => {
                   <span>تخفیف</span>
                 </div>
                 <div className={classes.price}>
-                  <p>{product.price.toLocaleString()}</p>
+                  <p>{product.selectedAttribute.price.toLocaleString()}</p>
                   <span>تومان</span>
                 </div>
               </div>

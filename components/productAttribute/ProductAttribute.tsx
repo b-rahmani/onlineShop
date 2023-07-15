@@ -35,7 +35,7 @@ const ProductAttribute = (props: productAttributeType) => {
                 id={item.value}
                 className={classes.radio}
                 onChange={() => setSelectedAttribute(item)}
-                checked={item.value === selectedAttribute?.value}
+                checked={item.value === selectedAttribute?.value }
               />
               <label
                 htmlFor={item.value}
@@ -54,8 +54,8 @@ const ProductAttribute = (props: productAttributeType) => {
       attType = (
         <div className={classes.attributeValue}>
           <Select
-            getOptionLabel={(option) => option.size}
-            getOptionValue={(option) => option.size}
+            getOptionLabel={(option) => `${option.size} (${option.color})`}
+            getOptionValue={(option) => option.size+option.color}
             value={selectedAttribute}
             defaultValue={selectedAttribute}
             onChange={selectChangeHandler}
@@ -78,7 +78,7 @@ const ProductAttribute = (props: productAttributeType) => {
       {attribute && attribute?.length > 0 && (
         <>
           <span>
-            {"size"} : {selectedAttribute?.size}
+            {/* {"size"} : {selectedAttribute?.size} */}
           </span>
           {attType}
         </>

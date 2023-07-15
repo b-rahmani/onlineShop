@@ -32,7 +32,7 @@ export const RoundPrice = (number: number, digitRoundLength: number) => {
 
 export const SumPriceCart = (cart: productType[]) => {
   const price = cart.reduce((sum, product) => {
-    return sum + priceDiscounted(product.price, product.discount);
+    return sum + priceDiscounted(product.selectedAttribute.price, product.selectedAttribute.discount);
   }, 0);
 
   return price;
@@ -54,7 +54,7 @@ export const your_benefit_buy = (
       return sum + your_benefit_buy(product);
     }, 0);
   } else {
-    benefit = (product_products.price * product_products.discount) / 100;
+    benefit = ((product_products.selectedAttribute.price * product_products.selectedAttribute.discount) / 100)*product_products.quantity;
   }
 
   return benefit;

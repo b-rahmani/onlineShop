@@ -53,7 +53,7 @@ export interface ParamsType {
 }
 
 export interface PropsSingleProductType {
-  product?: ``productType``;
+  product?: productType;
   status?: number;
   related?: productType[];
 }
@@ -117,7 +117,6 @@ console.log("single product",props.product)
           </ul>
           {/* if stock !==0 (exist product ) show price section else shoe ناموجود  */}
           {console.log(selectedAttribute)}
-          s
           <div className={classes.desktopOnly}>
             {selectedAttribute.stock && selectedAttribute.stock > 0 ? (
               <div className={classes.price}>
