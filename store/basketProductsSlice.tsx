@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { productType } from "../components/SingleProduct/SingleProduct";
+import { productType,AttributeItemType } from "../components/SingleProduct/SingleProduct";
 
 export interface basketProductType extends productType {
   quantity: number;
-  selectedAttribute: { name: string; value: string; faName: string };
+  selectedAttribute: AttributeItemType
 }
 
 export interface basketTypes {
@@ -40,7 +40,7 @@ export const BasketSlice = createSlice({
     removeFromBasket: (state, action) => {
       const basketData = state.basket?.filter(
         (item: basketProductType) =>
-          item.selectedAttribute?.value !== action.payload.attribute?.value ||
+          item.selectedAttribute?.id !== action.payload.attribute?.id ||
           //  &&
           item.id !== action.payload.product.id
       );
@@ -50,7 +50,7 @@ export const BasketSlice = createSlice({
     increase: (state, action) => {
       const basketData = state.basket?.map((item: basketProductType) =>
         item.id === action.payload.product.id &&
-        item.selectedAttribute?.value === action.payload.attribute?.value
+        item.selectedAttribute?.id === action.payload.attribute?.id
           ? { ...item, quantity: ++item.quantity }
           : item
       );
@@ -59,7 +59,7 @@ export const BasketSlice = createSlice({
     decrease: (state, action) => {
       const basketData = state.basket.map((item: basketProductType) =>
         item.id === action.payload.product.id &&
-        item.selectedAttribute?.value === action.payload.attribute?.value
+        item.selectedAttribute?.id === action.payload.attribute?.id
           ? { ...item, quantity: --item.quantity }
           : item
       );

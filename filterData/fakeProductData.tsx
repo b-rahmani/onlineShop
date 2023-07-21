@@ -178,7 +178,7 @@ export const FakeBreadCrumb = [
   {
     title: "همه محصولات",
     url: {
-      uri: "/#main",
+      uri: "/",
     },
   },
 

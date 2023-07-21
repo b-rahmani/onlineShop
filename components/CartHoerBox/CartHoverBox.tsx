@@ -36,12 +36,12 @@ const CartHoverBox = (props: CartHoverProps) => {
           cart?.map((product) => (
             <div
               className={classes.cartItem}
-              key={product.id + product.selectedAttribute.value}
+              key={product.selectedAttribute.id}
             >
               <Link href={`/product/${product.id}`}>
                 <a className={classes.cartItemImageBox}>
                   <Image
-                    src={product?.image[0]}
+                    src={product?.image![0]}
                     alt={product.name}
                     layout="fill"
                   />
@@ -74,13 +74,13 @@ const CartHoverBox = (props: CartHoverProps) => {
                 outline
               />
               <div className={classes.priceBox}>
-                <div className={classes.yourBenefit}>
+                {your_benefit_buy(product)>0&&<div className={classes.yourBenefit}>
                   <span>{your_benefit_buy(product).toLocaleString()}</span>
                   <span>تومان </span>
                   <span>تخفیف</span>
-                </div>
+                </div>}
                 <div className={classes.price}>
-                  <p>{product.selectedAttribute.price.toLocaleString()}</p>
+                  <p>{product.selectedAttribute!.price.toLocaleString()}</p>
                   <span>تومان</span>
                 </div>
               </div>

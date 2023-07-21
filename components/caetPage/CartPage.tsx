@@ -50,13 +50,13 @@ const Cart = (props: Iprops) => {
                 {cartItems?.map((product: basketProductType) => (
                   <div
                     className={classes.cartItem}
-                    key={product.id + product.selectedAttribute.value}
+                    key={product.selectedAttribute.id}
                   >
                     <div className={classes.imageContainer}>
                       <div className={classes.imageBox}>
                         <Image
-                          src={product.image}
-                          alt={product.title}
+                          src={product.image![0]}
+                          alt={product.name}
                           layout="fill"
                         />
                       </div>
@@ -68,12 +68,12 @@ const Cart = (props: Iprops) => {
                         "ellips--3"
                       )}
                     >
-                      <p className={classes.title}>{product.title}</p>
+                      <p className={classes.title}>{product.name}</p>
                       <div className={classes.attribute}>
                         <p
                           className={classes.colorAttribute}
                           style={{
-                            backgroundColor: product?.selectedAttribute?.value,
+                            backgroundColor: product?.selectedAttribute?.color,
                           }}
                         >
                           &nbsp;

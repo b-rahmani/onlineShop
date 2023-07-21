@@ -1,4 +1,5 @@
 import { productType } from "../components/SingleProduct/SingleProduct";
+import {basketProductType} from "../store/basketProductsSlice"
 
 export const convert_to_persian_digits = (text: string | number) => {
   const id = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
@@ -30,14 +31,14 @@ export const RoundPrice = (number: number, digitRoundLength: number) => {
   return number - (number % digitRoundLength);
 };
 
-export const SumPriceCart = (cart: productType[]) => {
+export const SumPriceCart = (cart: basketProductType[]) => {
   const price = cart.reduce((sum, product) => {
     return sum + priceDiscounted(product.selectedAttribute.price, product.selectedAttribute.discount);
   }, 0);
 
   return price;
 };
-export const SumPriceWithoutDiscountCart = (cart: productType[]) => {
+export const SumPriceWithoutDiscountCart = (cart: basketProductType[]) => {
   const price = cart.reduce((sum, product) => {
     return sum + product.price;
   }, 0);
@@ -46,11 +47,11 @@ export const SumPriceWithoutDiscountCart = (cart: productType[]) => {
 };
 
 export const your_benefit_buy = (
-  product_products: productType | productType[]
+  product_products: basketProductType | basketProductType[]
 ): number => {
   let benefit;
   if (Array.isArray(product_products)) {
-    benefit = product_products.reduce((sum, product: productType) => {
+    benefit = product_products.reduce((sum, product: basketProductType) => {
       return sum + your_benefit_buy(product);
     }, 0);
   } else {

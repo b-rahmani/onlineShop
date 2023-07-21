@@ -23,7 +23,7 @@ export interface productType {
   customHead?: string;
   stock: number;
   image?: string[];
-  variations?:string[];
+  variations:AttributeItemType[];
   attribute?: AttributeType;
   categoty?: categotyProductType;
   info?:any[];
@@ -39,13 +39,22 @@ export interface AttributeType {
   faName: string;
   type: "radio" | "select" | "checkbox";
   items: AttributeItemType[];
-  size?: number;
+  size?: string;
+  id:number;
+  color:string;
 }
 
 export interface AttributeItemType {
-  name: string;
-  value: string;
-  faName: string;
+  name?: string;
+  value?: string;
+  faName?: string;
+  size:string;
+  id:number;
+  color:string;
+  price:number;
+  stock:number;
+  type?:string;
+  discount:any;
 }
 
 export interface ParamsType {
@@ -61,7 +70,7 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
   const [selectedAttribute, setSelectedAttribute] = useState<any>(
-    props.product?.variations?.length>0 && props.product?.variations[0]
+    props.product!.variations?.length>0 && props.product?.variations[0]
   );
   const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(
@@ -115,8 +124,6 @@ console.log("single product",props.product)
           <ul className={classes.info}>
           {props?.product?.info!.map(item=><li key={item?.id}>{item.value}</li>)}
           </ul>
-          {/* if stock !==0 (exist product ) show price section else shoe ناموجود  */}
-          {console.log(selectedAttribute)}
           <div className={classes.desktopOnly}>
             {selectedAttribute.stock && selectedAttribute.stock > 0 ? (
               <div className={classes.price}>
@@ -221,10 +228,10 @@ console.log("single product",props.product)
         </div>
         <ImageSide product={props.product!} />
       </section>
-      <div className={classes.line}></div>
+      {/* <div className={classes.line}></div> */}
 
       {/* related */}
-      <RelatedSlider related={props.related} />
+      {/* <RelatedSlider related={props.related} /> */}
     </div>
   );
 };

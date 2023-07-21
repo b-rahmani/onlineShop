@@ -136,12 +136,12 @@ const SearchBar = () => {
                 <a className={joinClassModules(classes.product)}>
                   <div className={classes.imageContainer}>
                     <Image
-                      src={product.image}
-                      alt={product.title}
+                      src={product.image![0]}
+                      alt={product.name}
                       layout="fill"
                     />
                   </div>
-                  <div className="ellips-3">{product.title}</div>
+                  <div className="ellips-3">{product.name}</div>
                 </a>
               </Link>
             ))}
@@ -181,12 +181,12 @@ const SearchBar = () => {
                 <a className={joinClassModules(classes.product)}>
                   <div className={classes.imageContainer}>
                     <Image
-                      src={product.image}
-                      alt={product.title}
+                      src={product.image![0]}
+                      alt={product.name}
                       layout="fill"
                     />
                   </div>
-                  <div className="ellips-3">{product.title}</div>
+                  <div className="ellips-3">{product.name}</div>
                 </a>
               </Link>
             ))}

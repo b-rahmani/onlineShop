@@ -78,7 +78,7 @@ const BuyBtnActions = (props: Props) => {
   };
   const addToBasketHandler = () => {
     console.log("selected attributes",props.attribute)
-    if (props.attribute.stock > 0) {
+    if (props.attribute!.stock > 0) {
       dispatch(
         addToBasket({
           product: props.product,

@@ -8,7 +8,7 @@ import {
 
 export interface productAttributeType {
   variations?:string[];
-  attribute: AttributeType;
+  attribute: any;
   setSelectedAttribute: (value: unknown) => void;
   selectedAttribute: AttributeType;
 }
@@ -20,58 +20,58 @@ const ProductAttribute = (props: productAttributeType) => {
     setSelectedAttribute(opt);
   };
 
-  let attType;
+  // let attType;
 
-  switch (attribute?.type||"select") {
-    case "radio":
-      attType = (
-        <div className={classes.attributeValue}>
-          {/* check all of types */}
-          {attribute.items?.map((item) => (
-            <div className={classes.attributeSelect} key={item.name}>
-              <input
-                type="radio"
-                name="radio"
-                id={item.value}
-                className={classes.radio}
-                onChange={() => setSelectedAttribute(item)}
-                checked={item.value === selectedAttribute?.value }
-              />
-              <label
-                htmlFor={item.value}
-                style={{ backgroundColor: item.value }}
-              >
-                <span style={{ border: `2px solid ${item.value}` }}></span>
-              </label>
-            </div>
-          ))}
-        </div>
-      );
+  // switch (attribute?.type||"select") {
+  //   case "radio":
+  //     attType = (
+  //       <div className={classes.attributeValue}>
+  //         {/* check all of types */}
+  //         {attribute.items?.map((item) => (
+  //           <div className={classes.attributeSelect} key={item.name}>
+  //             {/* <input
+  //               type="radio"
+  //               name="radio"
+  //               id={item.value}
+  //               className={classes.radio}
+  //               onChange={() => setSelectedAttribute(item)}
+  //               checked={item.value === selectedAttribute?.value }
+  //             />
+  //             <label
+  //               htmlFor={item.value}
+  //               style={{ backgroundColor: item.value }}
+  //             >
+  //               <span style={{ border: `2px solid ${item.value}` }}></span>
+  //             </label> */}
+  //           </div>
+  //         ))}
+  //       </div>
+  //     );
 
-      break;
+  //     break;
 
-    case "select":
-      attType = (
-        <div className={classes.attributeValue}>
-          <Select
-            getOptionLabel={(option) => `${option.size} (${option.color})`}
-            getOptionValue={(option) => option.size+option.color}
-            value={selectedAttribute}
-            defaultValue={selectedAttribute}
-            onChange={selectChangeHandler}
-            options={attribute.map((el) => ({
-              ...el,
-              label: el.size,
-            }))}
-          />
-        </div>
-      );
+  //   case "select":
+  //     attType = (
+  //       <div className={classes.attributeValue}>
+  //         <Select
+  //           getOptionLabel={(option) => `${option.size} (${option.color})`}
+  //           getOptionValue={(option) => option.size+option.color}
+  //           value={selectedAttribute}
+  //           defaultValue={selectedAttribute}
+  //           onChange={selectChangeHandler}
+  //           options={attribute.map((el) => ({
+  //             ...el,
+  //             label: el.size,
+  //           }))}
+  //         />
+  //       </div>
+  //     );
 
-      break;
+  //     break;
 
-    default:
-      break;
-  }
+  //   default:
+  //     break;
+  // }
 
   return (
     <div className={classes.attribute}>
@@ -80,7 +80,19 @@ const ProductAttribute = (props: productAttributeType) => {
           <span>
             {/* {"size"} : {selectedAttribute?.size} */}
           </span>
-          {attType}
+          <div className={classes.attributeValue}>
+          <Select
+            getOptionLabel={(option) => `${option.size} (${option.color})`}
+            getOptionValue={(option) => option.size+option.color}
+            value={selectedAttribute}
+            defaultValue={selectedAttribute}
+            onChange={selectChangeHandler}
+            options={attribute.map((el:any) => ({
+              ...el,
+              label: el.size,
+            }))}
+          />
+        </div>
         </>
       )}
     </div>
