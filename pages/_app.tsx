@@ -37,6 +37,8 @@ function MyApp({ Component, pageProps, ...appProps }: AppProps) {
     <Provider store={store}>
       {" "}
       <Head>
+      <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"
