@@ -1,18 +1,16 @@
-product
+price of hover cart is incorrect 
+pagination on product 
 
-image change on click done
-add slelect for product option done 
-add to basket functionality 
-ration functionality 
-like functionality 
-related product 
+signup
+login page and login functionality
+add localstorage product to api after login automatically
 
-
-login 
-
-
-
-checkout page 
+product actions after login  work with api  
+sort product
+rating 
+comments for product
+filter products
+v
 
 
 
