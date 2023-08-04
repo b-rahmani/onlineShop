@@ -1,4 +1,4 @@
-price of hover cart is incorrect 
+price of hover cart is incorrect done 
 pagination on product 
 
 signup
@@ -10,7 +10,7 @@ sort product
 rating 
 comments for product
 filter products
-v
+
 
 
 

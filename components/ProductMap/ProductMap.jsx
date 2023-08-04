@@ -22,21 +22,16 @@ import CheckIcon from "../icons/checkIcon";
 import { productType } from "../SingleProduct/SingleProduct";
 import LoadingCard from "../productCard/LoadingCard";
 import NotFoundSearch from "../icons/NotFoundSearch";
+import Pagination from "../pagination/Pagination";
 
 const ProductMap = () => {
   const dispatch = useDispatch();
   const { allProductState, loading } = useContext(AllProductContext);
   const [copied, copy] = useCopyToClipboard("", 3000);
-  const isShare = useSelector(
-    (state: RootState) => state.CartHoverAction.share.isShare
-  );
-  const sharedLink = useSelector(
-    (state: RootState) => state.CartHoverAction.share.link
-  );
+  const isShare = useSelector((state) => state.CartHoverAction.share.isShare);
+  const sharedLink = useSelector((state) => state.CartHoverAction.share.link);
 
-  const extendData = useSelector(
-    (state: RootState) => state.CartHoverAction.extend
-  );
+  const extendData = useSelector((state) => state.CartHoverAction.extend);
   const Router = useRouter();
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -61,7 +56,7 @@ const ProductMap = () => {
             <LoadingCard key={item} break />
           ))}
 
-        {allProductState?.map((item: productType) => (
+        {allProductState?.map((item) => (
           <Mothened
             layout
             key={item.id.toString()}
@@ -69,6 +64,7 @@ const ProductMap = () => {
             layoutId={item.id.toString()}
           />
         ))}
+
         <Modal
           backdrop
           close={() => dispatch(closeIsShare())}
@@ -127,6 +123,20 @@ const ProductMap = () => {
           </div>
         </Modal>
       </div>
+      <Pagination
+        activeClassName="active"
+        container=""
+        count={2}
+        ellipses=""
+        first="first"
+        previous="prev"
+        next="next"
+        last="last"
+        metadata={{
+          totalCount: allProductState.count,
+          PageSize: 6,
+        }}
+      />
       {/* <AnimatePresence presenceAffectsLayout>
         {extendData.isExtend && (
           <motion.div

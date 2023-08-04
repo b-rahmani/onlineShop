@@ -13,7 +13,7 @@ const FilterProducts = () => {
       <div className={classes.innerFilter}>
         <div className={classes.filterHead}>
           <h3>فیلتر ها </h3>
-          <button onClick={() => Router.replace("/")}>حذف فیلتر ها </button>
+          <button onClick={() => {Router.replace("/")}}>حذف فیلتر ها </button>
         </div>
 
         <div className={classes.filters}>

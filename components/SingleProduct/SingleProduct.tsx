@@ -70,7 +70,7 @@ export interface PropsSingleProductType {
 const SingleProduct = (props: PropsSingleProductType) => {
   const [isLikeProduct, setIsLikeProduct] = useState(false);
   const [selectedAttribute, setSelectedAttribute] = useState<any>(
-    props.product!.variations?.length>0 && props.product?.variations[0]
+    props.product &&props.product.variations.length>0 && props.product?.variations[0]
   );
   const basketProduct = useSelector((state: RootState) =>
     state.basket.basket.find(

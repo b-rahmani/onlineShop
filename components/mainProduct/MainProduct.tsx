@@ -7,7 +7,7 @@ import classes from "./mainProducts.module.scss";
 const MainProducts = () => {
   return (
     <main className={`${classes.mainProductsDivider} container`} id="main">
-      <FilterProducts  />
+      {/* <FilterProducts  /> */}
 
       <AllProduct />
     </main>

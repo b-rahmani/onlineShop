@@ -1,10 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { createContext, useEffect, useState } from "react";
-import { object } from "yup";
 import { productType } from "../components/SingleProduct/SingleProduct";
-import { vercelClient } from "../utils/axios";
-import { SingleSliderDataTypes } from "./ContextSlider";
 export type Dictionary = {
   rating: { rate: number; count: number };
   [key: string]: string | object | number;
@@ -35,10 +32,12 @@ const AllProductProvider = (props: Iprops) => {
     // });
     setIsloading(true)
     try {
-      const {data}=await axios.get("http://ramin021.pythonanywhere.com/products/") 
+      const {data}=await axios.get("http://ramin021.pythonanywhere.com/products/",{
+        params: { ...Router.query }
+      }) 
       setIsloading(false)
       setAlllProduct(data.results)
-      console.log("set product",data.results)
+      console.log("params",Router.query)
     } catch (error) {
       setIsloading(false)
     }

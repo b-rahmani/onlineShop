@@ -60,13 +60,13 @@ const Home: NextPage = (props: any) => {
         <SwipBanner />
       </SliderDataProvider>
 
-      {/* <AllProductContext.Provider value={allProductState}> */}
+    
       <AllProductProvider>
         <MainProducts />
       </AllProductProvider>
-      {/* </AllProductContext.Provider>  */}
+
       <SortMobile />
-      <FilterMobile />
+      {/* <FilterMobile /> */}
     </>
   );
 };
