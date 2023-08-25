@@ -4,12 +4,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.first{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    // background-color: red;
+    flex-wrap: wrap;
+    user-select: none;
 }
 
 .paginate-buttons{
@@ -17,4 +14,22 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    background-color:red;
+}
+
+.ellipses{
+    position: relative;
+    display:inline-flex;
+    align-items:center;
+
+}
+
+.previous ,
+ .next,
+ .last,
+ .first {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
 }

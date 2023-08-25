@@ -11,6 +11,7 @@ export type AllProducts = Dictionary[];
 interface IContext {
   allProductState: productType[];
   loading: boolean;
+  metadata:any;
   // sliderData: SingleSliderDataTypes[];
 }
 
@@ -24,6 +25,7 @@ const AllProductProvider = (props: Iprops) => {
   const [allProductState, setAlllProduct] = useState<productType[]>([]);
   const [query, setQuery] = useState({});
   const [loading, setIsloading] = useState(true);
+  const [metadata,setmetadata]=useState({totalCount:1,pageSize:1})
   const Router = useRouter();
 
   const getAllProduct = async () => {
@@ -37,6 +39,7 @@ const AllProductProvider = (props: Iprops) => {
       }) 
       setIsloading(false)
       setAlllProduct(data.results)
+      setmetadata({totalCount:data.count,pageSize:data.page_size})
       console.log("params",Router.query)
     } catch (error) {
       setIsloading(false)
@@ -67,7 +70,10 @@ const AllProductProvider = (props: Iprops) => {
   }, [compare]);
 
   return (
-    <AllProductContext.Provider value={{ allProductState, loading }}>
+    <AllProductContext.Provider value={
+      { allProductState,
+       loading,
+       metadata, }}>
       {props.children}
     </AllProductContext.Provider>
   );

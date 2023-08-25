@@ -16,7 +16,7 @@ import useCopyToClipboard from "../hooks/useCopyToClipBoard";
 import { LayoutGroup, motion } from "framer-motion";
 import { useContext } from "react";
 import { AllProductContext } from "../../store/ContextAllProduct";
-
+import usePaginationBehavior from "../hooks/usePaginationBehavior";
 // import { Dictionary } from "../../store/ContextAllProduct";
 import CheckIcon from "../icons/checkIcon";
 import { productType } from "../SingleProduct/SingleProduct";
@@ -26,11 +26,12 @@ import Pagination from "../pagination/Pagination";
 
 const ProductMap = () => {
   const dispatch = useDispatch();
-  const { allProductState, loading } = useContext(AllProductContext);
+  const { allProductState, loading, metadata } = useContext(AllProductContext);
   const [copied, copy] = useCopyToClipboard("", 3000);
   const isShare = useSelector((state) => state.CartHoverAction.share.isShare);
   const sharedLink = useSelector((state) => state.CartHoverAction.share.link);
 
+  console.log("all product state", allProductState);
   const extendData = useSelector((state) => state.CartHoverAction.extend);
   const Router = useRouter();
   const origin =
@@ -126,16 +127,14 @@ const ProductMap = () => {
       <Pagination
         activeClassName="active"
         container=""
-        count={2}
+        items="items"
+        behavior={usePaginationBehavior()}
         ellipses=""
-        first="first"
-        previous="prev"
-        next="next"
-        last="last"
-        metadata={{
-          totalCount: allProductState.count,
-          PageSize: 6,
-        }}
+        // first
+        // previous
+        // next
+        last
+        metadata={metadata}
       />
       {/* <AnimatePresence presenceAffectsLayout>
         {extendData.isExtend && (
