@@ -19,7 +19,6 @@ interface CartHoverProps {
 
 const CartHoverBox = (props: CartHoverProps) => {
   const { cart } = props;
-  console.log("card",cart)
   return (
     <section className={classes.cartBox}>
       <div className={classes.header}>

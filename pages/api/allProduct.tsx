@@ -98,7 +98,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     */}
     const run =async()=>{
      const {data}=  await raminBaseUrl.get("/products/") 
-     console.log("ramin api data",data)
      return data
 
     }

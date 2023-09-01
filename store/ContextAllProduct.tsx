@@ -25,13 +25,11 @@ const AllProductProvider = (props: Iprops) => {
   const [allProductState, setAlllProduct] = useState<productType[]>([]);
   const [query, setQuery] = useState({});
   const [loading, setIsloading] = useState(true);
-  const [metadata,setmetadata]=useState({totalCount:1,pageSize:1})
+  const [metadata,setmetadata]=useState({totalCount:1,pageSize:6})
   const Router = useRouter();
 
   const getAllProduct = async () => {
-    // const { data } = await vercelClient.get("/api/allProduct", {
-    //   params: { ...Router.query },
-    // });
+   
     setIsloading(true)
     try {
       const {data}=await axios.get("http://ramin021.pythonanywhere.com/products/",{
@@ -40,7 +38,6 @@ const AllProductProvider = (props: Iprops) => {
       setIsloading(false)
       setAlllProduct(data.results)
       setmetadata({totalCount:data.count,pageSize:data.page_size})
-      console.log("params",Router.query)
     } catch (error) {
       setIsloading(false)
     }
@@ -55,8 +52,6 @@ const AllProductProvider = (props: Iprops) => {
     // }
   };
   const compare = Object.keys(Router.query).length > 0;
-
- 
 
   useEffect(() => {
     if (Router.query) {

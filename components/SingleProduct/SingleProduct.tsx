@@ -79,7 +79,6 @@ const SingleProduct = (props: PropsSingleProductType) => {
         selectedAttribute?.value === item.selectedAttribute?.value
     )
   );
-console.log("single product",props.product)
 
   const favoritClickHandler = () => {
     setIsLikeProduct((prev) => !prev);

@@ -39,75 +39,68 @@ const Pagination = ({
     return getLink(page);
   };
 
-  const firstPageTitle = "first";
-  const lastPageTitle = "last";
-  const nextPageTitle = "next";
-  const previousPageTitle = "prev";
+  const firstPageTitle = "";
+  const lastPageTitle = "";
+  const nextPageTitle = "";
+  const previousPageTitle = "";
 
   const firstMarkup = PageNumberOrDefault > 1 && (
     <>
-      {/* <Link
-        // href={linkBuilder(1)}
-        href={"/"}
+      <Link
+        href={linkBuilder(1)}
         aria-label={`get to first page `}
         className="first"
       >
-        {first && (
-          <span className={`paginate-buttons`}>
-            <LastPageIcon className={first} />
-          </span>
-        )}
-        <span className="sr-only">{firstPageTitle}</span>
+        <a>
+          {first && (
+            <span className={`paginate-buttons`}>
+              <LastPageIcon className={first} />
+            </span>
+          )}
+          <span className="sr-only">{firstPageTitle}</span>
+        </a>
       </Link>
       {ellipses &&
         !previous &&
         !(PageNumberOrDefault <= Math.ceil(countOrDefault / 2)) && (
           <span className="ellipses">...</span>
-        )} */}
+        )}
     </>
   );
 
   const previousMarkup = PageNumberOrDefault > 1 && (
     <>
-      {/* <Link
-        // href={linkBuilder(1)}
-        // href={"/"}
-        aria-label={`get to previous page`}
-        className="previous items"
-      >
-        {previous && (
-          <span className={`paginate-buttons`}>
-            <ChevronRightIcon className={previous || " "} />
-          </span>
-        )}
-        <span className="sr-only">{previousPageTitle}</span>
+      <Link href={linkBuilder(1)} aria-label={`get to previous page`}>
+        <a className="previous items">
+          {previous && (
+            <span className={`paginate-buttons`}>
+              <ChevronRightIcon className={previous || " "} />
+            </span>
+          )}
+          <span className="sr-only">{previousPageTitle}</span>
+        </a>
       </Link>
       {ellipses && !(PageNumberOrDefault <= Math.ceil(countOrDefault / 2)) && (
         <span className="ellipses">...</span>
-      )} */}
+      )}
     </>
   );
 
-  console.log(PageNumberOrDefault, lastPageNumber);
-
   const nextMarkup = PageNumberOrDefault < lastPageNumber && (
     <>
-      {/* {ellipses && !(PageNumberOrDefault + middleCount >= lastPageNumber) && (
+      {ellipses && !(PageNumberOrDefault + middleCount >= lastPageNumber) && (
         <span className="ellipses">...</span>
       )}
-      <Link
-        // href={linkBuilder(pageNumber+ 1)}
-        href={"/"}
-        aria-label={`get to next page`}
-        className="next items"
-      >
-        {next && (
-          <span className="paginate-buttons">
-            <ChevronLeftIcon className={next || " "} />
-          </span>
-        )}
-        <span className="sr-only">{nextPageTitle}</span>
-      </Link> */}
+      <Link href={linkBuilder(pageNumber + 1)} aria-label={`get to next page`}>
+        <a className="next">
+          {next && (
+            <span>
+              <ChevronLeftIcon className="icons" />
+            </span>
+          )}
+          <span className="sr-only">{nextPageTitle}</span>
+        </a>
+      </Link>
     </>
   );
 
@@ -118,20 +111,16 @@ const Pagination = ({
         !(PageNumberOrDefault + middleCount >= lastPageNumber) && (
           <span className="ellipses">...</span>
         )}
-      {/* <Link
-        // href={linkBuilder(lastPageNumber)}
-        href={"/"}
-        aria-label={`get to last page`}
-        className="last"
-      >
-        {last && (
-          <span className="paginate-buttons">
-            <FirstPageIcon className={last} />
-          </span>
-        )}
-        <span className="sr-only">{lastPageTitle}</span>
-      </Link> */}
-      <a href={linkBuilder(lastPageNumber)}>{lastPageNumber}</a>
+      <Link href={linkBuilder(lastPageNumber)} aria-label={`get to last page`}>
+        <a className={"last"}>
+          {last && (
+            <span>
+              <FirstPageIcon className={`icons`} />
+            </span>
+          )}
+          <span className="sr-only">{lastPageTitle}</span>
+        </a>
+      </Link>
     </>
   );
 
@@ -139,7 +128,7 @@ const Pagination = ({
     <>
       {!isAllDataShown && (
         <nav className="pagination">
-          {/* {first && firstMarkup}
+          {first && firstMarkup}
           {previous && previousMarkup}
           {pages.map((item, index) => {
             if (
@@ -154,21 +143,23 @@ const Pagination = ({
                   aria-label={`get to page ${
                     PageNumberOrDefault + index - middleCount
                   }`}
-                  // href={linkBuilder(PageNumberOrDefault + index - middleCount)}
-                  // href={"/"}
-                  className={`relative inline-flex items-center numbers ${items} ${
-                    PageNumberOrDefault ==
-                    PageNumberOrDefault + index - middleCount
-                      ? activeClassName
-                      : ""
-                  } `}
+                  href={linkBuilder(PageNumberOrDefault + index - middleCount)}
                 >
-                  {PageNumberOrDefault + index - middleCount}
+                  <a
+                    className={`relative inline-flex items-center numbers ${items} ${
+                      PageNumberOrDefault ==
+                      PageNumberOrDefault + index - middleCount
+                        ? activeClassName
+                        : ""
+                    } `}
+                  >
+                    {PageNumberOrDefault + index - middleCount}
+                  </a>
                 </Link>
               );
             }
-          })} */}
-          {/* {next && nextMarkup} */}
+          })}
+          {next && nextMarkup}
           {last && lastMarkup}
         </nav>
       )}

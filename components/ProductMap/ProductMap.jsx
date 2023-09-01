@@ -31,7 +31,6 @@ const ProductMap = () => {
   const isShare = useSelector((state) => state.CartHoverAction.share.isShare);
   const sharedLink = useSelector((state) => state.CartHoverAction.share.link);
 
-  console.log("all product state", allProductState);
   const extendData = useSelector((state) => state.CartHoverAction.extend);
   const Router = useRouter();
   const origin =
@@ -53,7 +52,7 @@ const ProductMap = () => {
       )}
       <div className={classes.productMapLayout}>
         {loading &&
-          Array.from(Array(12).keys()).map((item) => (
+          Array.from(Array(metadata?.pageSize).keys()).map((item) => (
             <LoadingCard key={item} break />
           ))}
 
@@ -125,14 +124,14 @@ const ProductMap = () => {
         </Modal>
       </div>
       <Pagination
-        activeClassName="active"
+        activeClassName="active-page"
         container=""
-        items="items"
-        behavior={usePaginationBehavior()}
+        items="pagination-items"
+        behavior={usePaginationBehavior("/")}
         ellipses=""
-        // first
-        // previous
-        // next
+        first
+        previous
+        next
         last
         metadata={metadata}
       />

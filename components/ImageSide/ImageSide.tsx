@@ -9,7 +9,6 @@ import { useState } from "react";
 import { PropsSingleProductType } from "../SingleProduct/SingleProduct";
 
 const ImageSide = (props: PropsSingleProductType) => {
-  console.log("images",props)
   const [imagesNavSlider, setImagesNavSlider] = useState(props?.product?.image![0]);
 
   return (
