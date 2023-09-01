@@ -22,10 +22,10 @@ const Pagination = ({
 }) => {
   const Router = useRouter();
   const { query, asPath } = Router;
-  const { pageNumber, pageSize } = query;
+  const { page, pageSize } = query;
 
   const countOrDefault = metadata?.totoalCount ? +metadata?.totoalCount : 5;
-  const PageNumberOrDefault = pageNumber ? +pageNumber : 1;
+  const PageNumberOrDefault = page ? +page : 1;
 
   const lastPageNumber = Math.ceil(metadata?.totalCount / metadata?.pageSize);
 
@@ -46,17 +46,9 @@ const Pagination = ({
 
   const firstMarkup = PageNumberOrDefault > 1 && (
     <>
-      <Link
-        href={linkBuilder(1)}
-        aria-label={`get to first page `}
-        className="first"
-      >
-        <a>
-          {first && (
-            <span className={`paginate-buttons`}>
-              <LastPageIcon className={first} />
-            </span>
-          )}
+      <Link href={linkBuilder(1)} aria-label={`get to first page `}>
+        <a className="first">
+          {first && <LastPageIcon className="icons" />}
           <span className="sr-only">{firstPageTitle}</span>
         </a>
       </Link>
@@ -70,13 +62,9 @@ const Pagination = ({
 
   const previousMarkup = PageNumberOrDefault > 1 && (
     <>
-      <Link href={linkBuilder(1)} aria-label={`get to previous page`}>
-        <a className="previous items">
-          {previous && (
-            <span className={`paginate-buttons`}>
-              <ChevronRightIcon className={previous || " "} />
-            </span>
-          )}
+      <Link href={linkBuilder(+page - 1)} aria-label={`get to previous page`}>
+        <a className="previous">
+          {previous && <ChevronRightIcon className="icons" />}
           <span className="sr-only">{previousPageTitle}</span>
         </a>
       </Link>
@@ -91,13 +79,9 @@ const Pagination = ({
       {ellipses && !(PageNumberOrDefault + middleCount >= lastPageNumber) && (
         <span className="ellipses">...</span>
       )}
-      <Link href={linkBuilder(pageNumber + 1)} aria-label={`get to next page`}>
+      <Link href={linkBuilder(+page + 1)} aria-label={`get to next page`}>
         <a className="next">
-          {next && (
-            <span>
-              <ChevronLeftIcon className="icons" />
-            </span>
-          )}
+          {next && <ChevronLeftIcon className="icons" />}
           <span className="sr-only">{nextPageTitle}</span>
         </a>
       </Link>
@@ -113,11 +97,7 @@ const Pagination = ({
         )}
       <Link href={linkBuilder(lastPageNumber)} aria-label={`get to last page`}>
         <a className={"last"}>
-          {last && (
-            <span>
-              <FirstPageIcon className={`icons`} />
-            </span>
-          )}
+          {last && <FirstPageIcon className={`icons`} />}
           <span className="sr-only">{lastPageTitle}</span>
         </a>
       </Link>

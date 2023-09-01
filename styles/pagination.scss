@@ -29,6 +29,9 @@
  .next,
  .last,
  .first {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px;
     padding: 5px;
     margin-inline: 5px;
