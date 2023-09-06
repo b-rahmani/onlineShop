@@ -5,7 +5,10 @@ import classes from "./login.module.scss";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
-import { vercelClient } from "../../utils/axios";
+import {
+   vercelClient,
+   raminBaseUrl,
+  } from "../../utils/axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Loader from "../loading/Loading2";
@@ -31,16 +34,18 @@ const LoginPage = () => {
         return;
       }
     });
-    vercelClient
-      .post("/api/login", { name: data.userName, password: data.password })
+    raminBaseUrl
+      .post("/auth/jwt/create", { username: data.userName, password: data.password })
       .then((res) => {
-        if (res.status === 200) {
-          localStorage.setItem("token", res.data.data.token);
-          Router.push("/");
-        }
+        console.log(res)
+        // if (res.status === 200) {
+        //   localStorage.setItem("token", res.data.data.token);
+        //   Router.push("/");
+        // }
       })
       .catch((er) => {
-        toast.error(er.response?.data?.message ?? "مشکلی پیش آمده", {
+        console.log('erroer',er)
+        toast.error(er.response?.data?.detail ?? "مشکلی پیش آمده", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -117,11 +122,10 @@ const LoginPage = () => {
                 </span>
                 {isLoading && <Loader />}
               </button>
-              <button className={classes.loginWithGoogle} type="button">
+              {/* <button className={classes.loginWithGoogle} type="button">
                 ورود با گوگل
-                {/* <Image src="/google.svg" width={25} height={25} alt="google" /> */}
                 <img src="/google.png" alt="google" />
-              </button>
+              </button> */}
             </form>
           </div>
           <div className={classes.switchLogin}>

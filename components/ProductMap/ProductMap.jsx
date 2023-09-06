@@ -32,7 +32,7 @@ const ProductMap = () => {
   const sharedLink = useSelector((state) => state.CartHoverAction.share.link);
 
   const extendData = useSelector((state) => state.CartHoverAction.extend);
-  const Router = useRouter();
+  const { pathname } = useRouter();
   const origin =
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin

@@ -6,7 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { vercelClient } from "../../utils/axios";
+import { 
+  vercelClient,
+  raminBaseUrl,
+} from "../../utils/axios";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import { useState } from "react";
@@ -22,10 +25,10 @@ const Signup = () => {
       .required("کلمه عبور الزامی است")
       .max(20, "حداکثر 20 کاراکتر")
       .min(5, "حداقل 5 کاراکتر"),
-    confirmPassword: yup
+    email: yup
       .string()
-      .required("تکرار کلمه عبور الزامی است")
-      .oneOf([yup.ref("password"), null], "کلمه عبور و تکرار آن مطابقت ندارد"),
+      .required("ایمیل اجباری است.")
+      .email()
   });
 
   const {
@@ -38,6 +41,7 @@ const Signup = () => {
   } = useForm({ resolver: yupResolver(shema) });
 
   const formSubmitHandler = (data: any) => {
+
     Object.entries(data).map((el: any) => {
       if (el[1].trim() === "") {
         setError(el[0], { type: "required" }, { shouldFocus: true });
@@ -46,20 +50,23 @@ const Signup = () => {
       }
     });
     setIsLoading(true);
-    vercelClient
-      .post("/api/signup", {
-        name: data.userName,
+    raminBaseUrl
+      .post("/auth/users/", {
+        email: data.email,
+        username: data.userName,
         password: data.password,
-        confirmPassword: data.confirmPassword,
       })
       .then((res) => {
-        if (res.status === 201) {
-          localStorage.setItem("token", res.data.data.token);
-          Router.replace("/");
-        }
+        alert('then')
+        console.log(res)
+        // if (res.status === 201) {
+        //   localStorage.setItem("token", res.data.data.token);
+        //   Router.replace("/");
+        // }
       })
       .catch((er) => {
-        toast.error(er.response?.data?.message ?? "مشکلی پیش آمده", {
+       
+        toast.error(er.response?.data?.statusText ?? "مشکلی پیش آمده", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -68,6 +75,17 @@ const Signup = () => {
           draggable: true,
           progress: undefined,
         });
+         
+         Object.entries(er.response?.data)?.map(([_,messages]:any)=>messages.map((message:any)=>toast.error(message ?? "مشکلی پیش آمده", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+        ))
       })
       .finally(() => setIsLoading(false));
   };
@@ -77,7 +95,6 @@ const Signup = () => {
       <div className={classes.imageSide}>
         <div className={classes.circle}></div>
       </div>
-
       <div className={classes.formSide}>
         <div className={classes.content}>
           <motion.div
@@ -91,6 +108,21 @@ const Signup = () => {
           <p>لطفا اطلاعات درخواستی را وارد کنید.</p>
           <div className={classes.form}>
             <form onSubmit={handleSubmit(formSubmitHandler)}>
+            <div>
+                <label htmlFor="email"> ایمیل</label>
+                <input
+                  type="email"
+                  id="email"
+                  autoComplete="none"
+                  placeholder="کلمه عبور خود را وارد کنید"
+                  {...register("email")}
+                />
+                {errors?.email && (
+                  <span className={classes.error}>
+                    {String(errors.email.message)}
+                  </span>
+                )}
+              </div>
               <div>
                 <label htmlFor="userName">نام کاربری</label>
                 <input
@@ -120,21 +152,7 @@ const Signup = () => {
                   </span>
                 )}
               </div>
-              <div>
-                <label htmlFor="confirmPassword"> تایید کلمه عبور</label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="none"
-                  placeholder="کلمه عبور خود را وارد کنید"
-                  {...register("confirmPassword")}
-                />
-                {errors?.confirmPassword && (
-                  <span className={classes.error}>
-                    {String(errors.confirmPassword.message)}
-                  </span>
-                )}
-              </div>
+
               <Link href="/forgetPassword">
                 <a className={classes.forgetPass}>فراموشی رمز عبور</a>
               </Link>

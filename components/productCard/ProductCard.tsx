@@ -76,7 +76,7 @@ const ProductCard = (props: ProductCard) => {
           </div>
           <div className={classes.detailSec}>
             <div className={`${classes.cardTitle} ellips-2`}>
-              {data.title}
+              {data.name}
               <br />
               <br />
             </div>
