@@ -78,6 +78,21 @@
         }
       }
 
+      .activeUser {
+        display: flex;
+        margin-inline: 10px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 14px;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+
+      }
+
       .cartContainer {
         transition: all 0.2s ease-in;
         position: relative;

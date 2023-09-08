@@ -2,7 +2,7 @@ import Link from "next/link";
 import { joinClassModules } from "../../utils/utils";
 import ArrowLeftIcon from "../icons/arrowLeftIcon";
 import classes from "./login.module.scss";
-import { motion } from "framer-motion";
+import { checkTargetForNewValues, motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import {
@@ -37,11 +37,14 @@ const LoginPage = () => {
     raminBaseUrl
       .post("/auth/jwt/create", { username: data.userName, password: data.password })
       .then((res) => {
-        console.log(res)
-        // if (res.status === 200) {
-        //   localStorage.setItem("token", res.data.data.token);
-        //   Router.push("/");
-        // }
+        console.log(res.data)
+        if (res.status === 200) {
+          localStorage.setItem("accessToken", res.data.access);
+          localStorage.setItem("refreshToken",res.data.refresh)
+          raminBaseUrl.defaults.headers.common['Authorization']=`JWT ${res.data.access}`
+          // r.defaults.headers.common['Authorization'] = token;
+          Router.push("/");
+        }
       })
       .catch((er) => {
         console.log('erroer',er)

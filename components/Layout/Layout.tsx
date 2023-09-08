@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Hamburger from "../icons/hamburger";
 import Sidebar from "../sidebar/Sidebar";
-
+import { raminBaseUrl } from "../../utils/axios";
 import ActiveLink from "../activeLink/ActiveLink";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../store/sidebarSlice";
@@ -19,6 +19,7 @@ import Badge from "../Badge/Badge";
 import CartHoverBox from "../CartHoerBox/CartHoverBox";
 import Footer from "../footer/Footer";
 import LoginIcon from "../icons/Login";
+import ArrowBottom from "../icons/ArrowBottom"
 interface layoutProps {
   children?: React.ReactNode;
 
@@ -26,13 +27,14 @@ interface layoutProps {
 }
 
 const Layout = ({ children, search }: layoutProps) => {
+  const [user,setUser]:any=useState('')
   const Router = useRouter();
   const isOpen = useSelector((state: RootState) => state.sidebar.isOpensidebar);
   const dispatch = useDispatch();
-  let user;
-  if (typeof window !== "undefined" && localStorage?.getItem("token")) {
-    user = localStorage?.getItem("token");
-  }
+ 
+  // if (typeof window !== "undefined" && localStorage?.getItem("token")) {
+  //   user = localStorage?.getItem("token");
+  // }
   // const accountClickHandler = () => {
   //   user ? Router.push("/profile") : Router.push("/login");
   // };
@@ -40,6 +42,18 @@ const Layout = ({ children, search }: layoutProps) => {
 
   useEffect(() => {
     dispatch(initialBasket());
+    const accessToken=localStorage.getItem('accessToken')
+     raminBaseUrl.get('/auth/users/me/',{
+      headers:{
+        'Authorization' : `JWT ${accessToken}`
+      }
+     })
+     .then(res=>{
+      setUser(res.data)
+      localStorage.set('user',res.data)
+     })
+     .catch(er=>console.log(er))
+
   }, []);
 
   return (
@@ -57,16 +71,22 @@ const Layout = ({ children, search }: layoutProps) => {
           <div className={classes.actionBar}>
             {search && <SearchBar />}
             {user ? (
+               <div
+               className={classes.activeUser}
+               onClick={() =>  Router.push("/profile")}
+               >
               <AccountIcon
                 // className={classes.acountIcon}
-                click={() => Router.push("/profile")}
               />
+            < ArrowBottom/>
+              </div>
             ) : (
               <div
                 className={classes.loginSignup}
                 onClick={() => Router.push("/login")}
               >
                 <LoginIcon />
+               
                 <span>ورود | ثبت نام</span>
                 <span>ورود</span>
               </div>

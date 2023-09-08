@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/FilterProducts/FilterProducts.js", "utils/db-connect.ts", "components/ProductMap/ProductMap.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/FilterProducts/FilterProducts.js", "utils/db-connect.ts", "components/ProductMap/ProductMap.jsx", "utils/axios.js"],
   "exclude": ["node_modules"]
 }
