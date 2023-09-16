@@ -40,7 +40,7 @@ export const SumPriceCart = (cart: basketProductType[]) => {
 };
 export const SumPriceWithoutDiscountCart = (cart: basketProductType[]) => {
   const price = cart.reduce((sum, product) => {
-    return sum + product.price;
+    return sum + product.selectedAttribute.price;
   }, 0);
 
   return price;

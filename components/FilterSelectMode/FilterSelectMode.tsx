@@ -18,7 +18,6 @@ const FilterSelectMode = (props: { filter: filterType }) => {
   const Router = useRouter();
 
   useEffect(() => {
-    // console.log(Router.query);
     const selectItemsINQuery = [];
     // for key,value} in Router.query{
 

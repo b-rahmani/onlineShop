@@ -68,7 +68,9 @@ const Cart = (props: Iprops) => {
                         "ellips--3"
                       )}
                     >
-                      <p className={classes.title}>{product.name}</p>
+                      <p className={classes.title}>
+                      {`${product.name} (${product.selectedAttribute.size})`}
+                        </p>
                       <div className={classes.attribute}>
                         <p
                           className={classes.colorAttribute}
@@ -88,8 +90,18 @@ const Cart = (props: Iprops) => {
                       attribute={product.selectedAttribute}
                       outline
                     />
-
-                    <div className={classes.price}>
+ <div className={classes.priceBox}>
+                {your_benefit_buy(product)>0&&<div className={classes.yourBenefit}>
+                  <span>{your_benefit_buy(product).toLocaleString()}</span>
+                  <span>تومان </span>
+                  <span>تخفیف</span>
+                </div>}
+                <div className={classes.price}>
+                  <p>{product.selectedAttribute!.price.toLocaleString()}</p>
+                  <span>تومان</span>
+                </div>
+              </div>
+                    {/* <div className={classes.price}>
                       {your_benefit_buy(product) > 0 && (
                         <p className={classes.benefit}>
                           <span>
@@ -108,7 +120,7 @@ const Cart = (props: Iprops) => {
                         </span>
                         <span>تومان</span>
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
               </div>
@@ -134,6 +146,7 @@ const Cart = (props: Iprops) => {
             <p>قیمت کالاها ({cartItems?.length})</p>
             <p>
               <span>
+               
                 {SumPriceWithoutDiscountCart(cartItems).toLocaleString()}
               </span>
               <span>تومان</span>
@@ -155,9 +168,12 @@ const Cart = (props: Iprops) => {
             <p>
               <span>
                 (
-                {(
-                  (SumPriceCart(cartItems) /
-                    SumPriceWithoutDiscountCart(cartItems)) *
+                {(100-
+                  (
+                    SumPriceCart(cartItems)
+                    /
+                    SumPriceWithoutDiscountCart(cartItems)
+                    ) *
                   100
                 ).toFixed()}
                 %)
@@ -171,10 +187,10 @@ const Cart = (props: Iprops) => {
             </p>
           </div>
 
-          <button className={classes.checkout}>ادامه</button>
+          <button className={classes.checkout} onClick={()=>alert("done")}>ادامه</button>
         </section>
         <div className={classes.checkoutBoxMobile}>
-          <button className={classes.checkout}>ادامه</button>
+          <button className={classes.checkout} onClick={()=>alert("done")}>ادامه</button>
           <div className={classes.text}>
             <p>جمع سبد خرید</p>
             <p>

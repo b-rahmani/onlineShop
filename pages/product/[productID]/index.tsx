@@ -13,7 +13,6 @@ interface SingleProductType {
 }
 
 const SingleProductPage = (props: SingleProductType) => {
-  console.log("page",props)
   return (
     <SingleProduct
       product={props.product}
@@ -29,7 +28,6 @@ export const getStaticProps = async ({ params }: { [key: string]: any }) => {
     // const product = await data?.find(
     //   (p: productType) => p.id == params?.productID
     // );
-    console.log("params product id *****",params)
     const {data:singleProduct}=await raminBaseUrl.get(`/products/${params?.productID}`)
     const {data}=await raminBaseUrl.get('/products')
 
@@ -51,7 +49,6 @@ export const getStaticProps = async ({ params }: { [key: string]: any }) => {
 export const getStaticPaths = async () => {
   try {
     const {data}:any = await raminBaseUrl.get('/products')
-    console.log("#######&&&&&&&%%%%%",data)
     const appIds = await data.results.map((item: any) => ({
       params: { productID: item.id.toString() },
     }));

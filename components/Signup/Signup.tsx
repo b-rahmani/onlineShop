@@ -58,7 +58,7 @@ const Signup = () => {
       })
       .then((res) => {
         alert('then')
-        console.log(res)
+        // console.log(res)
         // if (res.status === 201) {
         //   localStorage.setItem("token", res.data.data.token);
         //   Router.replace("/");

@@ -78,6 +78,7 @@
           display: grid;
           grid-template-columns: 120px 1fr;
           padding: 16px;
+         gap:0 5px;
 
           &:not(:last-of-type) {
             border-bottom: 1px solid gray;
@@ -120,37 +121,37 @@
               }
             }
           }
-          .price {
+          .priceBox {
             display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
             flex-direction: column;
-            gap: 5px;
-
-            .benefit {
+            align-items: center;
+            justify-content: space-around;
+    
+            .yourBenefit {
               display: flex;
-              align-items: center;
-              font-size: 12px;
-              color: #ef4056;
-              gap: 5px;
-
-              span {
-                font-family: iranyekanFa;
-              }
-            }
-            .discountedPrice {
-              display: flex;
-              align-items: center;
               justify-content: center;
               gap: 5px;
+    
               span {
                 font-family: iranyekanFa;
-                &:first-of-type {
-                  font-size: 18px;
-                }
-                &:last-of-type {
-                  font-size: 10px;
-                }
+                font-size: 12px;
+                color: #ef394e;
+              }
+            }
+    
+            .price {
+              display: flex;
+              gap: 5px;
+              align-items: center;
+              justify-content: flex-start;
+    
+              p {
+                font-size: 20px;
+                font-weight: 600;
+                font-family: iranyekanFa;
+              }
+              span {
+                font-size: 14px;
               }
             }
           }
@@ -235,7 +236,7 @@
         border-radius: 15px;
         width: 90%;
         margin: 0 auto;
-
+cursor: pointer;
         color: #fff;
         font-weight: 600;
       }

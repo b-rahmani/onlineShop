@@ -20,6 +20,7 @@ import CartHoverBox from "../CartHoerBox/CartHoverBox";
 import Footer from "../footer/Footer";
 import LoginIcon from "../icons/Login";
 import ArrowBottom from "../icons/ArrowBottom"
+import AcconuntHoverBox from "../accountHoverBox/AcconuntHoverBox"
 interface layoutProps {
   children?: React.ReactNode;
 
@@ -71,14 +72,18 @@ const Layout = ({ children, search }: layoutProps) => {
           <div className={classes.actionBar}>
             {search && <SearchBar />}
             {user ? (
+              <div className={classes.userContainer}>
+
                <div
                className={classes.activeUser}
                onClick={() =>  Router.push("/profile")}
                >
               <AccountIcon
                 // className={classes.acountIcon}
-              />
+                />
             < ArrowBottom/>
+                </div>
+            <AcconuntHoverBox user={user}/>
               </div>
             ) : (
               <div

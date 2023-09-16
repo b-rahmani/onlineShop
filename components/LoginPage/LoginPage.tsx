@@ -37,7 +37,7 @@ const LoginPage = () => {
     raminBaseUrl
       .post("/auth/jwt/create", { username: data.userName, password: data.password })
       .then((res) => {
-        console.log(res.data)
+   
         if (res.status === 200) {
           localStorage.setItem("accessToken", res.data.access);
           localStorage.setItem("refreshToken",res.data.refresh)

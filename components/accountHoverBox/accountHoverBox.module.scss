@@ -1,0 +1,36 @@
+.userInfoBox {
+    width: 200px;
+    position: absolute;
+    left: 0;
+    top: 97%;
+    max-height: 250px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 10;
+    cursor: unset;
+
+    .header{
+        padding:10px 0;
+    font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .item{
+        cursor: pointer;
+    display: flex;
+   border-bottom: 1px solid black;
+   padding:12px 4px;
+   &:last-child{
+    border:none;
+}
+&:hover{
+    color: blue;
+}
+    }
+  }
+  

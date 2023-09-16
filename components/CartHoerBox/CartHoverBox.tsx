@@ -96,7 +96,7 @@ const CartHoverBox = (props: CartHoverProps) => {
             <span>تومان</span>
           </p>
         </div>
-        <button>ثبت سفارش</button>
+        <button onClick={()=>alert("done!")}>ثبت سفارش</button>
       </div>
     </section>
   );
