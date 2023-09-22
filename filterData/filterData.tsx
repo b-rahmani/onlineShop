@@ -1,6 +1,6 @@
 export const filters = [
   {
-    name: "category",
+    name: "category_id",
     type: "list",
     faName: "دسته بندی",
     items: [
@@ -10,7 +10,7 @@ export const filters = [
     ],
   },
   {
-    name: "isExist",
+    name: "stock",
     type: "radio",
     faName: "فقط کالاهای موجود",
     items: [

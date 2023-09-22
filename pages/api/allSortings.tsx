@@ -2,13 +2,15 @@ import { NextApiResponse, NextApiRequest } from "next";
 
 const allSorting = (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json([
-    { name: "پرفروش ترین", value: "7" },
-    { name: "مرتبط ترین", value: "22" },
-    { name: "پربازدید ترین", value: "4" },
-    { name: "جدید ترین", value: "1" },
-    { name: "ارزان ترین", value: "20" },
-    { name: "گران ترین", value: "21" },
+    { name: "جدید ترین", value: "" },
+    { name: "پربازدید ترین", value: "-rate" },
+    { name: "ارزان ترین", value: "price" },
+    { name: "گران ترین", value: "-price" },
   ]);
 };
 
 export default allSorting;
+
+
+// { name: "مرتبط ترین", value: "22" },
+// { name: "پرفروش ترین", value: "7" },
