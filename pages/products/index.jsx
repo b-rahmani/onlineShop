@@ -30,13 +30,11 @@ const Index = (props) => {
         <SwipBanner />
       </SliderDataProvider>
 
-      
-       <AllProductProvider>
+      <AllProductProvider>
         <MainProducts />
-      </AllProductProvider>    
-      <FilterMobile />
+        <FilterMobile />
+      </AllProductProvider>
       <SortMobile />
-   
     </>
   );
 };

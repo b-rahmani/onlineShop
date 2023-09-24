@@ -3,6 +3,7 @@
   // background-color: red;
   margin-inline-start: 0px;
   grid-column: 1/-1;
+  // max-width: 70%;
 
   @include tablet-landscape-up {
     margin-inline-start: 20px;

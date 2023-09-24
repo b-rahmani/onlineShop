@@ -5,26 +5,30 @@ import "react-input-range/lib/css/index.css";
 import { useRouter } from "next/router";
 import { filterType } from "../filtersGenerate/FiltersTypeGenerate";
 
-const FilterRange = (props: {
-  filter: filterType;
-  min: number;
-  max: number;
-}) => {
+const FilterRange = (
+  props
+  //   : {
+  //   filter: filterType;
+  //   min: number;
+  //   max: number;
+  // }
+) => {
   const [prices, setPrices] = useState([...props.filter.items]);
 
   const Router = useRouter();
 
   useEffect(() => {
-    if (Router.query && Router.query.max_price) {
+    if (Router.query && Router.query[props.filter.items?.[1].name]) {
       setPrices((prev) => [
-        { ...prev[0], value: +Router.query.min_price! },
-        { ...prev[1], value: +Router.query.max_price! },
+        { ...prev[0], value: +Router.query[props.filter.items?.[0].name] },
+        { ...prev[1], value: +Router.query[props.filter.items?.[1].name] },
       ]);
     }
   }, []);
 
   useEffect(() => {
-    let timer: any;
+    let timer;
+    // : any;
     if (prices[0].value === props.min && prices[1].value === props.max) {
     } else {
       timer = setTimeout(() => {
@@ -34,8 +38,12 @@ const FilterRange = (props: {
             pathname: "/",
             query: {
               ...prevQuery,
-              min_price: encodeURI(prices[0].value.toString()),
-              max_price: encodeURI(prices[1].value.toString()),
+              [props.filter.items?.[0].name]: encodeURI(
+                prices[0].value.toString()
+              ),
+              [props.filter.items?.[1].name]: encodeURI(
+                prices[1].value.toString()
+              ),
             },
           },
           undefined,
@@ -48,7 +56,10 @@ const FilterRange = (props: {
     };
   }, [prices]);
 
-  const priceChangeHandler = (value: any) => {
+  const priceChangeHandler = (
+    value
+    // : any
+  ) => {
     const state = [
       { ...prices[0], value: +value.min },
       { ...prices[1], value: +value.max },
@@ -57,7 +68,10 @@ const FilterRange = (props: {
     setPrices(state);
   };
 
-  const singleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const singleChangeHandler = (
+    e
+    // : React.ChangeEvent<HTMLInputElement>
+  ) => {
     const state = [...prices];
 
     const newState = state.map((item) =>
@@ -77,7 +91,7 @@ const FilterRange = (props: {
             <input
               type="text"
               value={prices[0].value.toLocaleString()}
-              name="min-price"
+              name={prices[0].name}
               inputMode="numeric"
               onChange={singleChangeHandler}
             />
@@ -89,7 +103,7 @@ const FilterRange = (props: {
           <div className={classes.inputBox}>
             <input
               type="text"
-              name="max-price"
+              name={prices[1].name}
               inputMode="numeric"
               value={prices[1].value.toLocaleString()}
               onChange={singleChangeHandler}

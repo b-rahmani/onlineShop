@@ -4,14 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { closeFilter } from "../../store/mobileSortFilter";
 import CloseIcon from "../icons/CloseIcon";
-import { filters } from "../../filterData/filterData";
+// import { filters } from "../../filterData/filterData";
+import { AllProductContext } from "../../store/ContextAllProduct";
 import FiltersTypeGenerate from "../filtersGenerate/FiltersTypeGenerate";
 import Accordion from "../accordion/Accordion";
-import { Fragment, useState } from "react";
+import { Fragment, useState,useContext } from "react";
 import ArrowLeftIcon from "../icons/arrowLeftIcon";
 import { useRouter } from "next/router";
 
 const FilterMobile = () => {
+  const { filters } = useContext(AllProductContext);
+
   const [selectedFilter, setSelectedFilter] = useState<string>("");
   const isOpenFilter = useSelector(
     (state: RootState) => state.filterSort.isOpenfilter
