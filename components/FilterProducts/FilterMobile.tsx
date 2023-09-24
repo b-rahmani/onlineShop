@@ -22,7 +22,7 @@ const FilterMobile = () => {
   const dispatch = useDispatch();
   const Router = useRouter();
 
-  const renderedFilter = filters.find((el) => el.faName === selectedFilter);
+  const renderedFilter = filters.find((el:any) => el.faName === selectedFilter);
 
   return (
     <Modal
@@ -56,7 +56,7 @@ const FilterMobile = () => {
           {renderedFilter ? (
             <FiltersTypeGenerate filter={renderedFilter} />
           ) : (
-            filters.map((item) => (
+            filters.map((item:any) => (
               <Fragment key={item.name}>
                 {item.type === "radio" ? (
                   <div className={classes.RadioFilters}>
