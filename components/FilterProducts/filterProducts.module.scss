@@ -2,7 +2,7 @@
 .filterProducts {
   // min-height: min-content;
   max-height: 100%;
-
+// margin-top: 45px;
   display: none;
 
   @include tablet-landscape-up {
@@ -16,7 +16,7 @@
     padding: 16px 20px;
     padding-bottom: 0;
     position: sticky;
-    top: 20px;
+    top: 180px;
     left: 0;
 
     // backface-visibility: hidden;
