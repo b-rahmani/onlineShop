@@ -37,8 +37,8 @@ const FilterSelectMode = (props: { filter: filterType }) => {
   useEffect(() => {
     const querys: IObjectKeys = {};
     select.forEach(({ name, value }, ind: number) => {
-      let label = `${name}[${ind.toString()}]`;
-      querys[label] = encodeURI(value);
+      // let label = `${name}[${ind.toString()}]`;
+      querys[name] = encodeURI(value);
     });
     const prevQuery = Router.query;
     // const filteredPrevQuery=Object.keys(prevQuery).map(el=>el.includes(props.filter.name)?"":el);

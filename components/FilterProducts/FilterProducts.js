@@ -30,11 +30,10 @@ const FilterProducts = () => {
           {filters.map((item) => (
             <Fragment key={item.name}>
               {item.type === "radio" ? (
-                <div className={classes.RadioFilters}>
-                  <div className={classes.filterName}>{item.faName}</div>
-                  <FiltersTypeGenerate filter={item} />
-                </div>
+                // <div className={classes.RadioFilters}>
+                <FiltersTypeGenerate filter={item} />
               ) : (
+                // </div>
                 <Accordion
                   title={item.faName}
                   key={item.name}

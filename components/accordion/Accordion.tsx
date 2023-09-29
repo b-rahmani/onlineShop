@@ -16,7 +16,7 @@ const Accordion = (props: propsAccordionType) => {
         onClick={() => !props.mobile && setIsOpen((prev) => !prev)}
       >
         <div>{props.title}</div>
-        <div>{isOpen ? "-" : "+"}</div>
+        <div className={classes.accordionIcon}>{isOpen ? "-" : "+"}</div>
       </div>
       <div
         style={{ maxHeight: isOpen ? "800px" : "0px" }}

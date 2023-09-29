@@ -6,16 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { openFocusInput, closeFocusInput } from "../../store/searchFocusSlice";
 import { RootState } from "../../store/store";
-import { vercelClient } from "../../utils/axios";
+import { raminBaseUrl } from "../../utils/axios";
 import { joinClassModules } from "../../utils/utils";
 import ArrowLeftIcon from "../icons/arrowLeftIcon";
-
 import SearchIcon from "../icons/SearchIcon";
-
 import Loader from "../loading/Loading2";
 import Modal from "../modal/Modal";
 import { productType } from "../SingleProduct/SingleProduct";
 import classes from "./searchbar.module.scss";
+
 const SearchBar = () => {
   const topSearchRef = useRef<HTMLInputElement>(null);
   const topSearchBoxRef = useRef<HTMLDivElement>(null);
@@ -72,9 +71,9 @@ const SearchBar = () => {
     if (searched) {
       let timer = setTimeout(() => {
         setIsLoading(true);
-        vercelClient
-          .get(`/api/search/?search=${searched}`)
-          .then((res) => setResault(res.data))
+        raminBaseUrl
+          .get(`/products/?q=${searched}`)
+          .then((res) => setResault(res.data.results))
           .catch((er) => console.log(er))
           .finally(() => setIsLoading(false));
       }, 300);
@@ -131,12 +130,12 @@ const SearchBar = () => {
             {searched.trim() !== "" && result?.length === 0 && !isLoading && (
               <p>نتیجه ای یافت نشد</p>
             )}
-            {result?.map((product: productType) => (
+            {result?.map((product: any) => (
               <Link href={`/product/${product.id}`} key={product.id}>
                 <a className={joinClassModules(classes.product)}>
                   <div className={classes.imageContainer}>
                     <Image
-                      src={product.image![0]}
+                      src={product.image}
                       alt={product.name}
                       layout="fill"
                     />
@@ -172,7 +171,7 @@ const SearchBar = () => {
             {searched.trim() !== "" && result?.length === 0 && !isLoading && (
               <p>نتیجه ای یافت نشد</p>
             )}{" "}
-            {result?.map((product: productType) => (
+            {result?.map((product: any) => (
               <Link
                 href={`/product/${product.id}`}
                 key={product.id}
@@ -181,7 +180,7 @@ const SearchBar = () => {
                 <a className={joinClassModules(classes.product)}>
                   <div className={classes.imageContainer}>
                     <Image
-                      src={product.image![0]}
+                      src={product.image}
                       alt={product.name}
                       layout="fill"
                     />

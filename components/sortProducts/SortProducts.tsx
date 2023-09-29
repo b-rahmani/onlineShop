@@ -42,12 +42,12 @@ const SortProducts = () => {
       .get("/api/allSortings")
       .then((res) => {
         dispatch(initSorts(res.data));
-        if (Query.o) {
+        if (Query.sort) {
           // return setSort({ dataSort: res.data, selectedSort: Query.sort });
           dispatch(
             changeSelectedSort(
               res.data.find(
-                (item: singleSortItemType) => item.value === Query.o
+                (item: singleSortItemType) => item.value === Query.sort
               )
             )
           );
@@ -56,7 +56,7 @@ const SortProducts = () => {
         }
       })
       .catch((er) => console.log(er));
-  }, [Query.o]);
+  }, [Query.sort]);
 
   useEffect(() => {
     if (filterSort.isOpenfilter || filterSort.isOpensort) {
@@ -72,7 +72,7 @@ const SortProducts = () => {
     const hash = Router.asPath.split("#")[1];
     const url = "/";
     const Query = Router.query;
-    Query.o = item.value;
+    Query.sort = item.value;
     
     const display= Object.keys(Query).map(function(key) {
       return key + '=' + Query[key];

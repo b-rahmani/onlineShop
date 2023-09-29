@@ -113,16 +113,20 @@ const FilterRadioMode = (props: RadioBtnProps) => {
   //   }
   // };
 
-  return (
+  return (<div className={classes.radio}>
+  <p>{props.filter.faName}</p>
     <label className={joinClassModules(classes.radioBtn, classes[props.size])}>
+      
       <input
         type="checkbox"
         // ref={inputRef}
         checked={isSelected}
         onChange={changeHandler}
-      />
+        
+        />
       <span className={classes.slider}></span>
     </label>
+        </div>
   );
 };
 

@@ -31,7 +31,7 @@ const SortMobile = () => {
       pathname: url,
       // hash: hash,
 
-      query: { ...Query, o: sortItem.value },
+      query: { ...Query, sort: sortItem.value },
     });
     // const display = Object.keys(Query)
     //   .map(function (key) {
