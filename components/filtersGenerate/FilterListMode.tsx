@@ -9,10 +9,16 @@ const FilterListMode = (props: { filter: filterType }) => {
 
   const filterClickHandler = (name: string, value: string) => {
     const prevQuery = Router.query;
+    let newQuery;
+    if(prevQuery[name]===value){
+newQuery={...Object.fromEntries(Object.entries(prevQuery).filter(([itemName,itemValue])=>name!==itemName&& value!==itemValue))}
+    }else{
+newQuery={...prevQuery,[name]:encodeURI(value)}
+    }
     Router.push(
       {
         pathname: "/",
-        query: { ...prevQuery, [name]: encodeURI(value) },
+        query: newQuery,
       },
       undefined,
       { shallow: true }
