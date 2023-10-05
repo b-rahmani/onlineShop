@@ -88,7 +88,15 @@ const SingleProduct = (props: PropsSingleProductType) => {
 console.log("rate",rate)
 raminBaseUrl.post("/rate/",{product:props.product?.id,rate:rate}as any)
 .then(res=>alert('ثبت شد'))
-.catch(er=>console.log('مشکلی پیش آمده'))
+.catch(er=>{
+
+  if(er.response.status===401){
+    alert("ابتدا وارد حساب کاربری خود شوید")
+  }else{
+ alert(er.response.detail)   
+  }
+}
+  )
   }
 
   if (!props.product && props.status !== 404) {
@@ -188,24 +196,24 @@ raminBaseUrl.post("/rate/",{product:props.product?.id,rate:rate}as any)
 
           <div className={classes.buyBtn}>
             <div className={classes.phoneOnly}>
-              {props.product?.stock && props.product?.stock > 0 ? (
+              {selectedAttribute.stock && selectedAttribute.stock > 0 ? (
                 <div className={classes.price}>
-                  {props.product.discount ? (
+                  {selectedAttribute?.discount ? (
                     <>
                       <div className={classes.discountSec}>
                         <div className={classes.oldPrice}>
                           {" "}
-                          {props.product.price.toLocaleString()}
+                          {selectedAttribute?.price.toLocaleString()}
                         </div>
                         <div className={classes.discount}>
-                          {props.product.discount + "%"}
+                          {selectedAttribute?.discount + "%"}
                         </div>
                       </div>
                       <div className={classes.calculatedPrice}>
                         <span>
                           {priceDiscounted(
-                            props.product.price,
-                            props.product.discount
+                            selectedAttribute?.price,
+                            selectedAttribute?.discount
                           ).toLocaleString()}
                         </span>
                         <span className={classes.priceText}>تومان</span>
@@ -213,7 +221,7 @@ raminBaseUrl.post("/rate/",{product:props.product?.id,rate:rate}as any)
                     </>
                   ) : (
                     <div className={classes.calculatedPrice}>
-                      <span>{props.product.price.toLocaleString()}</span>
+                      <span>{selectedAttribute?.price.toLocaleString()}</span>
                       <span className={classes.priceText}>تومان</span>
                     </div>
                   )}
