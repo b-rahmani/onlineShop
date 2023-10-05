@@ -1,9 +1,8 @@
-import Rate from "rc-rate";
 import { joinClassModules, priceDiscounted } from "../../utils/utils";
 import BreadCrumb from "../BreadCrumb/BreadCrumb";
 import HeartIcon from "../icons/HeartIcon";
 import classes from "./singleProduct.module.scss";
-import "rc-rate/assets/index.css";
+import Rate from '../Rate/Rate';
 import ImageSide from "../ImageSide/ImageSide";
 import { useEffect, useRef, useState } from "react";
 import BuyBtnActions from "../buyBtnActions/BuyBtnActions";
@@ -11,6 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import RelatedSlider from "../relatedSlider/RelatedSlider";
 import ProductAttribute from "../productAttribute/ProductAttribute";
+import { raminBaseUrl } from "../../utils/axios";
 
 export interface productType {
   id: number | string;
@@ -83,6 +83,13 @@ const SingleProduct = (props: PropsSingleProductType) => {
   const favoritClickHandler = () => {
     setIsLikeProduct((prev) => !prev);
   };
+
+  const RatingChangeHandler=(rate:any)=>{
+console.log("rate",rate)
+raminBaseUrl.post("/rate/",{product:props.product?.id,rate:rate}as any)
+.then(res=>alert('ثبت شد'))
+.catch(er=>console.log('مشکلی پیش آمده'))
+  }
 
   if (!props.product && props.status !== 404) {
     return <p>loading...</p>;
@@ -165,11 +172,8 @@ const SingleProduct = (props: PropsSingleProductType) => {
             </div>
             <div className={classes.rate}>
               <Rate
-                count={4}
-                value={+props.product?.rate!}
-                allowHalf
-                disabled
-                style={{ direction: "ltr", userSelect: "none" }}
+              onChange={RatingChangeHandler}
+                rate={props.product?.rate}
               />
             </div>
           </div>

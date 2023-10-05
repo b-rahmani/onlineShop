@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from "next";
 
 const allSorting = (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json([
-    { name: "جدید ترین", value: "" },
+    { name: "جدید ترین", value: "new" },
     { name: "پربازدید ترین", value: "-rate" },
     { name: "ارزان ترین", value: "price" },
     { name: "گران ترین", value: "-price" },
