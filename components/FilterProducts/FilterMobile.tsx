@@ -19,6 +19,7 @@ const FilterMobile = () => {
   const isOpenFilter = useSelector(
     (state: RootState) => state.filterSort.isOpenfilter
   );
+
   const dispatch = useDispatch();
   const Router = useRouter();
 
@@ -60,7 +61,6 @@ const FilterMobile = () => {
               <Fragment key={item.name}>
                 {item.type === "radio" ? (
                   <div className={classes.RadioFilters}>
-                    <div className={classes.filterName}>{item.faName}</div>
                     <FiltersTypeGenerate filter={item} />
                   </div>
                 ) : (

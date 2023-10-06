@@ -10,19 +10,19 @@ import {
 } from "../../store/dataSortSlice";
 import CheckIcon from "../icons/checkIcon";
 import { useRouter } from "next/router";
+import { useContext, useState } from "react";
+import { AllProductContext } from "../../store/ContextAllProduct";
 
 const SortMobile = () => {
   const isOPenSort = useSelector(
     (state: RootState) => state.filterSort.isOpensort
-  );
-  const allSort = useSelector((state: RootState) => state.sortData.allSort);
-  const selectedSort = useSelector(
-    (state: RootState) => state.sortData.selectedSort
-  );
+  );  
+  const { sorts } = useContext(AllProductContext);
+  const [selectedSort,setSelectedSort]=useState<any>(sorts[0])
   const dispatch = useDispatch();
   const Router = useRouter();
   const sortItemClickHandler = (sortItem: singleSortItemType) => {
-    dispatch(changeSelectedSort(sortItem));
+    setSelectedSort(sortItem)
     // const hash = Router.asPath.split("#")[1];
     const url = "/";
     const Query = Router.query;
@@ -56,14 +56,14 @@ const SortMobile = () => {
           <p>مرتب سازی بر اساس </p>
         </div>
         <ul className={classes.sortContainer}>
-          {allSort.map((sortItem: singleSortItemType) => (
+          {sorts?.map((sortItem: singleSortItemType) => (
             <li
               key={sortItem.value}
               //   className={selectedSort.value === sortItem.value ? "active" : ""}
               onClick={() => sortItemClickHandler(sortItem)}
             >
-              <span>{sortItem.name}</span>
-              {selectedSort.value === sortItem.value && <CheckIcon />}
+              <span>{sortItem.faName}</span>
+              {selectedSort?.value === sortItem.value && <CheckIcon />}
             </li>
           ))}
         </ul>

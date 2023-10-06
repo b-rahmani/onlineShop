@@ -63,10 +63,9 @@ const Home: NextPage = (props: any) => {
     
       <AllProductProvider>
         <MainProducts />
-      </AllProductProvider>
-
       <SortMobile />
-      {/* <FilterMobile /> */}
+      <FilterMobile />
+      </AllProductProvider>
     </>
   );
 };

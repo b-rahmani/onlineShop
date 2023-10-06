@@ -27,6 +27,7 @@ const AllProductProvider = (props) => {
   const [loading, setIsloading] = useState(true);
   const [metadata, setmetadata] = useState({ totalCount: 1, pageSize: 6 });
   const [filters, setFilters] = useState([]);
+  const [sorts, setSorts] = useState([]);
   const Router = useRouter();
 
   const getAllProduct = async () => {
@@ -42,6 +43,7 @@ const AllProductProvider = (props) => {
       setAlllProduct(data.results);
       setmetadata({ totalCount: data.count, pageSize: data.page_size });
       setFilters(data.filters);
+      setSorts(data.sorts);
     } catch (error) {
       setIsloading(false);
     }
@@ -70,7 +72,7 @@ const AllProductProvider = (props) => {
 
   return (
     <AllProductContext.Provider
-      value={{ allProductState, loading, metadata, filters }}
+      value={{ allProductState, loading, metadata, filters, sorts }}
     >
       {props.children}
     </AllProductContext.Provider>

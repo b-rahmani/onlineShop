@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface singleSortItemType {
   name: string;
   value: string;
+  faName:string;
 }
 export interface Allsort {
   allSort: singleSortItemType[] | [];

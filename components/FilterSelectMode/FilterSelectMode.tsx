@@ -94,4 +94,5 @@ const FilterSelectMode = (props: { filter: filterType }) => {
     </div>
   );
 };
+
 export default FilterSelectMode;

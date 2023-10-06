@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 
 const FilterProducts = () => {
   const { filters } = useContext(AllProductContext);
-  console.log("Allll filters", filters);
   const Router = useRouter();
   return (
     <div className={classes.filterProducts}>

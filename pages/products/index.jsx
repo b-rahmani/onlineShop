@@ -33,8 +33,8 @@ const Index = (props) => {
       <AllProductProvider>
         <MainProducts />
         <FilterMobile />
+        <SortMobile />
       </AllProductProvider>
-      <SortMobile />
     </>
   );
 };

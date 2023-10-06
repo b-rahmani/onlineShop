@@ -1,7 +1,8 @@
 import SortIcom from "../icons/SortIcom";
 import classes from "./sortProducts.module.scss";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect,useState,memo } from "react";
+import { AllProductContext } from "../../store/ContextAllProduct";
 import { useRouter } from "next/router";
 import FilterIcon from "../icons/FilterIcon";
 import { useSelector, useDispatch } from "react-redux";
@@ -32,31 +33,18 @@ const SortProducts = () => {
   const Router = useRouter();
   const dispatch = useDispatch();
   const filterSort = useSelector((state: RootState) => state.filterSort);
-  const SelectedSort = useSelector(
-    (state: RootState) => state.sortData.selectedSort
-  );
-  const AllSort = useSelector((state: RootState) => state.sortData.allSort);
+  const { sorts } = useContext(AllProductContext);
   const Query = Router.query;
-  useEffect(() => {
-    axios
-      .get("/api/allSortings")
-      .then((res) => {
-        dispatch(initSorts(res.data));
-        if (Query.sort) {
-          // return setSort({ dataSort: res.data, selectedSort: Query.sort });
-          dispatch(
-            changeSelectedSort(
-              res.data.find(
-                (item: singleSortItemType) => item.value === Query.sort
-              )
-            )
-          );
-        } else {
-          dispatch(changeSelectedSort(res.data[0]));
-        }
-      })
-      .catch((er) => console.log(er));
-  }, [Query.sort]);
+  const selectedSort=sorts?.find((item:any)=>item.value===Query.sort)
+
+  // useEffect(() => {
+  //       if (Query.sort) {
+  //         // return setSort({ dataSort: res.data, selectedSort: Query.sort });
+  //         setSelectedSort(sorts?.find((item:any)=>item.value===Query.sort))
+  //       } else {
+          
+  //       }
+  // }, [Query.sort]);
 
   useEffect(() => {
     if (filterSort.isOpenfilter || filterSort.isOpensort) {
@@ -68,7 +56,8 @@ const SortProducts = () => {
 
   const selectedSortHandler = (item: singleSortItemType) => {
     // setSort((prev) => ({ ...prev, selectedSort: value }));
-    dispatch(changeSelectedSort(item));
+    // dispatch(changeSelectedSort(item));
+   
     const hash = Router.asPath.split("#")[1];
     const url = "/";
     const Query = Router.query;
@@ -120,9 +109,11 @@ const SortProducts = () => {
         >
           <FilterIcon /> <span>فیلتر</span>
         </div>
-        <div className={classes.sort} onClick={toggleSortHandler}>
+        <div
+         className={classes.sort}
+          onClick={toggleSortHandler}>
           <SortIcom />
-          <span>{SelectedSort.name}</span>
+          <span>{selectedSort?.faName??'مرتب سازی'}</span>
         </div>
       </div>
       {/* sort desktop */}
@@ -132,15 +123,15 @@ const SortProducts = () => {
           <span> مرتب سازی :</span>
         </p>
         <ul className={classes.sorting}>
-          {AllSort?.map((item: singleSortItemType) => (
+          {sorts?.map((item: singleSortItemType) => (
             <li
-              key={item.name}
+              key={item.faName}
               className={`${classes.sortItem} ${
-                SelectedSort.value === item.value ? classes.active : ""
+                selectedSort?.value === item.value ? classes.active : ""
               }`}
               onClick={() => selectedSortHandler(item)}
             >
-              {item.name}
+              {item.faName}
             </li>
           ))}
         </ul>
@@ -148,4 +139,4 @@ const SortProducts = () => {
     </>
   );
 };
-export default React.memo(SortProducts);
+export default memo(SortProducts);
